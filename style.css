@@ -708,3 +708,12 @@ input:focus, select:focus {
     .sign-box { text-align: center; width: 200px; font-size: 12px; }
     .sign-line { height: 60px; }
 }
+
+/* KOTAK DOWNLOAD APK DI TENTANG */
+.apk-download-box {
+    background: var(--bg-hover);
+    border: 1px dashed var(--border-color);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+}
