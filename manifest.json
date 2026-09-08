@@ -1,0 +1,16 @@
+{
+    "name": "XoXo Inventory System",
+    "short_name": "XoXo",
+    "description": "Aplikasi Inventaris Ruangan Offline & PWA",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0f0f0f",
+    "theme_color": "#c7ff2e",
+    "icons": [
+        {
+            "src": "/src/icon/icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}
