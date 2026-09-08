@@ -48,30 +48,30 @@
     <div id="login-view" class="auth-wrapper hidden">
         <div class="auth-container-grid">
             <div class="auth-tutorial-card">
-                <div class="tutorial-badge" data-i18n="tutorial_badge">Panduan Ringkas</div>
-                <h3 data-i18n="welcome_title">Selamat Datang di XoXo</h3>
-                <p class="text-caption" data-i18n="welcome_desc">Aplikasi manajemen inventaris ruangan mandiri berbasis Progressive Web App (PWA).</p>
+                <div class="tutorial-badge">Panduan Ringkas</div>
+                <h3>Selamat Datang di XoXo</h3>
+                <p class="text-caption">Aplikasi manajemen inventaris ruangan mandiri berbasis Progressive Web App (PWA).</p>
 
                 <div class="tutorial-steps">
                     <div class="step-item">
                         <div class="step-num">1</div>
                         <div class="step-desc">
-                            <strong data-i18n="step1_title">Kelola Data & Foto</strong>
-                            <p data-i18n="step1_desc">Kode otomatis dibuat dan cerdas mengisi ulang slot kosong. Tambahkan ruangan melalui tombol khusus.</p>
+                            <strong>Kelola Data & Foto</strong>
+                            <p>Kode dibuat otomatis, tersedia kategori, stok minimum, dan jadwal servis berkala.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">2</div>
                         <div class="step-desc">
-                            <strong data-i18n="step2_title">Kamera Pemindai QR</strong>
-                            <p data-i18n="step2_desc">Gunakan tombol kamera di navigasi bawah untuk mencari barang secara instan di gudang.</p>
+                            <strong>Kamera Pemindai QR</strong>
+                            <p>Gunakan tombol kamera di navigasi bawah untuk mencari barang secara instan.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">3</div>
                         <div class="step-desc">
-                            <strong data-i18n="step3_title">Bekerja Tanpa Internet</strong>
-                            <p data-i18n="step3_desc">Data aman di memori perangkat. Lakukan backup berkala di menu Pengaturan.</p>
+                            <strong>Bekerja Tanpa Internet</strong>
+                            <p>Data tersimpan di perangkat lokal. Lakukan backup berkala di menu Pengaturan.</p>
                         </div>
                     </div>
                 </div>
@@ -80,15 +80,15 @@
             <div class="auth-card">
                 <div class="auth-header">
                     <svg class="ui-icon large" viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 5a3 3 0 0 1 6 0v3H9V7zm3 7a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V20h-2v-2.28c-.6-.34-1-.98-1-1.72a2 2 0 0 1 2-2z"/></svg>
-                    <h2 data-i18n="login_header">Akses Petugas</h2>
-                    <p class="text-caption" data-i18n="login_caption">Masukkan kata sandi untuk masuk</p>
+                    <h2>Akses Petugas</h2>
+                    <p class="text-caption">Masukkan kata sandi untuk masuk</p>
                 </div>
                 <form onsubmit="event.preventDefault(); prosesLogin();">
                     <div class="input-group">
-                        <label for="login-pass" data-i18n="password_label">Kata Sandi</label>
+                        <label for="login-pass">Kata Sandi</label>
                         <input type="password" id="login-pass" required placeholder="Default awal: admin">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" data-i18n="btn_login">Buka Aplikasi</button>
+                    <button type="submit" class="btn btn-primary btn-block">Buka Aplikasi</button>
                 </form>
             </div>
         </div>
@@ -102,7 +102,7 @@
                 <img src="src/icon/icon.png" class="nav-logo" alt="Logo Aplikasi" onerror="this.style.display='none'">
                 <div class="nav-titles">
                     <span class="nav-app-name">XoXo App</span>
-                    <span class="nav-page-badge" id="page-current-title" data-i18n="nav_dashboard">Dasbor</span>
+                    <span class="nav-page-badge" id="page-current-title">Dasbor</span>
                 </div>
             </div>
             <div class="nav-actions">
@@ -122,7 +122,7 @@
                 <div class="stat-grid">
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title" data-i18n="stat_val">Total Valuasi Aset</span>
+                            <span class="stat-title">Total Valuasi Aset</span>
                             <h3 id="stat-valuasi">Rp 0</h3>
                         </div>
                         <div class="stat-icon-box bg-accent">
@@ -132,7 +132,7 @@
 
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title" data-i18n="stat_unit">Total Unit Barang</span>
+                            <span class="stat-title">Total Unit Barang</span>
                             <h3 id="stat-total">0</h3>
                         </div>
                         <div class="stat-icon-box bg-accent">
@@ -142,7 +142,7 @@
 
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title" data-i18n="stat_good">Kondisi Baik</span>
+                            <span class="stat-title">Kondisi Baik</span>
                             <h3 id="stat-baik">0</h3>
                         </div>
                         <div class="stat-icon-box bg-success">
@@ -152,7 +152,7 @@
 
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title" data-i18n="stat_bad">Total Rusak</span>
+                            <span class="stat-title">Total Rusak</span>
                             <h3 id="stat-rusak">0</h3>
                         </div>
                         <div class="stat-icon-box bg-danger">
@@ -162,7 +162,7 @@
 
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title" data-i18n="stat_loan">Sedang Dipinjam</span>
+                            <span class="stat-title">Sedang Dipinjam</span>
                             <h3 id="stat-pinjam">0</h3>
                         </div>
                         <div class="stat-icon-box bg-warning">
@@ -172,7 +172,7 @@
 
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title">Stok Menipis (< Min)</span>
+                            <span class="stat-title">Stok Menipis (&lt; Min)</span>
                             <h3 id="stat-low-stock" style="color: var(--status-warning);">0</h3>
                         </div>
                         <div class="stat-icon-box bg-warning">
@@ -183,7 +183,7 @@
 
                 <div class="panel chart-panel mt-4">
                     <div class="panel-header">
-                        <h4 data-i18n="chart_title">Proporsi Kondisi Barang</h4>
+                        <h4>Proporsi Kondisi Barang</h4>
                     </div>
                     <div class="chart-content">
                         <canvas id="kondisiChart" width="200" height="200"></canvas>
@@ -196,21 +196,21 @@
             <section id="page-inventaris" class="page-view hidden">
                 <div class="panel">
                     <div class="panel-header space-between">
-                        <h4 id="form-heading" data-i18n="form_title_add">Tambah Data Barang</h4>
+                        <h4 id="form-heading">Tambah Data Barang</h4>
                         <div class="action-header-tools">
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="bukaModalTambahRuangan()" data-i18n="btn_add_room">+ Ruangan</button>
-                            <button type="button" class="btn btn-outline btn-sm" id="btn-toggle-form" onclick="toggleFormInventaris()" data-i18n="btn_open_form">Buka Form</button>
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="bukaModalTambahRuangan()">+ Ruangan</button>
+                            <button type="button" class="btn btn-outline btn-sm" id="btn-toggle-form" onclick="toggleFormInventaris()">Buka Form</button>
                         </div>
                     </div>
                     <form id="form-inventaris" class="hidden" onsubmit="event.preventDefault(); simpanData();">
                         <input type="hidden" id="item-id">
                         <div class="form-grid">
                             <div class="input-group">
-                                <label for="item-kode" data-i18n="col_code">Kode Inventaris (Otomatis)</label>
+                                <label for="item-kode">Kode Inventaris (Otomatis)</label>
                                 <input type="text" id="item-kode" readonly required style="background: var(--bg-hover); font-weight: 700;">
                             </div>
                             <div class="input-group">
-                                <label for="item-nama" data-i18n="col_name">Nama Barang</label>
+                                <label for="item-nama">Nama Barang</label>
                                 <input type="text" id="item-nama" placeholder="Misal: Kursi Ergonomis" required>
                             </div>
                             <div class="input-group">
@@ -225,11 +225,11 @@
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label for="item-ruangan-select" data-i18n="col_room">Pilih Ruangan</label>
+                                <label for="item-ruangan-select">Pilih Ruangan</label>
                                 <select id="item-ruangan-select" required></select>
                             </div>
                             <div class="input-group">
-                                <label for="item-jumlah" data-i18n="col_qty">Jumlah Unit</label>
+                                <label for="item-jumlah">Jumlah Unit</label>
                                 <input type="number" id="item-jumlah" min="1" value="1" required>
                             </div>
                             <div class="input-group">
@@ -237,11 +237,11 @@
                                 <input type="number" id="item-min-stok" min="0" value="2" placeholder="Ambang batas restock">
                             </div>
                             <div class="input-group">
-                                <label for="item-harga" data-i18n="col_price">Harga Satuan (Rp)</label>
+                                <label for="item-harga">Harga Satuan (Rp)</label>
                                 <input type="number" id="item-harga" min="0" placeholder="0" value="0">
                             </div>
                             <div class="input-group">
-                                <label for="item-kondisi" data-i18n="col_cond">Kondisi Barang</label>
+                                <label for="item-kondisi">Kondisi Barang</label>
                                 <select id="item-kondisi" required>
                                     <option value="Baik">Baik</option>
                                     <option value="Rusak Ringan">Rusak Ringan</option>
@@ -253,7 +253,7 @@
                                 <input type="date" id="item-servis">
                             </div>
                             <div class="input-group full-span">
-                                <label data-i18n="col_photo">Foto Dokumentasi Fisik</label>
+                                <label>Foto Dokumentasi Fisik</label>
                                 <input type="file" id="item-foto" accept="image/*" onchange="handleFotoUpload(event)">
                                 <div id="foto-preview-wrapper" class="preview-box hidden">
                                     <img id="foto-preview" src="" alt="Preview">
@@ -262,11 +262,11 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary" id="btn-save" data-i18n="btn_save_item">
+                            <button type="submit" class="btn btn-primary" id="btn-save">
                                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
                                 Simpan Barang
                             </button>
-                            <button type="button" class="btn btn-secondary hidden" id="btn-cancel" onclick="resetForm()" data-i18n="btn_cancel_edit">Batal Edit</button>
+                            <button type="button" class="btn btn-secondary hidden" id="btn-cancel" onclick="resetForm()">Batal Edit</button>
                         </div>
                     </form>
                 </div>
@@ -303,18 +303,18 @@
                 <div id="batch-action-bar" class="batch-bar hidden">
                     <span id="selected-count" class="badge">0 dipilih</span>
                     <div class="batch-buttons">
-                        <button type="button" class="btn btn-outline btn-sm" onclick="bukaModalMutasiMassal()" data-i18n="btn_batch_move">Mutasi Ruangan</button>
-                        <button type="button" class="btn btn-danger-outline btn-sm" onclick="hapusMassal()" data-i18n="btn_batch_del">Hapus Massal</button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="bukaModalMutasiMassal()">Mutasi Ruangan</button>
+                        <button type="button" class="btn btn-danger-outline btn-sm" onclick="hapusMassal()">Hapus Massal</button>
                     </div>
                 </div>
 
                 <div class="panel mt-4">
                     <div class="panel-header space-between">
-                        <h4 data-i18n="item_list_title">Daftar Barang</h4>
+                        <h4>Daftar Barang</h4>
                         <div class="action-header-tools">
                             <label class="checkbox-label">
                                 <input type="checkbox" id="select-all-checkbox" onchange="toggleSelectAll(this)">
-                                <span data-i18n="select_all">Pilih Semua</span>
+                                <span>Pilih Semua</span>
                             </label>
                             <span id="data-count" class="badge">0 Data</span>
                         </div>
@@ -322,7 +322,7 @@
                     <div id="cards-container" class="cards-grid"></div>
                     <div id="empty-state" class="empty-state hidden">
                         <svg class="ui-icon large" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-                        <p data-i18n="empty_state">Tidak ada data inventaris ditemukan.</p>
+                        <p>Tidak ada data inventaris ditemukan.</p>
                     </div>
                 </div>
             </section>
@@ -331,43 +331,43 @@
             <section id="page-peminjaman" class="page-view hidden">
                 <div class="panel">
                     <div class="panel-header">
-                        <h4 data-i18n="loan_form_title">Catat Peminjaman Barang</h4>
+                        <h4>Catat Peminjaman Barang</h4>
                     </div>
                     <form onsubmit="event.preventDefault(); catatPeminjaman();">
                         <div class="form-grid">
                             <div class="input-group">
-                                <label for="pinjam-barang" data-i18n="loan_choose_item">Pilih Barang</label>
+                                <label for="pinjam-barang">Pilih Barang</label>
                                 <select id="pinjam-barang" required></select>
                             </div>
                             <div class="input-group">
-                                <label for="pinjam-nama" data-i18n="loan_borrower">Nama Peminjam</label>
+                                <label for="pinjam-nama">Nama Peminjam</label>
                                 <input type="text" id="pinjam-nama" placeholder="Misal: Hendra Pratama" required>
                             </div>
                             <div class="input-group">
-                                <label for="pinjam-jumlah" data-i18n="col_qty">Jumlah Unit</label>
+                                <label for="pinjam-jumlah">Jumlah Unit</label>
                                 <input type="number" id="pinjam-jumlah" min="1" value="1" required>
                             </div>
                             <div class="input-group">
-                                <label for="pinjam-tgl-kembali" data-i18n="loan_due">Tenggat Pengembalian</label>
+                                <label for="pinjam-tgl-kembali">Tenggat Pengembalian</label>
                                 <input type="date" id="pinjam-tgl-kembali" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" data-i18n="btn_save_loan">Simpan Transaksi Pinjam</button>
+                        <button type="submit" class="btn btn-primary">Simpan Transaksi Pinjam</button>
                     </form>
                 </div>
 
                 <div class="panel mt-4">
                     <div class="panel-header">
-                        <h4 data-i18n="loan_table_title">Status Peminjaman Aktif</h4>
+                        <h4>Status Peminjaman Aktif</h4>
                     </div>
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th data-i18n="loan_borrower">Peminjam</th>
-                                    <th data-i18n="col_name">Barang</th>
-                                    <th data-i18n="col_qty">Jumlah</th>
-                                    <th data-i18n="loan_due">Tenggat</th>
+                                    <th>Peminjam</th>
+                                    <th>Barang</th>
+                                    <th>Jumlah</th>
+                                    <th>Tenggat</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -382,8 +382,8 @@
             <section id="page-log" class="page-view hidden">
                 <div class="panel">
                     <div class="panel-header space-between">
-                        <h4 data-i18n="log_title">Log Riwayat Aktivitas</h4>
-                        <button class="btn btn-outline" onclick="konfirmasiHapusLog()" data-i18n="btn_clear_log">Bersihkan Log</button>
+                        <h4>Log Riwayat Aktivitas</h4>
+                        <button class="btn btn-outline" onclick="konfirmasiHapusLog()">Bersihkan Log</button>
                     </div>
                     <div id="log-list" class="timeline"></div>
                 </div>
@@ -393,17 +393,17 @@
             <section id="page-laporan" class="page-view hidden">
                 <div class="panel no-print">
                     <div class="panel-header">
-                        <h4 data-i18n="report_title">Cetak Berita Acara & Rekap Aset</h4>
+                        <h4>Cetak Berita Acara & Rekap Aset</h4>
                     </div>
                     <div class="form-grid">
                         <div class="input-group">
-                            <label for="laporan-filter-ruang" data-i18n="report_filter_room">Filter Berdasarkan Ruangan</label>
+                            <label for="laporan-filter-ruang">Filter Berdasarkan Ruangan</label>
                             <select id="laporan-filter-ruang" onchange="renderLaporanPreview()">
                                 <option value="">Semua Ruangan</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label for="laporan-filter-kondisi" data-i18n="report_filter_cond">Kondisi Barang</label>
+                            <label for="laporan-filter-kondisi">Kondisi Barang</label>
                             <select id="laporan-filter-kondisi" onchange="renderLaporanPreview()">
                                 <option value="">Semua Kondisi</option>
                                 <option value="Baik">Hanya Kondisi Baik</option>
@@ -411,7 +411,7 @@
                             </select>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="window.print()" data-i18n="btn_print_pdf">
+                    <button type="button" class="btn btn-primary" onclick="window.print()">
                         <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
                         Cetak Laporan / PDF
                     </button>
@@ -457,40 +457,43 @@
                 </div>
             </section>
 
-            <!-- PAGE 6: HALAMAN UTAMA PENGATURAN (VERTICAL MENU) -->
+            <!-- PAGE 6: HALAMAN PENGATURAN UTAMA (VERTICAL MENU) -->
             <section id="page-setting" class="page-view hidden">
                 <div class="setting-page-header">
-                    <h2 data-i18n="setting_title">Pengaturan</h2>
-                    <p class="text-caption" data-i18n="setting_caption">Kelola sistem, tampilan, dan preferensi aplikasi</p>
+                    <h2>Pengaturan</h2>
+                    <p class="text-caption">Kelola sistem, tampilan, dan preferensi aplikasi</p>
                 </div>
 
                 <div class="settings-vertical-menu">
+                    <!-- MENU TEMA -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-theme')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-accent">
                                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
                             </div>
                             <div class="menu-item-text">
-                                <h4 data-i18n="tab_theme">Tema Tampilan</h4>
-                                <p class="text-caption" data-i18n="menu_theme_desc">Mode Terang, Gelap, atau Otomatis HP</p>
+                                <h4>Tema Tampilan</h4>
+                                <p class="text-caption">Mode Terang, Gelap, atau Otomatis HP</p>
                             </div>
                         </div>
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU BAHASA -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-lang')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-success">
                                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
                             </div>
                             <div class="menu-item-text">
-                                <h4 data-i18n="tab_lang">Bahasa</h4>
-                                <p class="text-caption" data-i18n="menu_lang_desc">Pilih Bahasa Indonesia atau English</p>
+                                <h4>Bahasa / Language</h4>
+                                <p class="text-caption">Pilih Bahasa Indonesia atau English</p>
                             </div>
                         </div>
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU PROFIL INSTANSI -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-instansi')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-accent">
@@ -504,6 +507,7 @@
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU FORMAT KODE -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-prefix')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-warning">
@@ -517,6 +521,7 @@
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU GETAR & SUARA -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-haptic')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-success">
@@ -530,6 +535,7 @@
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU PENYIMPANAN -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-storage')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-accent">
@@ -543,32 +549,35 @@
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU KATA SANDI -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-acc')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-warning">
                                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
                             </div>
                             <div class="menu-item-text">
-                                <h4 data-i18n="tab_account">Akun & Keamanan</h4>
-                                <p class="text-caption" data-i18n="menu_acc_desc">Ganti kata sandi akses aplikasi</p>
+                                <h4>Kata Sandi Masuk</h4>
+                                <p class="text-caption">Ganti kata sandi akses aplikasi</p>
                             </div>
                         </div>
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU DATA & BACKUP -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-data')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-accent">
                                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
                             </div>
                             <div class="menu-item-text">
-                                <h4 data-i18n="tab_data">Data & Cadangan</h4>
-                                <p class="text-caption" data-i18n="menu_data_desc">Ekspor, impor, cadangkan data JSON</p>
+                                <h4>Data & Cadangan</h4>
+                                <p class="text-caption">Ekspor, impor, unduh cadangan lengkap</p>
                             </div>
                         </div>
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU RESET PABRIK -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-reset')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-danger">
@@ -582,14 +591,15 @@
                         <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
+                    <!-- MENU TENTANG & S&K -->
                     <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-about')">
                         <div class="menu-item-left">
                             <div class="menu-icon-box bg-success">
                                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                             </div>
                             <div class="menu-item-text">
-                                <h4 data-i18n="tab_about">Tentang Aplikasi & S&K</h4>
-                                <p class="text-caption" data-i18n="menu_about_desc">Informasi versi, developer, lisensi</p>
+                                <h4>Tentang Aplikasi & S&K</h4>
+                                <p class="text-caption">Informasi versi, unduh APK, lisensi, dan ketentuan</p>
                             </div>
                         </div>
                         <span class="menu-chevron">&rsaquo;</span>
@@ -602,13 +612,13 @@
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; Kembali ke Pengaturan</button>
                 <div class="panel">
                     <div class="panel-header">
-                        <h4 data-i18n="theme_mode_title">Mode Tampilan Visual</h4>
-                        <p class="text-caption mt-2" data-i18n="theme_mode_desc">Pilih skema warna antarmuka yang paling sesuai dengan kenyamanan Anda.</p>
+                        <h4>Mode Tampilan Visual</h4>
+                        <p class="text-caption mt-2">Pilih skema tema warna yang paling nyaman.</p>
                     </div>
                     <div class="theme-picker mt-4">
                         <button type="button" class="btn-theme" id="btn-theme-light" onclick="gantiTema('light')">Light Mode</button>
                         <button type="button" class="btn-theme" id="btn-theme-dark" onclick="gantiTema('dark')">Dark Mode</button>
-                        <button type="button" class="btn-theme" id="btn-theme-auto" onclick="gantiTema('auto')" data-i18n="theme_auto">Otomatis (Sistem HP)</button>
+                        <button type="button" class="btn-theme" id="btn-theme-auto" onclick="gantiTema('auto')">Otomatis (Sistem HP)</button>
                     </div>
                 </div>
             </section>
@@ -618,8 +628,8 @@
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; Kembali ke Pengaturan</button>
                 <div class="panel">
                     <div class="panel-header">
-                        <h4 data-i18n="lang_setting_title">Pengaturan Bahasa</h4>
-                        <p class="text-caption mt-2" data-i18n="lang_setting_desc">Pilih bahasa pengantar antarmuka aplikasi.</p>
+                        <h4>Pengaturan Bahasa</h4>
+                        <p class="text-caption mt-2">Pilih bahasa pengantar antarmuka aplikasi.</p>
                     </div>
                     <div class="mt-4" style="max-width: 400px;">
                         <div class="grid-two mb-4">
@@ -742,19 +752,19 @@
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; Kembali ke Pengaturan</button>
                 <div class="panel">
                     <div class="panel-header">
-                        <h4 data-i18n="acc_title">Keamanan & Kata Sandi</h4>
-                        <p class="text-caption mt-2" data-i18n="acc_desc">Ubah kata sandi lokal untuk mengamankan akses aplikasi di perangkat ini.</p>
+                        <h4>Keamanan & Kata Sandi</h4>
+                        <p class="text-caption mt-2">Ubah kata sandi lokal untuk mengamankan akses aplikasi di perangkat ini.</p>
                     </div>
                     <form onsubmit="event.preventDefault(); gantiPassword();" style="max-width: 420px;" class="mt-4">
                         <div class="input-group">
-                            <label for="pw-lama" data-i18n="acc_curr_pw">Kata Sandi Sekarang</label>
+                            <label for="pw-lama">Kata Sandi Sekarang</label>
                             <input type="password" id="pw-lama" placeholder="Password saat ini" required>
                         </div>
                         <div class="input-group">
-                            <label for="pw-baru" data-i18n="acc_new_pw">Kata Sandi Baru</label>
+                            <label for="pw-baru">Kata Sandi Baru</label>
                             <input type="password" id="pw-baru" placeholder="Password baru (min. 4 karakter)" required>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2" data-i18n="acc_btn_update">Perbarui Kata Sandi</button>
+                        <button type="submit" class="btn btn-primary mt-2">Perbarui Kata Sandi</button>
                     </form>
                 </div>
             </section>
@@ -764,7 +774,7 @@
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; Kembali ke Pengaturan</button>
                 <div class="panel">
                     <div class="panel-header">
-                        <h4 data-i18n="export_import_title">Ekspor & Impor Inventaris</h4>
+                        <h4>Ekspor & Impor Inventaris</h4>
                         <p class="text-caption mt-2">Unduh atau pulihkan berkas CSV dan JSON data barang.</p>
                     </div>
                     <div class="grid-two mt-4" style="max-width: 420px;">
@@ -772,19 +782,19 @@
                         <button type="button" class="btn btn-outline" onclick="exportData('json')">Ekspor Format JSON</button>
                     </div>
                     <div class="mt-2" style="max-width: 420px;">
-                        <label for="import-file" class="btn btn-outline btn-block" data-i18n="btn_import_json">Impor Berkas JSON</label>
+                        <label for="import-file" class="btn btn-outline btn-block">Impor Berkas JSON</label>
                         <input type="file" id="import-file" accept=".json" onchange="importData(event)" class="hidden-file">
                     </div>
                 </div>
 
                 <div class="panel mt-4">
                     <div class="panel-header">
-                        <h4 data-i18n="backup_title">Cadangan Penuh (Full Backup)</h4>
-                        <p class="text-caption mt-2" data-i18n="backup_desc">Unduh seluruh berkas konfigurasi, data ruangan, riwayat, dan transaksi untuk dipindahkan ke HP lain.</p>
+                        <h4>Cadangan Penuh (Full Backup)</h4>
+                        <p class="text-caption mt-2">Unduh seluruh berkas konfigurasi, data ruangan, riwayat, dan transaksi untuk dipindahkan ke HP lain.</p>
                     </div>
                     <div class="grid-two mt-4" style="max-width: 420px;">
-                        <button type="button" class="btn btn-outline" onclick="backupLocalStorage()" data-i18n="btn_backup">Unduh Cadangan</button>
-                        <label for="restore-file" class="btn btn-outline text-center" data-i18n="btn_restore">Pulihkan Cadangan</label>
+                        <button type="button" class="btn btn-outline" onclick="backupLocalStorage()">Unduh Cadangan</button>
+                        <label for="restore-file" class="btn btn-outline text-center">Pulihkan Cadangan</label>
                         <input type="file" id="restore-file" accept=".json" onchange="restoreLocalStorage(event)" class="hidden-file">
                     </div>
                 </div>
@@ -804,35 +814,46 @@
                 </div>
             </section>
 
-            <!-- SUB-HALAMAN 10: TENTANG APLIKASI & S&K -->
+            <!-- SUB-HALAMAN 10: TENTANG APLIKASI & S&K (DENGAN TOMBOL UNDUH APK) -->
             <section id="page-setting-about" class="page-view hidden">
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; Kembali ke Pengaturan</button>
+                
                 <div class="panel">
                     <div class="about-app-card">
                         <img src="src/icon/icon.png" class="about-logo" alt="Logo" onerror="this.style.display='none'">
                         <h3>XoXo Inventory App</h3>
                         <span class="badge badge-baik mt-2">Versi 3.5.0 (Offline PWA)</span>
-                        <p class="text-caption mt-4" data-i18n="about_desc">
+                        <p class="text-caption mt-4">
                             Aplikasi manajemen inventaris barang dan ruangan berbasis Progressive Web App (PWA). Berjalan mandiri tanpa database eksternal, dengan penyimpanan media foto di IndexedDB dan data di LocalStorage.
                         </p>
+
+                        <!-- TOMBOL UNDUH APK RESMI -->
+                        <div class="apk-download-box mt-4">
+                            <a href="./XoXo.apk" download="XoXo.apk" class="btn btn-primary btn-block" style="text-decoration: none;">
+                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                                Unduh Aplikasi Android (.APK)
+                            </a>
+                            <p class="text-caption mt-2" style="font-size: 11px;">Versi installer offline untuk dipasang langsung di HP Android.</p>
+                        </div>
+
                         <div class="about-details mt-4">
                             <p><strong>Framework:</strong> Native Vanilla JS, CSS3, HTML5</p>
                             <p><strong>Penyimpanan:</strong> Client-side LocalStorage & IndexedDB</p>
                             <p><strong>Scanner Engine:</strong> HTML5-QRCode Library</p>
                             <p><strong>Credit:</strong> Dibuat oleh XoXo Team</p>
-                            <p><strong>Anggota Team:</strong> Amirul Fahrudin & M.Rizky Indra Wanto</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="panel mt-4">
                     <div class="panel-header">
-                        <h4 data-i18n="snk_title">Syarat & Ketentuan Penggunaan</h4>
+                        <h4>Syarat & Ketentuan Penggunaan</h4>
                     </div>
                     <div class="snk-text-box mt-4">
-                        <p><strong data-i18n="snk_1_title">1. Penyimpanan Data Lokal:</strong> <span data-i18n="snk_1_desc">Seluruh data disimpan sepenuhnya di browser perangkat. Aplikasi tidak mengirim data ke server mana pun.</span></p>
-                        <p><strong data-i18n="snk_2_title">2. Risiko Penghapusan Cache:</strong> <span data-i18n="snk_2_desc">Menghapus cache browser dapat menghilangkan data jika belum dibackup. Disarankan rutin mengunduh cadangan JSON.</span></p>
-                        <p><strong data-i18n="snk_3_title">3. Akses Kamera:</strong> <span data-i18n="snk_3_desc">Fitur pemindai QR Code memerlukan izin kamera secara lokal.</span></p>
+                        <p><strong>1. Penyimpanan Data Lokal:</strong> Seluruh data disimpan sepenuhnya di browser perangkat. Aplikasi tidak mengirim data ke server mana pun.</p>
+                        <p><strong>2. Risiko Penghapusan Cache:</strong> Menghapus cache browser dapat menghilangkan data jika belum dicadangkan. Disarankan rutin mengunduh cadangan JSON.</p>
+                        <p><strong>3. Akses Kamera:</strong> Fitur pemindai QR Code memerlukan izin kamera secara lokal.</p>
+                        <p><strong>4. Pemasangan Berkas APK:</strong> Pengguna dapat memasang berkas <code>XoXo.apk</code> secara mandiri dengan mengizinkan instalasi dari sumber tidak dikenal di setelan Android.</p>
                     </div>
                 </div>
             </section>
@@ -848,23 +869,23 @@
             <nav class="bottom-dock-capsule">
                 <button class="dock-btn active" onclick="navigasiKe('page-dashboard', this)">
                     <svg class="ui-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                    <span class="dock-label" data-i18n="nav_dashboard">Home</span>
+                    <span class="dock-label">Home</span>
                 </button>
                 <button class="dock-btn" onclick="navigasiKe('page-inventaris', this)">
                     <svg class="ui-icon" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-                    <span class="dock-label" data-i18n="nav_items">Barang</span>
+                    <span class="dock-label">Barang</span>
                 </button>
                 <button class="dock-btn" onclick="navigasiKe('page-peminjaman', this)">
                     <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-                    <span class="dock-label" data-i18n="nav_loans">Pinjam</span>
+                    <span class="dock-label">Pinjam</span>
                 </button>
                 <button class="dock-btn" onclick="navigasiKe('page-log', this)">
                     <svg class="ui-icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
-                    <span class="dock-label" data-i18n="nav_history">Riwayat</span>
+                    <span class="dock-label">Riwayat</span>
                 </button>
                 <button class="dock-btn" onclick="navigasiKe('page-laporan', this)">
                     <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                    <span class="dock-label" data-i18n="nav_report">Laporan</span>
+                    <span class="dock-label">Laporan</span>
                 </button>
             </nav>
 
