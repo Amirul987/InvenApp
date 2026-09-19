@@ -5,17 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#c7ff2e">
     <title>XoXo - Inventaris Ruangan</title>
+    
+    <link rel="icon" type="image/png" href="src/icon/icon.png">
+    <link rel="apple-touch-icon" href="src/icon/icon.png">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 <body>
 
+    <!-- IFRAME TERSEMBUNYI UNTUK CETAK LABEL STIKER FISIK (ANTI KOSONG) -->
+    <iframe id="print-frame" style="display:none; visibility:hidden; width:0; height:0; position:absolute; border:none;"></iframe>
+
     <!-- NOTIFIKASI TOAST -->
     <div id="toast-container"></div>
 
     <!-- MODAL KONFIRMASI KUSTOM -->
-    <div id="custom-confirm-modal" class="modal-overlay hidden">
+    <div id="custom-confirm-modal" class="modal-overlay hidden no-print">
         <div class="modal-card confirm-card">
             <div class="confirm-icon-box">
                 <svg class="ui-icon large" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
@@ -29,23 +36,63 @@
         </div>
     </div>
 
+    <!-- AREA STIKER LABEL FISIK RESMI SIAP CETAK -->
+    <div id="printable-label-area" class="label-print-sheet">
+        <div class="inventory-sticker">
+            <div class="sticker-header">
+                <img src="src/icon/icon.png" class="sticker-logo" alt="Logo" onerror="this.style.display='none'">
+                <div class="sticker-org-info">
+                    <h4 id="lbl-org-name">XOXO INVENTORY SYSTEM</h4>
+                    <p id="lbl-org-sub">STIKER IDENTIFIKASI ASET RESMI</p>
+                </div>
+            </div>
+            <div class="sticker-body">
+                <div class="sticker-qr-box">
+                    <img id="lbl-qr-image" src="" alt="QR Code" class="sticker-qr-img">
+                </div>
+                <div class="sticker-meta-box">
+                    <div class="sticker-meta-row">
+                        <span class="meta-label">Kode:</span>
+                        <strong id="lbl-item-code" class="meta-code">-</strong>
+                    </div>
+                    <div class="sticker-meta-row">
+                        <span class="meta-label">Barang:</span>
+                        <strong id="lbl-item-name" class="meta-val">-</strong>
+                    </div>
+                    <div class="sticker-meta-row">
+                        <span class="meta-label">Ruang:</span>
+                        <span id="lbl-item-room" class="meta-val">-</span>
+                    </div>
+                    <div class="sticker-meta-row">
+                        <span class="meta-label">Kategori:</span>
+                        <span id="lbl-item-cat" class="meta-val">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sticker-footer">
+                <span>DILARANG MELEPAS / MERUSAK LABEL INI</span>
+                <span id="lbl-print-date">Tgl Cetak: -</span>
+            </div>
+        </div>
+    </div>
+
     <!-- 1. SPLASH SCREEN -->
-    <div id="splash-screen">
+    <div id="splash-screen" class="no-print">
         <div class="splash-box">
             <div class="splash-icon-wrapper">
                 <img src="src/icon/icon.png" alt="Logo" class="splash-logo" onerror="this.style.display='none'">
                 <div class="pulse-ring"></div>
             </div>
             <h1 class="splash-app-title">XoXo Inventory</h1>
-            <p class="splash-creator" data-i18n="splash_creator">Dibuat oleh XoXo Team</p>
+            <p class="splash-creator">Dibuat oleh XoXo Team</p>
             <div class="splash-loader-bar">
                 <div class="splash-loader-fill"></div>
             </div>
         </div>
     </div>
 
-    <!-- 2. LOGIN VIEW + PANDUAN PENGGUNAAN -->
-    <div id="login-view" class="auth-wrapper hidden">
+    <!-- 2. LOGIN VIEW -->
+    <div id="login-view" class="auth-wrapper hidden no-print">
         <div class="auth-container-grid">
             <div class="auth-tutorial-card">
                 <div class="tutorial-badge">Panduan Ringkas</div>
@@ -117,9 +164,54 @@
 
         <main class="container app-content-wrapper">
 
-            <!-- PAGE 1: DASBOR -->
+            <!-- PAGE 1: DASBOR (SUPER DETAILED & ANALYTICAL) -->
             <section id="page-dashboard" class="page-view active">
-                <div class="stat-grid">
+                
+                <!-- WIDGET HEADER KONTEKSTUAL & JAM REALTIME -->
+                <div class="dash-hero-widget">
+                    <div class="hero-left">
+                        <span class="hero-badge">Sistem Aktif &bull; Mode Offline</span>
+                        <h2 id="dash-greeting">Halo, Petugas!</h2>
+                        <p id="dash-date-string" class="text-caption">Memuat tanggal...</p>
+                    </div>
+                    <div class="hero-right">
+                        <div class="live-clock" id="dash-live-clock">00:00:00</div>
+                    </div>
+                </div>
+
+                <!-- DOCK TOMBOL AKSI CEPAT (QUICK ACTION) -->
+                <div class="quick-action-dock mt-2">
+                    <button type="button" class="quick-btn" onclick="mulaiScanQR()">
+                        <div class="quick-icon-circle bg-accent">
+                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 15c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm9-9h-3.17L16 4H8L6.17 6H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-9 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+                        </div>
+                        <span>Scan QR</span>
+                    </button>
+                    <button type="button" class="quick-btn" onclick="navigasiKe('page-inventaris'); toggleFormInventaris();">
+                        <div class="quick-icon-circle bg-success">
+                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        </div>
+                        <span>Tambah Item</span>
+                    </button>
+                    <button type="button" class="quick-btn" onclick="navigasiKe('page-laporan')">
+                        <div class="quick-icon-circle bg-warning">
+                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+                        </div>
+                        <span>Cetak Rekap</span>
+                    </button>
+                    <button type="button" class="quick-btn" onclick="filterHanyaBarangRusak()">
+                        <div class="quick-icon-circle bg-danger">
+                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                        </div>
+                        <span>Cek Rusak</span>
+                    </button>
+                </div>
+
+                <!-- KARTU PERINGATAN OPERASIONAL CEPAT -->
+                <div id="dash-action-alerts" class="dashboard-alert-container mt-2 hidden"></div>
+
+                <!-- METRIK ANGKA UTAMA (GRID) -->
+                <div class="stat-grid mt-2">
                     <div class="stat-card">
                         <div class="stat-meta">
                             <span class="stat-title">Total Valuasi Aset</span>
@@ -162,33 +254,117 @@
 
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title">Sedang Dipinjam</span>
-                            <h3 id="stat-pinjam">0</h3>
+                            <span class="stat-title">Estimasi Nilai Rusak</span>
+                            <h3 id="stat-damaged-val" style="color: var(--status-danger);">Rp 0</h3>
                         </div>
-                        <div class="stat-icon-box bg-warning">
-                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                        <div class="stat-icon-box bg-danger">
+                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-9-1c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V7h2z"/></svg>
                         </div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-meta">
-                            <span class="stat-title">Stok Menipis (&lt; Min)</span>
-                            <h3 id="stat-low-stock" style="color: var(--status-warning);">0</h3>
+                            <span class="stat-title">Aset Termahal</span>
+                            <h3 id="stat-highest-item" style="font-size: 14px; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">-</h3>
+                            <span id="stat-highest-val" class="text-caption" style="font-weight:700; color:var(--primary);">Rp 0</span>
                         </div>
                         <div class="stat-icon-box bg-warning">
-                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                            <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                         </div>
                     </div>
                 </div>
 
-                <div class="panel chart-panel mt-4">
-                    <div class="panel-header">
-                        <h4>Proporsi Kondisi Barang</h4>
+                <!-- DUAL VISUALISASI: KESEHATAN ASET (GAUGE) & KONDISI (DONUT) -->
+                <div class="dashboard-analytics-grid mt-4">
+                    <!-- GAUGE TINGKAT KESEHATAN ASET -->
+                    <div class="panel">
+                        <div class="panel-header space-between">
+                            <h4>Skor Kesehatan Aset</h4>
+                            <span class="badge badge-baik" id="health-score-status">Prima</span>
+                        </div>
+                        <div class="gauge-card-body">
+                            <canvas id="healthGaugeChart" width="200" height="110"></canvas>
+                            <div class="gauge-center-text">
+                                <h3 id="health-score-percent">0%</h3>
+                                <p class="text-caption">Kondisi Baik</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="chart-content">
-                        <canvas id="kondisiChart" width="200" height="200"></canvas>
-                        <div id="chart-legend" class="chart-legend"></div>
+
+                    <!-- DONUT PROPORSI KONDISI -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h4>Proporsi Kondisi Barang</h4>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="kondisiChart" width="160" height="160"></canvas>
+                            <div id="chart-legend" class="chart-legend"></div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- GRAFIK BATANG VALUASI ASET PER RUANGAN (BAR CHART CANVAS) -->
+                <div class="panel mt-4">
+                    <div class="panel-header space-between">
+                        <h4>Valuasi Aset per Ruangan (Grafik Batang)</h4>
+                        <span id="dash-total-rooms-badge" class="badge">0 Ruangan</span>
+                    </div>
+                    <div class="bar-chart-wrapper">
+                        <canvas id="roomBarChart" width="560" height="200"></canvas>
+                    </div>
+                    <div id="dash-room-distribution" class="room-distribution-container mt-4"></div>
+                </div>
+
+                <!-- DUAL METRIK FINANSIAL & KATEGORI -->
+                <div class="dashboard-analytics-grid mt-4">
+                    <!-- KOMPOSISI KATEGORI -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h4>Komposisi Kategori Barang</h4>
+                        </div>
+                        <div id="dash-category-list" class="progress-breakdown-list"></div>
+                    </div>
+
+                    <!-- ANALITIK CERDAS (DEPRESIASI & SIRKULASI) -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h4>Wawasan Finansial & Operasional</h4>
+                        </div>
+                        <div class="smart-insights-list">
+                            <div class="insight-row">
+                                <div class="insight-meta">
+                                    <strong>Estimasi Penyusutan Nilai (Tahunan)</strong>
+                                    <p class="text-caption">Depresiasi nilai buku aset (estimasi ~10% per tahun)</p>
+                                </div>
+                                <span class="insight-val" id="dash-depreciation-val">Rp 0 / thn</span>
+                            </div>
+
+                            <div class="insight-row mt-2">
+                                <div class="insight-meta">
+                                    <strong>Barang Paling Sering Dipinjam</strong>
+                                    <p class="text-caption" id="dash-most-borrowed-sub">Berdasarkan riwayat transaksi</p>
+                                </div>
+                                <span class="insight-val" id="dash-most-borrowed-item">-</span>
+                            </div>
+
+                            <div class="insight-row mt-2">
+                                <div class="insight-meta">
+                                    <strong>Ruangan Terpadat</strong>
+                                    <p class="text-caption" id="dash-densest-room-sub">Konsentrasi barang terbanyak</p>
+                                </div>
+                                <span class="badge badge-baik" id="dash-densest-room-badge">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALIRAN AKTIVITAS TERBARU -->
+                <div class="panel mt-4">
+                    <div class="panel-header space-between">
+                        <h4>Aktivitas & Mutasi Terakhir</h4>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="navigasiKe('page-log')">Lihat Semua</button>
+                    </div>
+                    <div id="dash-recent-activities" class="timeline"></div>
                 </div>
             </section>
 
@@ -457,152 +633,157 @@
                 </div>
             </section>
 
-            <!-- PAGE 6: HALAMAN PENGATURAN UTAMA (VERTICAL MENU) -->
+            <!-- PAGE 6: PENGATURAN BERBASIS UX LAWS -->
             <section id="page-setting" class="page-view hidden">
                 <div class="setting-page-header">
                     <h2>Pengaturan</h2>
-                    <p class="text-caption">Kelola sistem, tampilan, dan preferensi aplikasi</p>
+                    <p class="text-caption">Kelola sistem, antarmuka, dan konfigurasi inventaris</p>
                 </div>
 
-                <div class="settings-vertical-menu">
-                    <!-- MENU TEMA -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-theme')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-accent">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                <div class="ux-settings-container">
+                    <div class="settings-group">
+                        <span class="settings-group-title">Tampilan & Antarmuka</span>
+                        <div class="settings-group-card">
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-theme')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-accent">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Tema Tampilan</h4>
+                                        <p class="text-caption">Mode Terang, Gelap, atau Otomatis HP</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
-                            <div class="menu-item-text">
-                                <h4>Tema Tampilan</h4>
-                                <p class="text-caption">Mode Terang, Gelap, atau Otomatis HP</p>
+
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-lang')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-success">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Bahasa / Language</h4>
+                                        <p class="text-caption">Pilih Bahasa Indonesia atau English</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
                         </div>
-                        <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
-                    <!-- MENU BAHASA -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-lang')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-success">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+                    <div class="settings-group mt-4">
+                        <span class="settings-group-title">Operasional & Perangkat</span>
+                        <div class="settings-group-card">
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-instansi')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-accent">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Profil Instansi & Kop Surat</h4>
+                                        <p class="text-caption">Nama kantor, alamat, dan petugas laporan</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
-                            <div class="menu-item-text">
-                                <h4>Bahasa / Language</h4>
-                                <p class="text-caption">Pilih Bahasa Indonesia atau English</p>
+
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-prefix')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-warning">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Format Penomoran Kode</h4>
+                                        <p class="text-caption">Kustomisasi awalan kode (INV, LAB, SARPRAS)</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
+                            </div>
+
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-haptic')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-success">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Getar & Suara Scanner</h4>
+                                        <p class="text-caption">Bip pemindai QR dan haptik getaran</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
                         </div>
-                        <span class="menu-chevron">&rsaquo;</span>
                     </div>
 
-                    <!-- MENU PROFIL INSTANSI -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-instansi')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-accent">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                    <div class="settings-group mt-4">
+                        <span class="settings-group-title">Keamanan & Data</span>
+                        <div class="settings-group-card">
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-acc')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-warning">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Kata Sandi Masuk</h4>
+                                        <p class="text-caption">Ganti kata sandi akses aplikasi</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
-                            <div class="menu-item-text">
-                                <h4>Profil Instansi & Kop Surat</h4>
-                                <p class="text-caption">Nama kantor, alamat, dan pejabat untuk cetak laporan</p>
-                            </div>
-                        </div>
-                        <span class="menu-chevron">&rsaquo;</span>
-                    </div>
 
-                    <!-- MENU FORMAT KODE -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-prefix')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-warning">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"/></svg>
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-data')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-accent">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Data & Cadangan</h4>
+                                        <p class="text-caption">Ekspor, impor, cadangkan data JSON</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
-                            <div class="menu-item-text">
-                                <h4>Format Penomoran Kode</h4>
-                                <p class="text-caption">Kustomisasi awalan kode (misal: INV, LAB, SARPRAS)</p>
-                            </div>
-                        </div>
-                        <span class="menu-chevron">&rsaquo;</span>
-                    </div>
 
-                    <!-- MENU GETAR & SUARA -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-haptic')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-success">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-storage')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-accent">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Manajemen Penyimpanan</h4>
+                                        <p class="text-caption">Cek kuota memori dan bersihkan media</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
-                            <div class="menu-item-text">
-                                <h4>Getar & Suara Scanner</h4>
-                                <p class="text-caption">Suara bip pemindai QR dan efek getar sentuhan</p>
-                            </div>
-                        </div>
-                        <span class="menu-chevron">&rsaquo;</span>
-                    </div>
 
-                    <!-- MENU PENYIMPANAN -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-storage')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-accent">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-reset')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-danger">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4 style="color: var(--status-danger);">Reset Pabrik</h4>
+                                        <p class="text-caption">Hapus seluruh data kembali ke kondisi awal</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
-                            <div class="menu-item-text">
-                                <h4>Manajemen Memori & Penyimpanan</h4>
-                                <p class="text-caption">Lihat kuota terpakai dan bersihkan berkas media</p>
-                            </div>
-                        </div>
-                        <span class="menu-chevron">&rsaquo;</span>
-                    </div>
 
-                    <!-- MENU KATA SANDI -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-acc')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-warning">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                            </div>
-                            <div class="menu-item-text">
-                                <h4>Kata Sandi Masuk</h4>
-                                <p class="text-caption">Ganti kata sandi akses aplikasi</p>
-                            </div>
-                        </div>
-                        <span class="menu-chevron">&rsaquo;</span>
-                    </div>
-
-                    <!-- MENU DATA & BACKUP -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-data')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-accent">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
-                            </div>
-                            <div class="menu-item-text">
-                                <h4>Data & Cadangan</h4>
-                                <p class="text-caption">Ekspor, impor, unduh cadangan lengkap</p>
+                            <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-about')">
+                                <div class="menu-item-left">
+                                    <div class="menu-icon-box bg-success">
+                                        <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                    </div>
+                                    <div class="menu-item-text">
+                                        <h4>Tentang Aplikasi & S&K</h4>
+                                        <p class="text-caption">Versi aplikasi, installer APK, tim pengembang</p>
+                                    </div>
+                                </div>
+                                <span class="menu-chevron">&rsaquo;</span>
                             </div>
                         </div>
-                        <span class="menu-chevron">&rsaquo;</span>
-                    </div>
-
-                    <!-- MENU RESET PABRIK -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-reset')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-danger">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/></svg>
-                            </div>
-                            <div class="menu-item-text">
-                                <h4 style="color: var(--status-danger);">Reset Pabrik (Hapus Total)</h4>
-                                <p class="text-caption">Kosongkan seluruh data kembali ke setelan awal</p>
-                            </div>
-                        </div>
-                        <span class="menu-chevron">&rsaquo;</span>
-                    </div>
-
-                    <!-- MENU TENTANG & S&K -->
-                    <div class="setting-menu-item" onclick="bukaSubHalamanSetting('page-setting-about')">
-                        <div class="menu-item-left">
-                            <div class="menu-icon-box bg-success">
-                                <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                            </div>
-                            <div class="menu-item-text">
-                                <h4>Tentang Aplikasi & S&K</h4>
-                                <p class="text-caption">Informasi versi, unduh APK, lisensi, dan ketentuan</p>
-                            </div>
-                        </div>
-                        <span class="menu-chevron">&rsaquo;</span>
                     </div>
                 </div>
             </section>
@@ -623,7 +804,7 @@
                 </div>
             </section>
 
-            <!-- SUB-HALAMAN 2: BAHASA (DENGAN TOMBOL SIMPAN) -->
+            <!-- SUB-HALAMAN 2: BAHASA -->
             <section id="page-setting-lang" class="page-view hidden">
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; Kembali ke Pengaturan</button>
                 <div class="panel">
@@ -814,7 +995,7 @@
                 </div>
             </section>
 
-            <!-- SUB-HALAMAN 10: TENTANG APLIKASI & S&K (DENGAN TOMBOL UNDUH APK) -->
+            <!-- SUB-HALAMAN 10: TENTANG APLIKASI & S&K -->
             <section id="page-setting-about" class="page-view hidden">
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; Kembali ke Pengaturan</button>
                 
@@ -827,7 +1008,6 @@
                             Aplikasi manajemen inventaris barang dan ruangan berbasis Progressive Web App (PWA). Berjalan mandiri tanpa database eksternal, dengan penyimpanan media foto di IndexedDB dan data di LocalStorage.
                         </p>
 
-                        <!-- TOMBOL UNDUH APK RESMI -->
                         <div class="apk-download-box mt-4">
                             <a href="./XoXo.apk" download="XoXo.apk" class="btn btn-primary btn-block" style="text-decoration: none;">
                                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
@@ -890,7 +1070,6 @@
                 </button>
             </nav>
 
-            <!-- TOMBOL BULAT KAMERA SCANNER -->
             <button class="dock-action-circle" onclick="mulaiScanQR()" title="Kamera Scanner QR">
                 <svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 15c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0-4.2c.66 0 1.2.54 1.2 1.2s-.54 1.2-1.2 1.2-1.2-.54-1.2-1.2.54-1.2 1.2-1.2zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
             </button>
@@ -898,7 +1077,7 @@
     </div>
 
     <!-- MODAL TAMBAH RUANGAN BARU -->
-    <div id="modal-tambah-ruangan" class="modal-overlay hidden">
+    <div id="modal-tambah-ruangan" class="modal-overlay hidden no-print">
         <div class="modal-card">
             <div class="modal-header">
                 <h3>Tambah Ruangan Baru</h3>
@@ -915,7 +1094,7 @@
     </div>
 
     <!-- MODAL MUTASI MASSAL -->
-    <div id="modal-mutasi-massal" class="modal-overlay hidden">
+    <div id="modal-mutasi-massal" class="modal-overlay hidden no-print">
         <div class="modal-card">
             <div class="modal-header">
                 <h3>Mutasi Ruangan Massal</h3>
@@ -932,8 +1111,8 @@
         </div>
     </div>
 
-    <!-- MODAL RIWAYAT MUTASI / TRACKING PER ITEM -->
-    <div id="modal-item-history" class="modal-overlay hidden">
+    <!-- MODAL RIWAYAT MUTASI PER ITEM -->
+    <div id="modal-item-history" class="modal-overlay hidden no-print">
         <div class="modal-card">
             <div class="modal-header">
                 <h3 id="history-item-title">Riwayat Lokasi Barang</h3>
@@ -946,7 +1125,7 @@
     </div>
 
     <!-- MODAL SCANNER KAMERA -->
-    <div id="modal-scanner" class="modal-overlay hidden">
+    <div id="modal-scanner" class="modal-overlay hidden no-print">
         <div class="modal-card">
             <div class="modal-header">
                 <h3>Pindai Kode QR</h3>
@@ -959,8 +1138,8 @@
         </div>
     </div>
 
-    <!-- MODAL DETAIL & CETAK QR BARANG BER-WATERMARK -->
-    <div id="modal-qr-detail" class="modal-overlay hidden">
+    <!-- MODAL DETAIL PRATINJAU QR -->
+    <div id="modal-qr-detail" class="modal-overlay hidden no-print">
         <div class="modal-card">
             <div class="modal-header">
                 <h3 id="modal-qr-title">Detail & Label QR</h3>
@@ -973,7 +1152,7 @@
                 <h4 id="qr-modal-nama" class="mt-2">-</h4>
                 <p id="qr-modal-kode" class="badge mt-2">-</p>
                 <div class="grid-two mt-4">
-                    <button class="btn btn-primary btn-block" onclick="window.print()">Cetak Label</button>
+                    <button class="btn btn-primary btn-block" onclick="cetakStikerLabel()">Cetak Label</button>
                     <button class="btn btn-secondary btn-block" onclick="tutupModalQR()">Tutup</button>
                 </div>
             </div>
