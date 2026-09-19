@@ -2,199 +2,21 @@
 const translations = {
     id: {
         splash_creator: "Dibuat oleh XoXo Team",
-        tutorial_badge: "Panduan Ringkas",
-        welcome_title: "Selamat Datang di XoXo",
-        welcome_desc: "Aplikasi manajemen inventaris ruangan mandiri berbasis Progressive Web App (PWA).",
-        step1_title: "Kelola Data & Foto",
-        step1_desc: "Kode otomatis dibuat dan cerdas mengisi ulang slot kosong. Tambahkan ruangan melalui tombol khusus.",
-        step2_title: "Kamera Pemindai QR",
-        step2_desc: "Gunakan tombol kamera di navigasi bawah untuk mencari barang secara instan di gudang.",
-        step3_title: "Bekerja Tanpa Internet",
-        step3_desc: "Data aman di memori perangkat. Lakukan backup berkala di menu Pengaturan.",
-        login_header: "Akses Petugas",
-        login_caption: "Masukkan kata sandi untuk masuk",
-        password_label: "Kata Sandi",
-        btn_login: "Buka Aplikasi",
         nav_dashboard: "Dasbor",
         nav_items: "Barang",
         nav_loans: "Pinjam",
         nav_history: "Riwayat",
         nav_report: "Laporan",
-        stat_val: "Total Valuasi Aset",
-        stat_unit: "Total Unit Barang",
-        stat_good: "Kondisi Baik",
-        stat_bad: "Total Rusak",
-        stat_loan: "Sedang Dipinjam",
-        chart_title: "Proporsi Kondisi Barang",
-        form_title_add: "Tambah Data Barang",
-        form_title_edit: "Edit Data Barang",
-        btn_add_room: "+ Ruangan",
-        btn_open_form: "Buka Form",
-        btn_close_form: "Tutup Form",
-        col_code: "Kode Inventaris (Otomatis)",
-        col_name: "Nama Barang",
-        col_room: "Pilih Ruangan",
-        col_qty: "Jumlah Unit",
-        col_price: "Harga Satuan (Rp)",
-        col_cond: "Kondisi Barang",
-        col_photo: "Foto Dokumentasi Fisik",
-        btn_save_item: "Simpan Barang",
-        btn_cancel_edit: "Batal Edit",
-        btn_batch_move: "Mutasi Ruangan",
-        btn_batch_del: "Hapus Massal",
-        item_list_title: "Daftar Barang",
-        select_all: "Pilih Semua",
-        empty_state: "Tidak ada data inventaris ditemukan.",
-        loan_form_title: "Catat Peminjaman Barang",
-        loan_choose_item: "Pilih Barang",
-        loan_borrower: "Nama Peminjam",
-        loan_due: "Tenggat Pengembalian",
-        btn_save_loan: "Simpan Transaksi Pinjam",
-        loan_table_title: "Status Peminjaman Aktif",
-        log_title: "Log Riwayat Aktivitas",
-        btn_clear_log: "Bersihkan Log",
-        report_title: "Cetak Berita Acara & Rekap Aset",
-        report_filter_room: "Filter Berdasarkan Ruangan",
-        report_filter_cond: "Kondisi Barang",
-        btn_print_pdf: "Cetak Laporan / PDF",
-        setting_title: "Pengaturan",
-        setting_caption: "Kelola sistem, tampilan, dan preferensi aplikasi",
-        tab_theme: "Tema Tampilan",
-        tab_lang: "Bahasa",
-        tab_account: "Akun & Keamanan",
-        tab_data: "Data & Cadangan",
-        tab_about: "Tentang Aplikasi & S&K",
-        tab_snk: "Syarat & Ketentuan",
-        menu_theme_desc: "Mode Terang, Gelap, atau Otomatis HP",
-        menu_lang_desc: "Pilih Bahasa Indonesia atau English",
-        menu_acc_desc: "Ganti kata sandi akses aplikasi",
-        menu_data_desc: "Ekspor, impor, cadangkan data JSON",
-        menu_about_desc: "Informasi versi, developer, lisensi",
-        menu_snk_desc: "Kebijakan privasi dan data lokal",
-        theme_mode_title: "Mode Tampilan Visual",
-        theme_mode_desc: "Pilih skema warna antarmuka yang paling sesuai dengan kenyamanan Anda.",
-        theme_auto: "Otomatis (Sistem HP)",
-        lang_setting_title: "Pengaturan Bahasa",
-        lang_setting_desc: "Pilih bahasa pengantar antarmuka aplikasi.",
-        acc_title: "Keamanan & Kata Sandi",
-        acc_desc: "Ubah kata sandi lokal untuk mengamankan akses aplikasi di perangkat ini.",
-        acc_curr_pw: "Kata Sandi Sekarang",
-        acc_new_pw: "Kata Sandi Baru",
-        acc_btn_update: "Perbarui Kata Sandi",
-        export_import_title: "Ekspor & Impor Inventaris",
-        btn_import_json: "Impor Berkas JSON",
-        backup_title: "Cadangan Penuh (Full Backup)",
-        backup_desc: "Unduh seluruh berkas konfigurasi, data ruangan, riwayat, dan transaksi untuk dipindahkan ke HP lain.",
-        btn_backup: "Unduh Cadangan",
-        btn_restore: "Pulihkan Cadangan",
-        about_desc: "Aplikasi manajemen inventaris barang dan ruangan berbasis Progressive Web App (PWA). Berjalan mandiri tanpa database eksternal, dengan penyimpanan media foto di IndexedDB dan data di LocalStorage.",
-        snk_title: "Syarat & Ketentuan Penggunaan",
-        snk_1_title: "1. Penyimpanan Data Lokal:",
-        snk_1_desc: "Seluruh data barang, riwayat, dan foto inventaris disimpan sepenuhnya di memori browser perangkat pengguna. Aplikasi tidak mengirim data ke server mana pun.",
-        snk_2_title: "2. Risiko Penghapusan Cache:",
-        snk_2_desc: "Menghapus cache browser (*Clear Data*) dapat menghilangkan data yang tersimpan jika pengguna tidak memiliki cadangan. Pengguna disarankan rutin mengunduh cadangan JSON melalui tab Data & Backup.",
-        snk_3_title: "3. Akses Kamera:",
-        snk_3_desc: "Fitur pemindai QR Code memerlukan izin akses kamera perangkat secara lokal dan hanya aktif saat pemindaian dilakukan.",
-        snk_4_title: "4. Penggunaan Offline:",
-        snk_4_desc: "Aplikasi dapat diinstal ke layar utama (*Home Screen*) dan dibuka kapan saja tanpa memerlukan kuota internet aktif."
+        setting_title: "Pengaturan"
     },
     en: {
         splash_creator: "Created by XoXo Team",
-        tutorial_badge: "Quick Guide",
-        welcome_title: "Welcome to XoXo",
-        welcome_desc: "Standalone room inventory management app built on Progressive Web App (PWA).",
-        step1_title: "Manage Items & Photos",
-        step1_desc: "Codes auto-generate and reuse freed slots. Add rooms via the dedicated button.",
-        step2_title: "QR Scanner Camera",
-        step2_desc: "Use the camera button in the bottom dock to scan items instantly in your warehouse.",
-        step3_title: "Works Completely Offline",
-        step3_desc: "Data is stored safely on this device. Back up regularly via Settings.",
-        login_header: "Staff Access",
-        login_caption: "Enter your password to proceed",
-        password_label: "Password",
-        btn_login: "Open Application",
         nav_dashboard: "Dashboard",
         nav_items: "Items",
         nav_loans: "Loans",
         nav_history: "History",
         nav_report: "Reports",
-        stat_val: "Total Asset Value",
-        stat_unit: "Total Item Units",
-        stat_good: "Good Condition",
-        stat_bad: "Total Damaged",
-        stat_loan: "Currently Loaned",
-        chart_title: "Item Condition Proportion",
-        form_title_add: "Add Item Data",
-        form_title_edit: "Edit Item Data",
-        btn_add_room: "+ Room",
-        btn_open_form: "Open Form",
-        btn_close_form: "Close Form",
-        col_code: "Inventory Code (Auto)",
-        col_name: "Item Name",
-        col_room: "Select Room",
-        col_qty: "Quantity",
-        col_price: "Unit Price (Rp)",
-        col_cond: "Condition",
-        col_photo: "Photo Evidence",
-        btn_save_item: "Save Item",
-        btn_cancel_edit: "Cancel Edit",
-        btn_batch_move: "Batch Move Room",
-        btn_batch_del: "Batch Delete",
-        item_list_title: "Item List",
-        select_all: "Select All",
-        empty_state: "No inventory items found.",
-        loan_form_title: "Record Item Loan",
-        loan_choose_item: "Select Item",
-        loan_borrower: "Borrower Name",
-        loan_due: "Due Date",
-        btn_save_loan: "Save Loan Record",
-        loan_table_title: "Active Loan Records",
-        log_title: "Activity Audit Logs",
-        btn_clear_log: "Clear Logs",
-        report_title: "Print Minutes & Asset Summary",
-        report_filter_room: "Filter by Room",
-        report_filter_cond: "Condition",
-        btn_print_pdf: "Print Report / PDF",
-        setting_title: "Settings",
-        setting_caption: "Manage system, appearance, and application preferences",
-        tab_theme: "Theme & Display",
-        tab_lang: "Language",
-        tab_account: "Account & Security",
-        tab_data: "Data & Backup",
-        tab_about: "About & Terms",
-        tab_snk: "Terms & Conditions",
-        menu_theme_desc: "Light, Dark, or System Auto",
-        menu_lang_desc: "Choose Indonesian or English",
-        menu_acc_desc: "Change application access password",
-        menu_data_desc: "Export, import, and backup JSON data",
-        menu_about_desc: "Version, developer, and license info",
-        menu_snk_desc: "Privacy and local storage policy",
-        theme_mode_title: "Display Mode",
-        theme_mode_desc: "Choose an interface color scheme that fits your environment.",
-        theme_auto: "Automatic (Device OS)",
-        lang_setting_title: "Language Settings",
-        lang_setting_desc: "Choose your preferred interface language.",
-        acc_title: "Security & Password",
-        acc_desc: "Change local password to protect inventory data on this device.",
-        acc_curr_pw: "Current Password",
-        acc_new_pw: "New Password",
-        acc_btn_update: "Update Password",
-        export_import_title: "Export & Import Inventory",
-        btn_import_json: "Import JSON File",
-        backup_title: "Full Backup & Restore",
-        backup_desc: "Download complete configuration, rooms, history, and transaction files to migrate devices.",
-        btn_backup: "Download Backup",
-        btn_restore: "Restore Backup",
-        about_desc: "Room and item inventory manager built as a Progressive Web App (PWA). Functions without external databases using IndexedDB for media and LocalStorage for records.",
-        snk_title: "Terms & Conditions",
-        snk_1_title: "1. Local Data Storage:",
-        snk_1_desc: "All inventory data, logs, and photos are stored entirely in your device's browser storage. No data is sent to external servers.",
-        snk_2_title: "2. Cache Clearing Risk:",
-        snk_2_desc: "Clearing browser data may erase local records if not backed up. Users are advised to download JSON backups regularly via the Data & Backup tab.",
-        snk_3_title: "3. Camera Access:",
-        snk_3_desc: "QR scanner features require local camera access permission and are only active during scanning.",
-        snk_4_title: "4. Offline Use:",
-        snk_4_desc: "The app can be added to your Home Screen and opened anytime without an active internet connection."
+        setting_title: "Settings"
     }
 };
 
@@ -224,8 +46,9 @@ let systemLang = localStorage.getItem("xoxo_lang") || "id";
 let selectedLangCandidate = systemLang;
 let html5QrScanner = null;
 let currentCompressedFoto = "";
+let currentLabelData = null;
 
-// INDEXEDDB ENGINE
+// INDEXEDDB
 const DB_NAME = "XoXoInventoryMediaDB";
 const DB_VERSION = 1;
 const STORE_NAME = "item_photos";
@@ -302,7 +125,7 @@ function triggerHapticFeedback() {
     }
 }
 
-// SMART AUTO-INCREMENT KODE
+// FORMAT KODE SMART
 function generateSmartKodeInventaris() {
     const regex = new RegExp(`^${masterPrefix}-(\\d+)$`);
     const existingNums = inventoryData
@@ -362,7 +185,7 @@ function showConfirm(title, message) {
     });
 }
 
-// LOGIKA PILIH & SIMPAN BAHASA (DENGAN TOMBOL SIMPAN)
+// BAHASA
 function pilihOpsiBahasa(lang) {
     selectedLangCandidate = lang;
     updateIndikatorPilihanBahasa(lang);
@@ -410,17 +233,7 @@ function terapkanBahasa(lang) {
             "page-peminjaman": dict.nav_loans,
             "page-log": dict.nav_history,
             "page-laporan": dict.nav_report,
-            "page-setting": dict.setting_title,
-            "page-setting-theme": dict.tab_theme,
-            "page-setting-lang": dict.tab_lang,
-            "page-setting-instansi": "Profil Instansi",
-            "page-setting-prefix": "Format Kode",
-            "page-setting-haptic": "Getar & Suara",
-            "page-setting-storage": "Penyimpanan",
-            "page-setting-acc": dict.tab_account,
-            "page-setting-data": dict.tab_data,
-            "page-setting-reset": "Reset Pabrik",
-            "page-setting-about": dict.tab_about
+            "page-setting": dict.setting_title
         };
         const titleEl = document.getElementById("page-current-title");
         if (titleEl && titles[activePage.id]) {
@@ -429,6 +242,32 @@ function terapkanBahasa(lang) {
     }
 
     updateIndikatorPilihanBahasa(lang);
+}
+
+// JAM LIVE & TANGGAL KONTEKSTUAL
+function jalankanJamRealtime() {
+    const updateTime = () => {
+        const now = new Date();
+        const clockEl = document.getElementById("dash-live-clock");
+        const dateEl = document.getElementById("dash-date-string");
+        const greetingEl = document.getElementById("dash-greeting");
+
+        if (clockEl) {
+            clockEl.innerText = now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        }
+        if (dateEl) {
+            dateEl.innerText = now.toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+        }
+        if (greetingEl) {
+            const hr = now.getHours();
+            if (hr < 11) greetingEl.innerText = "Selamat Pagi, Petugas!";
+            else if (hr < 15) greetingEl.innerText = "Selamat Siang, Petugas!";
+            else if (hr < 18) greetingEl.innerText = "Selamat Sore, Petugas!";
+            else greetingEl.innerText = "Selamat Malam, Petugas!";
+        }
+    };
+    updateTime();
+    setInterval(updateTime, 1000);
 }
 
 // INISIALISASI
@@ -455,6 +294,8 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("instansi-petugas").value = profilInstansi.petugas;
     document.getElementById("toggle-haptic").checked = settingsFeedback.haptic;
     document.getElementById("toggle-beep").checked = settingsFeedback.beep;
+
+    jalankanJamRealtime();
 
     setTimeout(() => {
         const splash = document.getElementById("splash-screen");
@@ -488,16 +329,16 @@ function navigasiKe(pageId, navButton) {
         "page-log": dict.nav_history,
         "page-laporan": dict.nav_report,
         "page-setting": dict.setting_title,
-        "page-setting-theme": dict.tab_theme,
-        "page-setting-lang": dict.tab_lang,
+        "page-setting-theme": "Tema Tampilan",
+        "page-setting-lang": "Bahasa",
         "page-setting-instansi": "Profil Instansi",
         "page-setting-prefix": "Format Kode",
         "page-setting-haptic": "Getar & Suara",
         "page-setting-storage": "Penyimpanan",
-        "page-setting-acc": dict.tab_account,
-        "page-setting-data": dict.tab_data,
+        "page-setting-acc": "Kata Sandi",
+        "page-setting-data": "Data & Cadangan",
         "page-setting-reset": "Reset Pabrik",
-        "page-setting-about": dict.tab_about
+        "page-setting-about": "Tentang Aplikasi"
     };
     document.getElementById("page-current-title").innerText = titles[pageId] || "Inventaris";
 
@@ -512,6 +353,17 @@ function navigasiKe(pageId, navButton) {
 
 function bukaSubHalamanSetting(subPageId) {
     navigasiKe(subPageId, null);
+}
+
+// QUICK FILTER DARI HOME
+function filterHanyaBarangRusak() {
+    navigasiKe("page-inventaris", document.querySelectorAll(".dock-btn")[1]);
+    const filterKondisi = document.getElementById("filter-kondisi");
+    if (filterKondisi) {
+        filterKondisi.value = "Rusak Ringan";
+        filterData();
+        showToast("Memfilter barang yang membutuhkan perbaikan", "info");
+    }
 }
 
 // AUTH
@@ -579,7 +431,7 @@ function initTheme() {
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
         if (systemTheme === "auto") {
             document.documentElement.setAttribute("data-theme", e.matches ? "dark" : "light");
-            gambarGrafik();
+            updateStatistik();
         }
     });
 }
@@ -601,10 +453,10 @@ function terapkanTema(tema) {
     } else {
         document.documentElement.setAttribute("data-theme", tema);
     }
-    gambarGrafik();
+    updateStatistik();
 }
 
-// PENGATURAN TAMBAHAN
+// SETTING TAMBAHAN
 function simpanProfilInstansi() {
     profilInstansi = {
         nama: document.getElementById("instansi-nama").value.trim(),
@@ -670,7 +522,7 @@ async function bersihkanCacheFoto() {
 }
 
 async function eksekusiResetPabrik() {
-    const yakin = await showConfirm("RESET TOTAL PABRIK", "PERINGATAN: Semua barang, ruangan, foto, dan histori akan dihapus permanen. Lanjutkan?");
+    const yakin = await showConfirm("RESET TOTAL PABRIK", "PERINGATAN: Semua data barang, ruangan, foto, dan histori akan dihapus permanen. Lanjutkan?");
     if (yakin) {
         localStorage.clear();
         const db = await bukaDB();
@@ -737,7 +589,7 @@ function renderRuanganDropdown() {
 
     selectPinjam.innerHTML = `<option value="">-- Pilih Barang --</option>`;
     inventoryData.forEach(item => {
-        selectPinjam.innerHTML += `<option value="${item.id}">${item.nama} (${item.kode}) - Stok: ${item.jumlah}</option>`;
+        selectPinjam.innerHTML += `<option value="${item.id}">${item.nama} (${item.kode}) - Stok:${item.jumlah}</option>`;
     });
 }
 
@@ -881,8 +733,7 @@ async function editItem(id) {
         hapusPreviewFoto();
     }
 
-    const dict = translations[systemLang] || translations.id;
-    document.getElementById("form-heading").innerText = dict.form_title_edit;
+    document.getElementById("form-heading").innerText = "Edit Data Barang";
     document.getElementById("btn-cancel").classList.remove("hidden");
     document.getElementById("form-inventaris").classList.remove("hidden");
     document.getElementById("btn-toggle-form").innerText = "Tutup Form";
@@ -909,11 +760,10 @@ async function hapusItem(id) {
 }
 
 function resetForm() {
-    const dict = translations[systemLang] || translations.id;
     document.getElementById("item-id").value = "";
     document.getElementById("form-inventaris").reset();
     hapusPreviewFoto();
-    document.getElementById("form-heading").innerText = dict.form_title_add;
+    document.getElementById("form-heading").innerText = "Tambah Data Barang";
     document.getElementById("btn-cancel").classList.add("hidden");
     siapkanKodeInventarisBaru();
 }
@@ -1009,7 +859,7 @@ async function prosesMutasiMassal() {
         return item;
     });
 
-    catatLog("Mutasi", `Memindahkan ${selectedItemIds.size} item ke ${tujuan}`);
+    catatLog("Mutasi", `Memindahkan ${selectedItemIds.size} item ke${tujuan}`);
     simpanKeLocalStorage();
     selectedItemIds.clear();
     tutupModalMutasiMassal();
@@ -1058,7 +908,6 @@ async function renderData(data) {
 
         const isLowStock = item.minStok && item.jumlah <= item.minStok;
         const lowStockBadge = isLowStock ? `<span class="badge badge-warning">Stok Kritis</span>` : ``;
-
         const servisBadge = item.servis ? `<span class="badge">Servis: ${item.servis}</span>` : ``;
 
         const foto = await ambilFotoDB(item.id);
@@ -1291,7 +1140,9 @@ async function konfirmasiHapusLog() {
     }
 }
 
-// STATISTIK & GRAFIK
+// =========================================================
+// STATISTIK & ANALITIK DASBOR SUPER DETAIL
+// =========================================================
 function updateStatistik() {
     let total = 0;
     let totalValuasi = 0;
@@ -1299,32 +1150,370 @@ function updateStatistik() {
     let rusak = 0;
     let ringan = 0;
     let berat = 0;
-    let lowStockCount = 0;
+    let totalDamagedValue = 0;
+
+    let highestItem = null;
+    let maxPrice = -1;
+
+    let categoryCountMap = {};
+    let roomValuationMap = {};
+    let roomQtyMap = {};
+
+    let lowStockItems = [];
+    let upcomingMaintenanceItems = [];
+
+    const now = new Date();
+    const todayStr = now.toISOString().slice(0, 10);
+    const in30Days = new Date(now.getTime() + (30 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
 
     inventoryData.forEach(item => {
         const q = item.jumlah || 0;
         const harga = item.harga || 0;
+        const subtotal = q * harga;
         total += q;
-        totalValuasi += (q * harga);
+        totalValuasi += subtotal;
 
-        if (item.minStok && q <= item.minStok) lowStockCount++;
+        if (item.minStok && q <= item.minStok) lowStockItems.push(item);
+        if (item.servis && item.servis >= todayStr && item.servis <= in30Days) upcomingMaintenanceItems.push(item);
 
-        if (item.kondisi === "Baik") baik += q;
-        if (item.kondisi === "Rusak Ringan") { rusak += q; ringan += q; }
-        if (item.kondisi === "Rusak Berat") { rusak += q; berat += q; }
+        if (harga > maxPrice) {
+            maxPrice = harga;
+            highestItem = item;
+        }
+
+        if (item.kondisi === "Baik") {
+            baik += q;
+        } else {
+            rusak += q;
+            totalDamagedValue += subtotal;
+            if (item.kondisi === "Rusak Ringan") ringan += q;
+            if (item.kondisi === "Rusak Berat") berat += q;
+        }
+
+        const kat = item.kategori || "Elektronik";
+        categoryCountMap[kat] = (categoryCountMap[kat] || 0) + q;
+
+        const r = item.ruangan || "Gudang";
+        roomValuationMap[r] = (roomValuationMap[r] || 0) + subtotal;
+        roomQtyMap[r] = (roomQtyMap[r] || 0) + q;
     });
 
     let totalDipinjam = 0;
-    loanData.forEach(l => totalDipinjam += l.jumlah);
+    let overdueLoans = [];
+    let borrowFrequency = {};
 
+    loanData.forEach(l => {
+        totalDipinjam += l.jumlah;
+        if (l.tglKembali && l.tglKembali < todayStr) overdueLoans.push(l);
+        borrowFrequency[l.namaBarang] = (borrowFrequency[l.namaBarang] || 0) + 1;
+    });
+
+    // Pasang Metrik Angka
     document.getElementById("stat-valuasi").innerText = formatRupiah(totalValuasi);
     document.getElementById("stat-total").innerText = total;
     document.getElementById("stat-baik").innerText = baik;
     document.getElementById("stat-rusak").innerText = rusak;
     document.getElementById("stat-pinjam").innerText = totalDipinjam;
-    document.getElementById("stat-low-stock").innerText = lowStockCount;
+    document.getElementById("stat-low-stock").innerText = lowStockItems.length;
+    document.getElementById("stat-damaged-val").innerText = formatRupiah(totalDamagedValue);
 
+    if (highestItem) {
+        document.getElementById("stat-highest-item").innerText = highestItem.nama;
+        document.getElementById("stat-highest-val").innerText = formatRupiah(highestItem.harga);
+    } else {
+        document.getElementById("stat-highest-item").innerText = "-";
+        document.getElementById("stat-highest-val").innerText = "Rp 0";
+    }
+
+    // 1. Render Peringatan Operasional
+    renderActionableAlerts(lowStockItems, upcomingMaintenanceItems, overdueLoans);
+
+    // 2. Render Donut Kondisi
     gambarGrafik(baik, ringan, berat, total);
+
+    // 3. Render Gauge Skor Kesehatan Aset
+    gambarHealthGauge(baik, total);
+
+    // 4. Render Grafik Batang Nilai per Ruangan
+    gambarRoomBarChart(roomValuationMap);
+
+    // 5. Render Breakdown Kategori
+    renderCategoryBreakdown(categoryCountMap, total);
+
+    // 6. Render Kartu Sebaran Ruangan
+    renderRoomDistribution(roomValuationMap, roomQtyMap, totalValuasi);
+
+    // 7. Render Wawasan Finansial & Operasional
+    renderSmartInsights(totalValuasi, borrowFrequency, roomQtyMap);
+
+    // 8. Render Aktivitas Terakhir
+    renderRecentDashboardActivities();
+}
+
+function renderActionableAlerts(lowStock, maintenance, overdue) {
+    const container = document.getElementById("dash-action-alerts");
+    container.innerHTML = "";
+
+    let hasAlert = false;
+
+    if (overdue.length > 0) {
+        hasAlert = true;
+        const div = document.createElement("div");
+        div.className = "dash-alert-card alert-danger-box";
+        div.onclick = () => navigasiKe("page-peminjaman");
+        div.innerHTML = `
+            <span><strong>${overdue.length} Peminjaman Terlambat (Overdue)</strong> &bull; Perlu tindak lanjut pengembalian.</span>
+            <span>Lihat &rsaquo;</span>
+        `;
+        container.appendChild(div);
+    }
+
+    if (lowStock.length > 0) {
+        hasAlert = true;
+        const div = document.createElement("div");
+        div.className = "dash-alert-card alert-warning-box";
+        div.onclick = () => navigasiKe("page-inventaris");
+        div.innerHTML = `
+            <span><strong>${lowStock.length} Barang Mencapai Stok Kritis</strong> &bull; Sisa unit di bawah batas aman.</span>
+            <span>Restock &rsaquo;</span>
+        `;
+        container.appendChild(div);
+    }
+
+    if (maintenance.length > 0) {
+        hasAlert = true;
+        const div = document.createElement("div");
+        div.className = "dash-alert-card alert-warning-box";
+        div.onclick = () => navigasiKe("page-inventaris");
+        div.innerHTML = `
+            <span><strong>${maintenance.length} Barang Perlu Servis</strong> &bull; Jadwal jatuh tempo dalam 30 hari.</span>
+            <span>Jadwal &rsaquo;</span>
+        `;
+        container.appendChild(div);
+    }
+
+    if (hasAlert) container.classList.remove("hidden");
+    else container.classList.add("hidden");
+}
+
+// GAUGE TINGKAT KESEHATAN ASET (CANVAS NATIVE)
+function gambarHealthGauge(goodCount, totalCount) {
+    const canvas = document.getElementById("healthGaugeChart");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const score = totalCount > 0 ? Math.round((goodCount / totalCount) * 100) : 100;
+    document.getElementById("health-score-percent").innerText = `${score}%`;
+
+    const statusBadge = document.getElementById("health-score-status");
+    if (score >= 80) {
+        statusBadge.className = "badge badge-baik";
+        statusBadge.innerText = "Prima / Sehat";
+    } else if (score >= 50) {
+        statusBadge.className = "badge badge-warning";
+        statusBadge.innerText = "Cukup Baik";
+    } else {
+        statusBadge.className = "badge badge-overdue";
+        statusBadge.innerText = "Perlu Peremajaan";
+    }
+
+    const cx = canvas.width / 2;
+    const cy = canvas.height - 15;
+    const r = 70;
+    const lineWidth = 16;
+
+    // Track Abu-abu Busur Setengah Lingkaran
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, Math.PI, 2 * Math.PI);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = "#80808033";
+    ctx.lineCap = "round";
+    ctx.stroke();
+
+    // Nilai Busur Warna
+    const endAngle = Math.PI + (score / 100) * Math.PI;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, Math.PI, endAngle);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = score >= 80 ? "#c7ff2e" : (score >= 50 ? "#f59e0b" : "#ef4444");
+    ctx.lineCap = "round";
+    ctx.stroke();
+}
+
+// GRAFIK BATANG VALUASI PER RUANGAN (CANVAS NATIVE)
+function gambarRoomBarChart(roomValMap) {
+    const canvas = document.getElementById("roomBarChart");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const rooms = Object.keys(roomValMap);
+    if (rooms.length === 0) return;
+
+    let maxVal = 0;
+    rooms.forEach(r => {
+        if (roomValMap[r] > maxVal) maxVal = roomValMap[r];
+    });
+    if (maxVal === 0) maxVal = 1;
+
+    const padLeft = 40;
+    const padBottom = 30;
+    const chartW = canvas.width - padLeft - 20;
+    const chartH = canvas.height - padBottom - 20;
+
+    const barWidth = Math.min(45, (chartW / rooms.length) - 15);
+    const gap = (chartW - (barWidth * rooms.length)) / (rooms.length + 1);
+
+    // Garis Dasar
+    ctx.beginPath();
+    ctx.moveTo(padLeft, canvas.height - padBottom);
+    ctx.lineTo(canvas.width - 20, canvas.height - padBottom);
+    ctx.strokeStyle = "#80808044";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    rooms.forEach((room, idx) => {
+        const val = roomValMap[room];
+        const h = (val / maxVal) * (chartH - 20);
+        const x = padLeft + gap + idx * (barWidth + gap);
+        const y = canvas.height - padBottom - h;
+
+        // Batang Rounded Top
+        ctx.fillStyle = "#c7ff2e";
+        ctx.beginPath();
+        ctx.roundRect(x, y, barWidth, h, [6, 6, 0, 0]);
+        ctx.fill();
+
+        // Label Nama Ruangan
+        ctx.fillStyle = "#808080";
+        ctx.font = "10px sans-serif";
+        ctx.textAlign = "center";
+        const shortName = room.length > 7 ? room.substring(0, 6) + ".." : room;
+        ctx.fillText(shortName, x + barWidth / 2, canvas.height - padBottom + 14);
+
+        // Label Angka Singkat di Atas Batang
+        if (val > 0) {
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 9px sans-serif";
+            const shortVal = val >= 1000000 ? `${(val / 1000000).toFixed(1)}M` : `${Math.round(val / 1000)}k`;
+            ctx.fillText(shortVal, x + barWidth / 2, y - 5);
+        }
+    });
+}
+
+function renderCategoryBreakdown(catMap, totalQty) {
+    const container = document.getElementById("dash-category-list");
+    container.innerHTML = "";
+
+    const keys = Object.keys(catMap);
+    if (keys.length === 0 || totalQty === 0) {
+        container.innerHTML = `<p class="text-caption">Belum ada kategori barang terdata.</p>`;
+        return;
+    }
+
+    keys.sort((a, b) => catMap[b] - catMap[a]);
+
+    keys.forEach(kat => {
+        const count = catMap[kat];
+        const percentage = Math.round((count / totalQty) * 100);
+
+        const row = document.createElement("div");
+        row.className = "progress-item-row";
+        row.innerHTML = `
+            <div class="progress-info-head">
+                <span>${kat}</span>
+                <span>${count} Unit (${percentage}%)</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill-bar" style="width: ${percentage}%"></div>
+            </div>
+        `;
+        container.appendChild(row);
+    });
+}
+
+function renderRoomDistribution(valMap, qtyMap, totalVal) {
+    const container = document.getElementById("dash-room-distribution");
+    const badge = document.getElementById("dash-total-rooms-badge");
+    container.innerHTML = "";
+
+    const rooms = Object.keys(valMap);
+    badge.innerText = `${rooms.length} Ruangan`;
+
+    if (rooms.length === 0) {
+        container.innerHTML = `<p class="text-caption">Belum ada sebaran ruangan.</p>`;
+        return;
+    }
+
+    rooms.sort((a, b) => valMap[b] - valMap[a]);
+
+    rooms.forEach(room => {
+        const val = valMap[room];
+        const qty = qtyMap[room] || 0;
+        const pct = totalVal > 0 ? Math.round((val / totalVal) * 100) : 0;
+
+        const card = document.createElement("div");
+        card.className = "room-dist-card";
+        card.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong>${room}</strong>
+                <span class="badge" style="font-size:10px;">${pct}% Aset</span>
+            </div>
+            <span>${qty} Total Barang Fisik</span>
+            <h4>${formatRupiah(val)}</h4>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function renderSmartInsights(totalValuasi, borrowFreq, roomQtyMap) {
+    // 1. Estimasi Depresiasi 10% / tahun
+    const depreciation = Math.round(totalValuasi * 0.10);
+    document.getElementById("dash-depreciation-val").innerText = formatRupiah(depreciation) + " / thn";
+
+    // 2. Barang paling sering dipinjam
+    let maxBorrow = 0;
+    let topBorrowedItem = "-";
+    for (let item in borrowFreq) {
+        if (borrowFreq[item] > maxBorrow) {
+            maxBorrow = borrowFreq[item];
+            topBorrowedItem = item;
+        }
+    }
+    document.getElementById("dash-most-borrowed-item").innerText = topBorrowedItem !== "-" ? `${topBorrowedItem} (${maxBorrow}x)` : "Belum Ada";
+
+    // 3. Ruangan terpadat
+    let maxDensity = 0;
+    let densestRoom = "-";
+    for (let r in roomQtyMap) {
+        if (roomQtyMap[r] > maxDensity) {
+            maxDensity = roomQtyMap[r];
+            densestRoom = r;
+        }
+    }
+    document.getElementById("dash-densest-room-badge").innerText = densestRoom !== "-" ? `${densestRoom} (${maxDensity} Unit)` : "-";
+}
+
+function renderRecentDashboardActivities() {
+    const container = document.getElementById("dash-recent-activities");
+    container.innerHTML = "";
+
+    const recent = activityLogs.slice(0, 3);
+    if (recent.length === 0) {
+        container.innerHTML = `<p class="text-caption">Belum ada aktivitas terbaru.</p>`;
+        return;
+    }
+
+    recent.forEach(l => {
+        const div = document.createElement("div");
+        div.className = "timeline-item";
+        div.innerHTML = `
+            <span class="timeline-time">${l.waktu}</span>
+            <div><strong>[${l.tipe}]</strong> ${l.deskripsi}</div>
+        `;
+        container.appendChild(div);
+    });
 }
 
 function gambarGrafik(baik = 0, ringan = 0, berat = 0, total = 0) {
@@ -1335,8 +1524,8 @@ function gambarGrafik(baik = 0, ringan = 0, berat = 0, total = 0) {
 
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
-    const r = 70;
-    const ir = 40;
+    const r = 64;
+    const ir = 38;
 
     const data = [
         { label: "Baik", count: baik, color: "#10b981" },
@@ -1374,10 +1563,18 @@ function gambarGrafik(baik = 0, ringan = 0, berat = 0, total = 0) {
     `).join("");
 }
 
-// QR CODE DENGAN WATERMARK LOGO DI TENGAH
+// QR CODE RENDER & WATERMARK
 function tampilkanQRWatermark(kode, nama) {
-    document.getElementById("qr-modal-nama").innerText = nama;
-    document.getElementById("qr-modal-kode").innerText = kode;
+    const item = inventoryData.find(d => d.kode === kode) || {
+        kode: kode,
+        nama: nama,
+        ruangan: "Gudang",
+        kategori: "Elektronik"
+    };
+
+    currentLabelData = item;
+    document.getElementById("qr-modal-nama").innerText = item.nama;
+    document.getElementById("qr-modal-kode").innerText = item.kode;
 
     const canvas = document.getElementById("qr-watermark-canvas");
     const ctx = canvas.getContext("2d");
@@ -1392,7 +1589,7 @@ function tampilkanQRWatermark(kode, nama) {
         ctx.drawImage(qrImg, 0, 0, 220, 220);
 
         const logo = new Image();
-        logo.src = "icon.png";
+        logo.src = "src/icon/icon.png";
         logo.onload = () => {
             const logoSize = 48;
             const logoX = (canvas.width - logoSize) / 2;
@@ -1416,6 +1613,90 @@ function tampilkanQRWatermark(kode, nama) {
 
 function tutupModalQR() {
     document.getElementById("modal-qr-detail").classList.add("hidden");
+    currentLabelData = null;
+}
+
+// CETAK STIKER LABEL FISIK RESMI DENGAN ISOLATED PRINT FRAME
+function cetakStikerLabel() {
+    if (!currentLabelData) return;
+
+    const canvas = document.getElementById("qr-watermark-canvas");
+    const qrDataUrl = canvas.toDataURL("image/png");
+
+    const printFrame = document.getElementById("print-frame");
+    const doc = printFrame.contentWindow.document;
+
+    doc.open();
+    doc.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Cetak Label - ${currentLabelData.kode}</title>
+            <style>
+                @page { size: auto; margin: 4mm; }
+                * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+                body { background: #fff; display: flex; justify-content: flex-start; align-items: flex-start; padding: 10px; }
+                .inventory-sticker { width: 320px; border: 2px solid #000; border-radius: 8px; padding: 12px; background: #fff; color: #000; }
+                .sticker-header { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 10px; }
+                .sticker-logo { width: 36px; height: 36px; object-fit: contain; }
+                .sticker-org-info h4 { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; line-height: 1.2; }
+                .sticker-org-info p { font-size: 9px; font-weight: 600; color: #444; margin-top: 2px; }
+                .sticker-body { display: flex; align-items: center; gap: 12px; }
+                .sticker-qr-box { width: 105px; height: 105px; border: 1px solid #000; padding: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+                .sticker-qr-img { width: 100%; height: 100%; object-fit: contain; }
+                .sticker-meta-box { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+                .meta-label { font-size: 8px; color: #555; text-transform: uppercase; display: block; }
+                .meta-code { font-size: 15px; font-weight: 900; letter-spacing: 0.5px; display: block; }
+                .meta-val { font-size: 11px; font-weight: 700; line-height: 1.3; display: block; word-break: break-word; }
+                .sticker-footer { margin-top: 10px; border-top: 1px solid #000; padding-top: 6px; display: flex; justify-content: space-between; font-size: 8px; font-weight: 700; color: #333; }
+            </style>
+        </head>
+        <body>
+            <div class="inventory-sticker">
+                <div class="sticker-header">
+                    <img src="src/icon/icon.png" class="sticker-logo" alt="Logo" onerror="this.style.display='none'">
+                    <div class="sticker-org-info">
+                        <h4>${(profilInstansi.nama || "XOXO INVENTORY SYSTEM").toUpperCase()}</h4>
+                        <p>LABEL IDENTIFIKASI ASET RESMI</p>
+                    </div>
+                </div>
+                <div class="sticker-body">
+                    <div class="sticker-qr-box">
+                        <img src="${qrDataUrl}" class="sticker-qr-img" alt="QR">
+                    </div>
+                    <div class="sticker-meta-box">
+                        <div>
+                            <span class="meta-label">Kode Barang:</span>
+                            <span class="meta-code">${currentLabelData.kode}</span>
+                        </div>
+                        <div>
+                            <span class="meta-label">Nama Barang:</span>
+                            <span class="meta-val">${currentLabelData.nama}</span>
+                        </div>
+                        <div>
+                            <span class="meta-label">Ruangan:</span>
+                            <span class="meta-val">${currentLabelData.ruangan || "-"}</span>
+                        </div>
+                        <div>
+                            <span class="meta-label">Kategori:</span>
+                            <span class="meta-val">${currentLabelData.kategori || "Elektronik"}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sticker-footer">
+                    <span>ASET RESMI RUANGAN</span>
+                    <span>Tgl: ${new Date().toLocaleDateString("id-ID")}</span>
+                </div>
+            </div>
+        </body>
+        </html>
+    `);
+    doc.close();
+
+    setTimeout(() => {
+        printFrame.contentWindow.focus();
+        printFrame.contentWindow.print();
+    }, 250);
 }
 
 function mulaiScanQR() {
@@ -1530,7 +1811,7 @@ function importData(event) {
             }
         } catch { showToast("Format file JSON rusak!", "error"); }
     };
-    reader.readAsText(file);
+    reader.readAsDataURL(file);
     event.target.value = "";
 }
 
@@ -1544,7 +1825,6 @@ function backupLocalStorage() {
         loans: loanData,
         logs: activityLogs,
         theme: localStorage.getItem("xoxo_theme"),
-        lang: localStorage.getItem("xoxo_lang"),
         password: localStorage.getItem("xoxo_password")
     };
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupObj, null, 2));
@@ -1580,12 +1860,6 @@ function restoreLocalStorage(event) {
             localStorage.setItem("xoxo_loans", JSON.stringify(loanData));
             localStorage.setItem("xoxo_logs", JSON.stringify(activityLogs));
 
-            if (d.lang) {
-                systemLang = d.lang;
-                selectedLangCandidate = d.lang;
-                localStorage.setItem("xoxo_lang", d.lang);
-                terapkanBahasa(d.lang);
-            }
             if (d.theme) gantiTema(d.theme);
 
             renderRuanganDropdown();
