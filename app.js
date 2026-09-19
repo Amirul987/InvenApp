@@ -48,55 +48,67 @@ let html5QrScanner = null;
 let currentCompressedFoto = "";
 let currentLabelData = null;
 
-// INDEXEDDB
+// INDEXEDDB ENGINE
 const DB_NAME = "XoXoInventoryMediaDB";
 const DB_VERSION = 1;
 const STORE_NAME = "item_photos";
 
 function bukaDB() {
     return new Promise((resolve, reject) => {
-        const req = indexedDB.open(DB_NAME, DB_VERSION);
-        req.onupgradeneeded = (e) => {
-            const db = e.target.result;
-            if (!db.objectStoreNames.contains(STORE_NAME)) {
-                db.createObjectStore(STORE_NAME, { keyPath: "id" });
-            }
-        };
-        req.onsuccess = () => resolve(req.result);
-        req.onerror = () => reject(req.error);
+        try {
+            const req = indexedDB.open(DB_NAME, DB_VERSION);
+            req.onupgradeneeded = (e) => {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    db.createObjectStore(STORE_NAME, { keyPath: "id" });
+                }
+            };
+            req.onsuccess = () => resolve(req.result);
+            req.onerror = () => reject(req.error);
+        } catch (e) {
+            reject(e);
+        }
     });
 }
 
 async function simpanFotoDB(id, base64) {
     if (!base64) return;
-    const db = await bukaDB();
-    return new Promise((resolve, reject) => {
-        const tx = db.transaction(STORE_NAME, "readwrite");
-        const store = tx.objectStore(STORE_NAME);
-        store.put({ id, image: base64 });
-        tx.oncomplete = () => resolve();
-        tx.onerror = () => reject(tx.error);
-    });
+    try {
+        const db = await bukaDB();
+        return new Promise((resolve, reject) => {
+            const tx = db.transaction(STORE_NAME, "readwrite");
+            const store = tx.objectStore(STORE_NAME);
+            store.put({ id, image: base64 });
+            tx.oncomplete = () => resolve();
+            tx.onerror = () => reject(tx.error);
+        });
+    } catch {}
 }
 
 async function ambilFotoDB(id) {
-    const db = await bukaDB();
-    return new Promise((resolve) => {
-        const tx = db.transaction(STORE_NAME, "readonly");
-        const store = tx.objectStore(STORE_NAME);
-        const req = store.get(id);
-        req.onsuccess = () => resolve(req.result ? req.result.image : null);
-        req.onerror = () => resolve(null);
-    });
+    try {
+        const db = await bukaDB();
+        return new Promise((resolve) => {
+            const tx = db.transaction(STORE_NAME, "readonly");
+            const store = tx.objectStore(STORE_NAME);
+            const req = store.get(id);
+            req.onsuccess = () => resolve(req.result ? req.result.image : null);
+            req.onerror = () => resolve(null);
+        });
+    } catch {
+        return null;
+    }
 }
 
 async function hapusFotoDB(id) {
-    const db = await bukaDB();
-    return new Promise((resolve) => {
-        const tx = db.transaction(STORE_NAME, "readwrite");
-        tx.objectStore(STORE_NAME).delete(id);
-        tx.oncomplete = () => resolve();
-    });
+    try {
+        const db = await bukaDB();
+        return new Promise((resolve) => {
+            const tx = db.transaction(STORE_NAME, "readwrite");
+            tx.objectStore(STORE_NAME).delete(id);
+            tx.oncomplete = () => resolve();
+        });
+    } catch {}
 }
 
 // BEEP & HAPTIK
@@ -121,16 +133,16 @@ function triggerScannerBeep() {
 
 function triggerHapticFeedback() {
     if (settingsFeedback.haptic && navigator.vibrate) {
-        navigator.vibrate(25);
+        try { navigator.vibrate(25); } catch {}
     }
 }
 
-// FORMAT KODE SMART
+// SMART AUTO-INCREMENT KODE
 function generateSmartKodeInventaris() {
     const regex = new RegExp(`^${masterPrefix}-(\\d+)$`);
     const existingNums = inventoryData
         .map(item => {
-            const match = item.kode.match(regex);
+            const match = (item.kode || "").match(regex);
             return match ? parseInt(match[1], 10) : null;
         })
         .filter(n => n !== null)
@@ -152,6 +164,7 @@ function formatRupiah(num) {
 // TOAST & CONFIRM MODAL
 function showToast(message, type = "info") {
     const container = document.getElementById("toast-container");
+    if (!container) return;
     const toast = document.createElement("div");
     toast.className = `toast toast-${type}`;
     toast.innerHTML = `<span>${message}</span>`;
@@ -166,6 +179,8 @@ function showToast(message, type = "info") {
 function showConfirm(title, message) {
     return new Promise((resolve) => {
         const modal = document.getElementById("custom-confirm-modal");
+        if (!modal) return resolve(confirm(message));
+
         document.getElementById("confirm-title").innerText = title;
         document.getElementById("confirm-message").innerText = message;
         modal.classList.remove("hidden");
@@ -185,7 +200,7 @@ function showConfirm(title, message) {
     });
 }
 
-// BAHASA
+// I18N
 function pilihOpsiBahasa(lang) {
     selectedLangCandidate = lang;
     updateIndikatorPilihanBahasa(lang);
@@ -220,9 +235,7 @@ function terapkanBahasa(lang) {
     const dict = translations[lang] || translations.id;
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
-        if (dict[key]) {
-            el.innerText = dict[key];
-        }
+        if (dict[key]) el.innerText = dict[key];
     });
 
     const activePage = document.querySelector(".page-view.active");
@@ -236,15 +249,13 @@ function terapkanBahasa(lang) {
             "page-setting": dict.setting_title
         };
         const titleEl = document.getElementById("page-current-title");
-        if (titleEl && titles[activePage.id]) {
-            titleEl.innerText = titles[activePage.id];
-        }
+        if (titleEl && titles[activePage.id]) titleEl.innerText = titles[activePage.id];
     }
 
     updateIndikatorPilihanBahasa(lang);
 }
 
-// JAM LIVE & TANGGAL KONTEKSTUAL
+// JAM LIVE & TANGGAL
 function jalankanJamRealtime() {
     const updateTime = () => {
         const now = new Date();
@@ -270,44 +281,71 @@ function jalankanJamRealtime() {
     setInterval(updateTime, 1000);
 }
 
-// INISIALISASI
+// =========================================================
+// INISIALISASI UTAMA & PENUTUP SPLASH SCREEN ANTI-STUCK
+// =========================================================
 window.addEventListener("DOMContentLoaded", () => {
-    initTheme();
+    try {
+        initTheme();
 
-    systemLang = localStorage.getItem("xoxo_lang") || "id";
-    selectedLangCandidate = systemLang;
-    terapkanBahasa(systemLang);
+        systemLang = localStorage.getItem("xoxo_lang") || "id";
+        selectedLangCandidate = systemLang;
+        terapkanBahasa(systemLang);
 
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js").catch(() => {});
-    }
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js").catch(() => {});
+        }
 
-    if (!localStorage.getItem("xoxo_password")) {
-        localStorage.setItem("xoxo_password", "admin");
-    }
+        if (!localStorage.getItem("xoxo_password")) {
+            localStorage.setItem("xoxo_password", "admin");
+        }
 
-    document.getElementById("custom-prefix-input").value = masterPrefix;
-    document.getElementById("preview-prefix-format").innerText = `${masterPrefix}-001`;
-    document.getElementById("instansi-nama").value = profilInstansi.nama;
-    document.getElementById("instansi-alamat").value = profilInstansi.alamat;
-    document.getElementById("instansi-pj").value = profilInstansi.pj;
-    document.getElementById("instansi-petugas").value = profilInstansi.petugas;
-    document.getElementById("toggle-haptic").checked = settingsFeedback.haptic;
-    document.getElementById("toggle-beep").checked = settingsFeedback.beep;
+        // Sinkronkan input pengaturan
+        const elPrefix = document.getElementById("custom-prefix-input");
+        if (elPrefix) elPrefix.value = masterPrefix;
 
-    jalankanJamRealtime();
+        const elPrevPrefix = document.getElementById("preview-prefix-format");
+        if (elPrevPrefix) elPrevPrefix.innerText = `${masterPrefix}-001`;
 
-    setTimeout(() => {
-        const splash = document.getElementById("splash-screen");
-        splash.classList.add("fade-out");
+        const elNama = document.getElementById("instansi-nama");
+        if (elNama) elNama.value = profilInstansi.nama || "";
+
+        const elAlamat = document.getElementById("instansi-alamat");
+        if (elAlamat) elAlamat.value = profilInstansi.alamat || "";
+
+        const elPj = document.getElementById("instansi-pj");
+        if (elPj) elPj.value = profilInstansi.pj || "";
+
+        const elPetugas = document.getElementById("instansi-petugas");
+        if (elPetugas) elPetugas.value = profilInstansi.petugas || "";
+
+        const elHaptic = document.getElementById("toggle-haptic");
+        if (elHaptic) elHaptic.checked = !!settingsFeedback.haptic;
+
+        const elBeep = document.getElementById("toggle-beep");
+        if (elBeep) elBeep.checked = !!settingsFeedback.beep;
+
+        jalankanJamRealtime();
+    } catch (err) {
+        console.error("Inisialisasi warning:", err);
+    } finally {
+        // TEPAT DIJALANKAN: TUTUP SPLASH SCREEN (TIDAK AKAN PERNAH STUCK LAGI)
         setTimeout(() => {
-            splash.style.display = "none";
-            cekStatusLogin();
-        }, 500);
-    }, 1800);
+            const splash = document.getElementById("splash-screen");
+            if (splash) {
+                splash.classList.add("fade-out");
+                setTimeout(() => {
+                    splash.style.display = "none";
+                    cekStatusLogin();
+                }, 400);
+            } else {
+                cekStatusLogin();
+            }
+        }, 1200);
+    }
 });
 
-// SPA NAVIGATION UTAMA
+// SPA NAVIGATION
 function navigasiKe(pageId, navButton) {
     triggerHapticFeedback();
 
@@ -340,7 +378,8 @@ function navigasiKe(pageId, navButton) {
         "page-setting-reset": "Reset Pabrik",
         "page-setting-about": "Tentang Aplikasi"
     };
-    document.getElementById("page-current-title").innerText = titles[pageId] || "Inventaris";
+    const titleEl = document.getElementById("page-current-title");
+    if (titleEl) titleEl.innerText = titles[pageId] || "Inventaris";
 
     if (pageId === "page-dashboard") updateStatistik();
     if (pageId === "page-inventaris") siapkanKodeInventarisBaru();
@@ -355,14 +394,13 @@ function bukaSubHalamanSetting(subPageId) {
     navigasiKe(subPageId, null);
 }
 
-// QUICK FILTER DARI HOME
 function filterHanyaBarangRusak() {
     navigasiKe("page-inventaris", document.querySelectorAll(".dock-btn")[1]);
     const filterKondisi = document.getElementById("filter-kondisi");
     if (filterKondisi) {
         filterKondisi.value = "Rusak Ringan";
         filterData();
-        showToast("Memfilter barang yang membutuhkan perbaikan", "info");
+        showToast("Memfilter barang kondisi rusak", "info");
     }
 }
 
@@ -371,7 +409,8 @@ function cekStatusLogin() {
     if (currentUser) {
         tampilkanAplikasiUtama();
     } else {
-        document.getElementById("login-view").classList.remove("hidden");
+        const loginView = document.getElementById("login-view");
+        if (loginView) loginView.classList.remove("hidden");
     }
 }
 
@@ -453,7 +492,7 @@ function terapkanTema(tema) {
     } else {
         document.documentElement.setAttribute("data-theme", tema);
     }
-    updateStatistik();
+    try { updateStatistik(); } catch {}
 }
 
 // SETTING TAMBAHAN
@@ -497,27 +536,33 @@ async function hitungKapasitasMemori() {
             totalChars += (localStorage[x].length + x.length) * 2;
         }
     }
-    document.getElementById("storage-local-size").innerText = `~ ${(totalChars / 1024).toFixed(1)} KB`;
+    const elSize = document.getElementById("storage-local-size");
+    if (elSize) elSize.innerText = `~ ${(totalChars / 1024).toFixed(1)} KB`;
 
-    const db = await bukaDB();
-    const tx = db.transaction(STORE_NAME, "readonly");
-    const countReq = tx.objectStore(STORE_NAME).count();
-    countReq.onsuccess = () => {
-        document.getElementById("storage-media-count").innerText = `${countReq.result} Berkas Foto`;
-    };
+    try {
+        const db = await bukaDB();
+        const tx = db.transaction(STORE_NAME, "readonly");
+        const countReq = tx.objectStore(STORE_NAME).count();
+        countReq.onsuccess = () => {
+            const elCount = document.getElementById("storage-media-count");
+            if (elCount) elCount.innerText = `${countReq.result} Berkas Foto`;
+        };
+    } catch {}
 }
 
 async function bersihkanCacheFoto() {
     const yakin = await showConfirm("Bersihkan Foto", "Hapus seluruh dokumentasi foto dari memori?");
     if (yakin) {
-        const db = await bukaDB();
-        const tx = db.transaction(STORE_NAME, "readwrite");
-        tx.objectStore(STORE_NAME).clear();
-        tx.oncomplete = () => {
-            hitungKapasitasMemori();
-            filterData();
-            showToast("Semua berkas foto telah dibersihkan!", "info");
-        };
+        try {
+            const db = await bukaDB();
+            const tx = db.transaction(STORE_NAME, "readwrite");
+            tx.objectStore(STORE_NAME).clear();
+            tx.oncomplete = () => {
+                hitungKapasitasMemori();
+                filterData();
+                showToast("Semua berkas foto telah dibersihkan!", "info");
+            };
+        } catch {}
     }
 }
 
@@ -525,14 +570,14 @@ async function eksekusiResetPabrik() {
     const yakin = await showConfirm("RESET TOTAL PABRIK", "PERINGATAN: Semua data barang, ruangan, foto, dan histori akan dihapus permanen. Lanjutkan?");
     if (yakin) {
         localStorage.clear();
-        const db = await bukaDB();
-        const tx = db.transaction(STORE_NAME, "readwrite");
-        tx.objectStore(STORE_NAME).clear();
-        tx.oncomplete = () => {
-            sessionStorage.clear();
-            alert("Aplikasi berhasil direset total ke setelan pabrik.");
-            location.reload();
-        };
+        try {
+            const db = await bukaDB();
+            const tx = db.transaction(STORE_NAME, "readwrite");
+            tx.objectStore(STORE_NAME).clear();
+        } catch {}
+        sessionStorage.clear();
+        alert("Aplikasi berhasil direset total ke setelan pabrik.");
+        location.reload();
     }
 }
 
@@ -575,33 +620,38 @@ function renderRuanganDropdown() {
 
     const listSemua = [...new Set([...masterRuangan, ...inventoryData.map(i => i.ruangan)])].filter(Boolean);
 
-    selectForm.innerHTML = `<option value="">-- Pilih Ruangan --</option>`;
-    selectBatch.innerHTML = `<option value="">-- Pilih Ruangan Tujuan --</option>`;
-    selectFilter.innerHTML = `<option value="">Semua Ruangan</option>`;
-    selectLaporan.innerHTML = `<option value="">Semua Ruangan</option>`;
+    if (selectForm) selectForm.innerHTML = `<option value="">-- Pilih Ruangan --</option>`;
+    if (selectBatch) selectBatch.innerHTML = `<option value="">-- Pilih Ruangan Tujuan --</option>`;
+    if (selectFilter) selectFilter.innerHTML = `<option value="">Semua Ruangan</option>`;
+    if (selectLaporan) selectLaporan.innerHTML = `<option value="">Semua Ruangan</option>`;
 
     listSemua.forEach(r => {
-        selectForm.innerHTML += `<option value="${r}">${r}</option>`;
-        selectBatch.innerHTML += `<option value="${r}">${r}</option>`;
-        selectFilter.innerHTML += `<option value="${r}">${r}</option>`;
-        selectLaporan.innerHTML += `<option value="${r}">${r}</option>`;
+        if (selectForm) selectForm.innerHTML += `<option value="${r}">${r}</option>`;
+        if (selectBatch) selectBatch.innerHTML += `<option value="${r}">${r}</option>`;
+        if (selectFilter) selectFilter.innerHTML += `<option value="${r}">${r}</option>`;
+        if (selectLaporan) selectLaporan.innerHTML += `<option value="${r}">${r}</option>`;
     });
 
-    selectPinjam.innerHTML = `<option value="">-- Pilih Barang --</option>`;
-    inventoryData.forEach(item => {
-        selectPinjam.innerHTML += `<option value="${item.id}">${item.nama} (${item.kode}) - Stok:${item.jumlah}</option>`;
-    });
+    if (selectPinjam) {
+        selectPinjam.innerHTML = `<option value="">-- Pilih Barang --</option>`;
+        inventoryData.forEach(item => {
+            selectPinjam.innerHTML += `<option value="${item.id}">${item.nama} (${item.kode}) - Stok:${item.jumlah}</option>`;
+        });
+    }
 }
 
 // INVENTARIS FORM & AUTO KODE
 function siapkanKodeInventarisBaru() {
-    if (!document.getElementById("item-id").value) {
-        document.getElementById("item-kode").value = generateSmartKodeInventaris();
+    const elKode = document.getElementById("item-kode");
+    const elId = document.getElementById("item-id");
+    if (elKode && (!elId || !elId.value)) {
+        elKode.value = generateSmartKodeInventaris();
     }
 }
 
 function tampilkanAplikasiUtama() {
-    document.getElementById("main-app").classList.remove("hidden");
+    const mainApp = document.getElementById("main-app");
+    if (mainApp) mainApp.classList.remove("hidden");
     renderRuanganDropdown();
     filterData();
     updateStatistik();
@@ -610,6 +660,7 @@ function tampilkanAplikasiUtama() {
 function toggleFormInventaris() {
     const form = document.getElementById("form-inventaris");
     const btn = document.getElementById("btn-toggle-form");
+    if (!form || !btn) return;
 
     if (form.classList.contains("hidden")) {
         form.classList.remove("hidden");
@@ -770,7 +821,7 @@ function resetForm() {
 
 function simpanKeLocalStorage() {
     localStorage.setItem("xoxo_inventory", JSON.stringify(inventoryData));
-    updateStatistik();
+    try { updateStatistik(); } catch {}
 }
 
 // RIWAYAT LOKASI MUTASI
@@ -822,11 +873,12 @@ function updateBatchUI() {
     const bar = document.getElementById("batch-action-bar");
     const count = document.getElementById("selected-count");
     if (selectedItemIds.size > 0) {
-        bar.classList.remove("hidden");
-        count.innerText = `${selectedItemIds.size} dipilih`;
+        if (bar) bar.classList.remove("hidden");
+        if (count) count.innerText = `${selectedItemIds.size} dipilih`;
     } else {
-        bar.classList.add("hidden");
-        document.getElementById("select-all-checkbox").checked = false;
+        if (bar) bar.classList.add("hidden");
+        const masterCb = document.getElementById("select-all-checkbox");
+        if (masterCb) masterCb.checked = false;
     }
     document.querySelectorAll(".inv-card").forEach(card => {
         const id = parseInt(card.getAttribute("data-id"), 10);
@@ -890,16 +942,17 @@ async function renderData(data) {
     const container = document.getElementById("cards-container");
     const empty = document.getElementById("empty-state");
     const countBadge = document.getElementById("data-count");
+    if (!container) return;
     container.innerHTML = "";
 
-    countBadge.innerText = `${data.length} Barang`;
+    if (countBadge) countBadge.innerText = `${data.length} Barang`;
 
     if (data.length === 0) {
-        empty.classList.remove("hidden");
+        if (empty) empty.classList.remove("hidden");
         updateBatchUI();
         return;
     }
-    empty.classList.add("hidden");
+    if (empty) empty.classList.add("hidden");
 
     for (const item of data) {
         let badgeClass = "badge-baik";
@@ -956,14 +1009,14 @@ async function renderData(data) {
 }
 
 function filterData() {
-    const q = document.getElementById("search-input").value.toLowerCase();
-    const kat = document.getElementById("filter-kategori").value;
-    const ruang = document.getElementById("filter-ruangan").value;
-    const kondisi = document.getElementById("filter-kondisi").value;
+    const q = (document.getElementById("search-input")?.value || "").toLowerCase();
+    const kat = document.getElementById("filter-kategori")?.value || "";
+    const ruang = document.getElementById("filter-ruangan")?.value || "";
+    const kondisi = document.getElementById("filter-kondisi")?.value || "";
 
     const filtered = inventoryData.filter(item => {
-        const matchNama = item.nama.toLowerCase().includes(q);
-        const matchKode = item.kode.toLowerCase().includes(q);
+        const matchNama = (item.nama || "").toLowerCase().includes(q);
+        const matchKode = (item.kode || "").toLowerCase().includes(q);
         const matchKat = kat === "" || (item.kategori || "Elektronik") === kat;
         const matchRuang = ruang === "" || item.ruangan === ruang;
         const matchKondisi = kondisi === "" || item.kondisi === kondisi;
@@ -985,19 +1038,20 @@ function mulaiVoiceSearch() {
     const btn = document.getElementById("btn-voice-search");
 
     recognition.onstart = () => {
-        btn.classList.add("listening");
+        if (btn) btn.classList.add("listening");
         showToast("Silakan berbicara...", "info");
     };
 
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
-        document.getElementById("search-input").value = transcript;
+        const searchInput = document.getElementById("search-input");
+        if (searchInput) searchInput.value = transcript;
         filterData();
         showToast(`Mencari: "${transcript}"`, "success");
     };
 
-    recognition.onerror = () => btn.classList.remove("listening");
-    recognition.onend = () => btn.classList.remove("listening");
+    recognition.onerror = () => btn && btn.classList.remove("listening");
+    recognition.onend = () => btn && btn.classList.remove("listening");
     recognition.start();
 }
 
@@ -1071,6 +1125,7 @@ async function kembalikanBarang(loanId) {
 
 function renderPeminjamanView() {
     const tbody = document.getElementById("peminjaman-table-body");
+    if (!tbody) return;
     tbody.innerHTML = "";
 
     if (loanData.length === 0) {
@@ -1112,6 +1167,7 @@ function catatLog(tipe, deskripsi) {
 
 function renderLogAktivitas() {
     const el = document.getElementById("log-list");
+    if (!el) return;
     el.innerHTML = "";
 
     if (activityLogs.length === 0) {
@@ -1141,7 +1197,7 @@ async function konfirmasiHapusLog() {
 }
 
 // =========================================================
-// STATISTIK & ANALITIK DASBOR SUPER DETAIL
+// STATISTIK & ANALITIK DASBOR DETAIL (SAFE RENDER)
 // =========================================================
 function updateStatistik() {
     let total = 0;
@@ -1208,50 +1264,51 @@ function updateStatistik() {
         borrowFrequency[l.namaBarang] = (borrowFrequency[l.namaBarang] || 0) + 1;
     });
 
-    // Pasang Metrik Angka
-    document.getElementById("stat-valuasi").innerText = formatRupiah(totalValuasi);
-    document.getElementById("stat-total").innerText = total;
-    document.getElementById("stat-baik").innerText = baik;
-    document.getElementById("stat-rusak").innerText = rusak;
-    document.getElementById("stat-pinjam").innerText = totalDipinjam;
-    document.getElementById("stat-low-stock").innerText = lowStockItems.length;
-    document.getElementById("stat-damaged-val").innerText = formatRupiah(totalDamagedValue);
+    // Pasang Metrik Angka jika elemen ada
+    const elVal = document.getElementById("stat-valuasi");
+    if (elVal) elVal.innerText = formatRupiah(totalValuasi);
 
-    if (highestItem) {
-        document.getElementById("stat-highest-item").innerText = highestItem.nama;
-        document.getElementById("stat-highest-val").innerText = formatRupiah(highestItem.harga);
-    } else {
-        document.getElementById("stat-highest-item").innerText = "-";
-        document.getElementById("stat-highest-val").innerText = "Rp 0";
+    const elTotal = document.getElementById("stat-total");
+    if (elTotal) elTotal.innerText = total;
+
+    const elBaik = document.getElementById("stat-baik");
+    if (elBaik) elBaik.innerText = baik;
+
+    const elRusak = document.getElementById("stat-rusak");
+    if (elRusak) elRusak.innerText = rusak;
+
+    const elPinjam = document.getElementById("stat-pinjam");
+    if (elPinjam) elPinjam.innerText = totalDipinjam;
+
+    const elLowStock = document.getElementById("stat-low-stock");
+    if (elLowStock) elLowStock.innerText = lowStockItems.length;
+
+    const elDamaged = document.getElementById("stat-damaged-val");
+    if (elDamaged) elDamaged.innerText = formatRupiah(totalDamagedValue);
+
+    const elHighItem = document.getElementById("stat-highest-item");
+    const elHighVal = document.getElementById("stat-highest-val");
+    if (highestItem && elHighItem && elHighVal) {
+        elHighItem.innerText = highestItem.nama;
+        elHighVal.innerText = formatRupiah(highestItem.harga);
+    } else if (elHighItem && elHighVal) {
+        elHighItem.innerText = "-";
+        elHighVal.innerText = "Rp 0";
     }
 
-    // 1. Render Peringatan Operasional
-    renderActionableAlerts(lowStockItems, upcomingMaintenanceItems, overdueLoans);
-
-    // 2. Render Donut Kondisi
-    gambarGrafik(baik, ringan, berat, total);
-
-    // 3. Render Gauge Skor Kesehatan Aset
-    gambarHealthGauge(baik, total);
-
-    // 4. Render Grafik Batang Nilai per Ruangan
-    gambarRoomBarChart(roomValuationMap);
-
-    // 5. Render Breakdown Kategori
-    renderCategoryBreakdown(categoryCountMap, total);
-
-    // 6. Render Kartu Sebaran Ruangan
-    renderRoomDistribution(roomValuationMap, roomQtyMap, totalValuasi);
-
-    // 7. Render Wawasan Finansial & Operasional
-    renderSmartInsights(totalValuasi, borrowFrequency, roomQtyMap);
-
-    // 8. Render Aktivitas Terakhir
-    renderRecentDashboardActivities();
+    try { renderActionableAlerts(lowStockItems, upcomingMaintenanceItems, overdueLoans); } catch {}
+    try { gambarGrafik(baik, ringan, berat, total); } catch {}
+    try { gambarHealthGauge(baik, total); } catch {}
+    try { gambarRoomBarChart(roomValuationMap); } catch {}
+    try { renderCategoryBreakdown(categoryCountMap, total); } catch {}
+    try { renderRoomDistribution(roomValuationMap, roomQtyMap, totalValuasi); } catch {}
+    try { renderSmartInsights(totalValuasi, borrowFrequency, roomQtyMap); } catch {}
+    try { renderRecentDashboardActivities(); } catch {}
 }
 
 function renderActionableAlerts(lowStock, maintenance, overdue) {
     const container = document.getElementById("dash-action-alerts");
+    if (!container) return;
     container.innerHTML = "";
 
     let hasAlert = false;
@@ -1296,7 +1353,6 @@ function renderActionableAlerts(lowStock, maintenance, overdue) {
     else container.classList.add("hidden");
 }
 
-// GAUGE TINGKAT KESEHATAN ASET (CANVAS NATIVE)
 function gambarHealthGauge(goodCount, totalCount) {
     const canvas = document.getElementById("healthGaugeChart");
     if (!canvas) return;
@@ -1304,18 +1360,21 @@ function gambarHealthGauge(goodCount, totalCount) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const score = totalCount > 0 ? Math.round((goodCount / totalCount) * 100) : 100;
-    document.getElementById("health-score-percent").innerText = `${score}%`;
+    const elPercent = document.getElementById("health-score-percent");
+    if (elPercent) elPercent.innerText = `${score}%`;
 
     const statusBadge = document.getElementById("health-score-status");
-    if (score >= 80) {
-        statusBadge.className = "badge badge-baik";
-        statusBadge.innerText = "Prima / Sehat";
-    } else if (score >= 50) {
-        statusBadge.className = "badge badge-warning";
-        statusBadge.innerText = "Cukup Baik";
-    } else {
-        statusBadge.className = "badge badge-overdue";
-        statusBadge.innerText = "Perlu Peremajaan";
+    if (statusBadge) {
+        if (score >= 80) {
+            statusBadge.className = "badge badge-baik";
+            statusBadge.innerText = "Prima / Sehat";
+        } else if (score >= 50) {
+            statusBadge.className = "badge badge-warning";
+            statusBadge.innerText = "Cukup Baik";
+        } else {
+            statusBadge.className = "badge badge-overdue";
+            statusBadge.innerText = "Perlu Peremajaan";
+        }
     }
 
     const cx = canvas.width / 2;
@@ -1323,7 +1382,6 @@ function gambarHealthGauge(goodCount, totalCount) {
     const r = 70;
     const lineWidth = 16;
 
-    // Track Abu-abu Busur Setengah Lingkaran
     ctx.beginPath();
     ctx.arc(cx, cy, r, Math.PI, 2 * Math.PI);
     ctx.lineWidth = lineWidth;
@@ -1331,7 +1389,6 @@ function gambarHealthGauge(goodCount, totalCount) {
     ctx.lineCap = "round";
     ctx.stroke();
 
-    // Nilai Busur Warna
     const endAngle = Math.PI + (score / 100) * Math.PI;
     ctx.beginPath();
     ctx.arc(cx, cy, r, Math.PI, endAngle);
@@ -1341,7 +1398,6 @@ function gambarHealthGauge(goodCount, totalCount) {
     ctx.stroke();
 }
 
-// GRAFIK BATANG VALUASI PER RUANGAN (CANVAS NATIVE)
 function gambarRoomBarChart(roomValMap) {
     const canvas = document.getElementById("roomBarChart");
     if (!canvas) return;
@@ -1365,7 +1421,6 @@ function gambarRoomBarChart(roomValMap) {
     const barWidth = Math.min(45, (chartW / rooms.length) - 15);
     const gap = (chartW - (barWidth * rooms.length)) / (rooms.length + 1);
 
-    // Garis Dasar
     ctx.beginPath();
     ctx.moveTo(padLeft, canvas.height - padBottom);
     ctx.lineTo(canvas.width - 20, canvas.height - padBottom);
@@ -1379,20 +1434,18 @@ function gambarRoomBarChart(roomValMap) {
         const x = padLeft + gap + idx * (barWidth + gap);
         const y = canvas.height - padBottom - h;
 
-        // Batang Rounded Top
         ctx.fillStyle = "#c7ff2e";
         ctx.beginPath();
-        ctx.roundRect(x, y, barWidth, h, [6, 6, 0, 0]);
+        if (ctx.roundRect) ctx.roundRect(x, y, barWidth, h, [6, 6, 0, 0]);
+        else ctx.rect(x, y, barWidth, h);
         ctx.fill();
 
-        // Label Nama Ruangan
         ctx.fillStyle = "#808080";
         ctx.font = "10px sans-serif";
         ctx.textAlign = "center";
         const shortName = room.length > 7 ? room.substring(0, 6) + ".." : room;
         ctx.fillText(shortName, x + barWidth / 2, canvas.height - padBottom + 14);
 
-        // Label Angka Singkat di Atas Batang
         if (val > 0) {
             ctx.fillStyle = "#ffffff";
             ctx.font = "bold 9px sans-serif";
@@ -1404,6 +1457,7 @@ function gambarRoomBarChart(roomValMap) {
 
 function renderCategoryBreakdown(catMap, totalQty) {
     const container = document.getElementById("dash-category-list");
+    if (!container) return;
     container.innerHTML = "";
 
     const keys = Object.keys(catMap);
@@ -1436,10 +1490,11 @@ function renderCategoryBreakdown(catMap, totalQty) {
 function renderRoomDistribution(valMap, qtyMap, totalVal) {
     const container = document.getElementById("dash-room-distribution");
     const badge = document.getElementById("dash-total-rooms-badge");
+    if (!container) return;
     container.innerHTML = "";
 
     const rooms = Object.keys(valMap);
-    badge.innerText = `${rooms.length} Ruangan`;
+    if (badge) badge.innerText = `${rooms.length} Ruangan`;
 
     if (rooms.length === 0) {
         container.innerHTML = `<p class="text-caption">Belum ada sebaran ruangan.</p>`;
@@ -1468,11 +1523,10 @@ function renderRoomDistribution(valMap, qtyMap, totalVal) {
 }
 
 function renderSmartInsights(totalValuasi, borrowFreq, roomQtyMap) {
-    // 1. Estimasi Depresiasi 10% / tahun
     const depreciation = Math.round(totalValuasi * 0.10);
-    document.getElementById("dash-depreciation-val").innerText = formatRupiah(depreciation) + " / thn";
+    const elDep = document.getElementById("dash-depreciation-val");
+    if (elDep) elDep.innerText = formatRupiah(depreciation) + " / thn";
 
-    // 2. Barang paling sering dipinjam
     let maxBorrow = 0;
     let topBorrowedItem = "-";
     for (let item in borrowFreq) {
@@ -1481,9 +1535,9 @@ function renderSmartInsights(totalValuasi, borrowFreq, roomQtyMap) {
             topBorrowedItem = item;
         }
     }
-    document.getElementById("dash-most-borrowed-item").innerText = topBorrowedItem !== "-" ? `${topBorrowedItem} (${maxBorrow}x)` : "Belum Ada";
+    const elMost = document.getElementById("dash-most-borrowed-item");
+    if (elMost) elMost.innerText = topBorrowedItem !== "-" ? `${topBorrowedItem} (${maxBorrow}x)` : "Belum Ada";
 
-    // 3. Ruangan terpadat
     let maxDensity = 0;
     let densestRoom = "-";
     for (let r in roomQtyMap) {
@@ -1492,11 +1546,13 @@ function renderSmartInsights(totalValuasi, borrowFreq, roomQtyMap) {
             densestRoom = r;
         }
     }
-    document.getElementById("dash-densest-room-badge").innerText = densestRoom !== "-" ? `${densestRoom} (${maxDensity} Unit)` : "-";
+    const elDense = document.getElementById("dash-densest-room-badge");
+    if (elDense) elDense.innerText = densestRoom !== "-" ? `${densestRoom} (${maxDensity} Unit)` : "-";
 }
 
 function renderRecentDashboardActivities() {
     const container = document.getElementById("dash-recent-activities");
+    if (!container) return;
     container.innerHTML = "";
 
     const recent = activityLogs.slice(0, 3);
@@ -1555,12 +1611,15 @@ function gambarGrafik(baik = 0, ringan = 0, berat = 0, total = 0) {
         });
     }
 
-    document.getElementById("chart-legend").innerHTML = data.map(d => `
-        <div class="legend-item">
-            <span class="legend-dot" style="background:${d.color}"></span>
-            <span>${d.label}: <strong>${d.count}</strong></span>
-        </div>
-    `).join("");
+    const legendEl = document.getElementById("chart-legend");
+    if (legendEl) {
+        legendEl.innerHTML = data.map(d => `
+            <div class="legend-item">
+                <span class="legend-dot" style="background:${d.color}"></span>
+                <span>${d.label}: <strong>${d.count}</strong></span>
+            </div>
+        `).join("");
+    }
 }
 
 // QR CODE RENDER & WATERMARK
@@ -1573,10 +1632,13 @@ function tampilkanQRWatermark(kode, nama) {
     };
 
     currentLabelData = item;
-    document.getElementById("qr-modal-nama").innerText = item.nama;
-    document.getElementById("qr-modal-kode").innerText = item.kode;
+    const elNama = document.getElementById("qr-modal-nama");
+    const elKode = document.getElementById("qr-modal-kode");
+    if (elNama) elNama.innerText = item.nama;
+    if (elKode) elKode.innerText = item.kode;
 
     const canvas = document.getElementById("qr-watermark-canvas");
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -1608,11 +1670,13 @@ function tampilkanQRWatermark(kode, nama) {
         logo.onerror = () => {};
     };
 
-    document.getElementById("modal-qr-detail").classList.remove("hidden");
+    const modalQR = document.getElementById("modal-qr-detail");
+    if (modalQR) modalQR.classList.remove("hidden");
 }
 
 function tutupModalQR() {
-    document.getElementById("modal-qr-detail").classList.add("hidden");
+    const modalQR = document.getElementById("modal-qr-detail");
+    if (modalQR) modalQR.classList.add("hidden");
     currentLabelData = null;
 }
 
@@ -1621,9 +1685,11 @@ function cetakStikerLabel() {
     if (!currentLabelData) return;
 
     const canvas = document.getElementById("qr-watermark-canvas");
+    if (!canvas) return;
     const qrDataUrl = canvas.toDataURL("image/png");
 
     const printFrame = document.getElementById("print-frame");
+    if (!printFrame) return;
     const doc = printFrame.contentWindow.document;
 
     doc.open();
@@ -1700,14 +1766,16 @@ function cetakStikerLabel() {
 }
 
 function mulaiScanQR() {
-    document.getElementById("modal-scanner").classList.remove("hidden");
+    const modal = document.getElementById("modal-scanner");
+    if (modal) modal.classList.remove("hidden");
     if (typeof Html5QrcodeScanner !== "undefined") {
         html5QrScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 220 });
         html5QrScanner.render((decodedText) => {
             triggerScannerBeep();
             triggerHapticFeedback();
             tutupScanQR();
-            document.getElementById("search-input").value = decodedText;
+            const searchInput = document.getElementById("search-input");
+            if (searchInput) searchInput.value = decodedText;
             navigasiKe("page-inventaris", document.querySelectorAll(".dock-btn")[1]);
             filterData();
             showToast(`Kode QR: ${decodedText}`, "success");
@@ -1722,21 +1790,32 @@ function tutupScanQR() {
         html5QrScanner.clear();
         html5QrScanner = null;
     }
-    document.getElementById("modal-scanner").classList.add("hidden");
+    const modal = document.getElementById("modal-scanner");
+    if (modal) modal.classList.add("hidden");
 }
 
 // LAPORAN BERITA ACARA
 function renderLaporanPreview() {
-    const ruang = document.getElementById("laporan-filter-ruang").value;
-    const kondisi = document.getElementById("laporan-filter-kondisi").value;
+    const ruang = document.getElementById("laporan-filter-ruang")?.value || "";
+    const kondisi = document.getElementById("laporan-filter-kondisi")?.value || "";
     const tbody = document.getElementById("print-table-body");
+    if (!tbody) return;
     tbody.innerHTML = "";
 
-    document.getElementById("print-instansi-name").innerText = profilInstansi.nama || "INSTANSI INVENTARIS";
-    document.getElementById("print-instansi-addr").innerText = profilInstansi.alamat || "Alamat Kantor / Gedung Operasional";
-    document.getElementById("print-sign-pj").innerText = `( ${profilInstansi.pj || '....................................'} )`;
-    document.getElementById("print-sign-petugas").innerText = `( ${profilInstansi.petugas || '....................................'} )`;
-    document.getElementById("print-date").innerText = `Tanggal Cetak: ${new Date().toLocaleDateString("id-ID", { dateStyle: "long" })}`;
+    const elNama = document.getElementById("print-instansi-name");
+    if (elNama) elNama.innerText = profilInstansi.nama || "INSTANSI INVENTARIS";
+
+    const elAddr = document.getElementById("print-instansi-addr");
+    if (elAddr) elAddr.innerText = profilInstansi.alamat || "Alamat Kantor / Gedung Operasional";
+
+    const elPj = document.getElementById("print-sign-pj");
+    if (elPj) elPj.innerText = `( ${profilInstansi.pj || '....................................'} )`;
+
+    const elPet = document.getElementById("print-sign-petugas");
+    if (elPet) elPet.innerText = `( ${profilInstansi.petugas || '....................................'} )`;
+
+    const elDate = document.getElementById("print-date");
+    if (elDate) elDate.innerText = `Tanggal Cetak: ${new Date().toLocaleDateString("id-ID", { dateStyle: "long" })}`;
 
     const filtered = inventoryData.filter(item => {
         const matchRuang = ruang === "" || item.ruangan === ruang;
@@ -1767,7 +1846,8 @@ function renderLaporanPreview() {
         tbody.appendChild(tr);
     });
 
-    document.getElementById("print-summary-val").innerText = `Total Nilai Aset: ${formatRupiah(totalSubtotal)}`;
+    const elSummary = document.getElementById("print-summary-val");
+    if (elSummary) elSummary.innerText = `Total Nilai Aset: ${formatRupiah(totalSubtotal)}`;
 }
 
 // EXPORT & BACKUP
@@ -1811,7 +1891,7 @@ function importData(event) {
             }
         } catch { showToast("Format file JSON rusak!", "error"); }
     };
-    reader.readAsDataURL(file);
+    reader.readAsText(file);
     event.target.value = "";
 }
 
