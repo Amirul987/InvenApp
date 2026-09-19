@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <!-- IFRAME TERSEMBUNYI UNTUK CETAK LABEL STIKER FISIK (ANTI KOSONG) -->
+    <!-- IFRAME TERSEMBUNYI UNTUK CETAK LABEL STIKER FISIK -->
     <iframe id="print-frame" style="display:none; visibility:hidden; width:0; height:0; position:absolute; border:none;"></iframe>
 
     <!-- NOTIFIKASI TOAST -->
@@ -36,55 +36,15 @@
         </div>
     </div>
 
-    <!-- AREA STIKER LABEL FISIK RESMI SIAP CETAK -->
-    <div id="printable-label-area" class="label-print-sheet">
-        <div class="inventory-sticker">
-            <div class="sticker-header">
-                <img src="src/icon/icon.png" class="sticker-logo" alt="Logo" onerror="this.style.display='none'">
-                <div class="sticker-org-info">
-                    <h4 id="lbl-org-name">XOXO INVENTORY SYSTEM</h4>
-                    <p id="lbl-org-sub">STIKER IDENTIFIKASI ASET RESMI</p>
-                </div>
-            </div>
-            <div class="sticker-body">
-                <div class="sticker-qr-box">
-                    <img id="lbl-qr-image" src="" alt="QR Code" class="sticker-qr-img">
-                </div>
-                <div class="sticker-meta-box">
-                    <div class="sticker-meta-row">
-                        <span class="meta-label">Kode:</span>
-                        <strong id="lbl-item-code" class="meta-code">-</strong>
-                    </div>
-                    <div class="sticker-meta-row">
-                        <span class="meta-label">Barang:</span>
-                        <strong id="lbl-item-name" class="meta-val">-</strong>
-                    </div>
-                    <div class="sticker-meta-row">
-                        <span class="meta-label">Ruang:</span>
-                        <span id="lbl-item-room" class="meta-val">-</span>
-                    </div>
-                    <div class="sticker-meta-row">
-                        <span class="meta-label">Kategori:</span>
-                        <span id="lbl-item-cat" class="meta-val">-</span>
-                    </div>
-                </div>
-            </div>
-            <div class="sticker-footer">
-                <span>DILARANG MELEPAS / MERUSAK LABEL INI</span>
-                <span id="lbl-print-date">Tgl Cetak: -</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 1. SPLASH SCREEN -->
-    <div id="splash-screen" class="no-print">
+    <!-- 1. SPLASH SCREEN (Z-INDEX TERTINGGI, AUTO-HIDE AMAN) -->
+    <div id="splash-screen">
         <div class="splash-box">
             <div class="splash-icon-wrapper">
                 <img src="src/icon/icon.png" alt="Logo" class="splash-logo" onerror="this.style.display='none'">
                 <div class="pulse-ring"></div>
             </div>
             <h1 class="splash-app-title">XoXo Inventory</h1>
-            <p class="splash-creator">Dibuat oleh XoXo Team</p>
+            <p class="splash-creator" data-i18n="splash_creator">Dibuat oleh XoXo Team</p>
             <div class="splash-loader-bar">
                 <div class="splash-loader-fill"></div>
             </div>
@@ -164,14 +124,14 @@
 
         <main class="container app-content-wrapper">
 
-            <!-- PAGE 1: DASBOR (SUPER DETAILED & ANALYTICAL) -->
+            <!-- PAGE 1: DASBOR LENGKAP -->
             <section id="page-dashboard" class="page-view active">
                 
-                <!-- WIDGET HEADER KONTEKSTUAL & JAM REALTIME -->
+                <!-- WIDGET HERO KONTEKSTUAL -->
                 <div class="dash-hero-widget">
                     <div class="hero-left">
                         <span class="hero-badge">Sistem Aktif &bull; Mode Offline</span>
-                        <h2 id="dash-greeting">Halo, Petugas!</h2>
+                        <h2 id="dash-greeting">Selamat Datang, Petugas!</h2>
                         <p id="dash-date-string" class="text-caption">Memuat tanggal...</p>
                     </div>
                     <div class="hero-right">
@@ -179,7 +139,7 @@
                     </div>
                 </div>
 
-                <!-- DOCK TOMBOL AKSI CEPAT (QUICK ACTION) -->
+                <!-- DOCK TOMBOL AKSI CEPAT -->
                 <div class="quick-action-dock mt-2">
                     <button type="button" class="quick-btn" onclick="mulaiScanQR()">
                         <div class="quick-icon-circle bg-accent">
@@ -207,10 +167,10 @@
                     </button>
                 </div>
 
-                <!-- KARTU PERINGATAN OPERASIONAL CEPAT -->
+                <!-- KARTU PERINGATAN OPERASIONAL -->
                 <div id="dash-action-alerts" class="dashboard-alert-container mt-2 hidden"></div>
 
-                <!-- METRIK ANGKA UTAMA (GRID) -->
+                <!-- METRIK UTAMA -->
                 <div class="stat-grid mt-2">
                     <div class="stat-card">
                         <div class="stat-meta">
@@ -274,9 +234,8 @@
                     </div>
                 </div>
 
-                <!-- DUAL VISUALISASI: KESEHATAN ASET (GAUGE) & KONDISI (DONUT) -->
+                <!-- DUAL VISUALISASI: GAUGE KESEHATAN ASET & DONUT KONDISI -->
                 <div class="dashboard-analytics-grid mt-4">
-                    <!-- GAUGE TINGKAT KESEHATAN ASET -->
                     <div class="panel">
                         <div class="panel-header space-between">
                             <h4>Skor Kesehatan Aset</h4>
@@ -285,13 +244,12 @@
                         <div class="gauge-card-body">
                             <canvas id="healthGaugeChart" width="200" height="110"></canvas>
                             <div class="gauge-center-text">
-                                <h3 id="health-score-percent">0%</h3>
+                                <h3 id="health-score-percent">100%</h3>
                                 <p class="text-caption">Kondisi Baik</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- DONUT PROPORSI KONDISI -->
                     <div class="panel">
                         <div class="panel-header">
                             <h4>Proporsi Kondisi Barang</h4>
@@ -303,10 +261,10 @@
                     </div>
                 </div>
 
-                <!-- GRAFIK BATANG VALUASI ASET PER RUANGAN (BAR CHART CANVAS) -->
+                <!-- GRAFIK BATANG VALUASI PER RUANGAN -->
                 <div class="panel mt-4">
                     <div class="panel-header space-between">
-                        <h4>Valuasi Aset per Ruangan (Grafik Batang)</h4>
+                        <h4>Valuasi Aset per Ruangan</h4>
                         <span id="dash-total-rooms-badge" class="badge">0 Ruangan</span>
                     </div>
                     <div class="bar-chart-wrapper">
@@ -317,7 +275,6 @@
 
                 <!-- DUAL METRIK FINANSIAL & KATEGORI -->
                 <div class="dashboard-analytics-grid mt-4">
-                    <!-- KOMPOSISI KATEGORI -->
                     <div class="panel">
                         <div class="panel-header">
                             <h4>Komposisi Kategori Barang</h4>
@@ -325,7 +282,6 @@
                         <div id="dash-category-list" class="progress-breakdown-list"></div>
                     </div>
 
-                    <!-- ANALITIK CERDAS (DEPRESIASI & SIRKULASI) -->
                     <div class="panel">
                         <div class="panel-header">
                             <h4>Wawasan Finansial & Operasional</h4>
@@ -333,8 +289,8 @@
                         <div class="smart-insights-list">
                             <div class="insight-row">
                                 <div class="insight-meta">
-                                    <strong>Estimasi Penyusutan Nilai (Tahunan)</strong>
-                                    <p class="text-caption">Depresiasi nilai buku aset (estimasi ~10% per tahun)</p>
+                                    <strong>Estimasi Penyusutan (Tahunan)</strong>
+                                    <p class="text-caption">Depresiasi nilai buku aset (~10% per tahun)</p>
                                 </div>
                                 <span class="insight-val" id="dash-depreciation-val">Rp 0 / thn</span>
                             </div>
