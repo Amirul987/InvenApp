@@ -26,17 +26,17 @@
     "screenshots": [
         {
             "src": "screenshots.png",
-            "sizes": "1920x1080",
+            "sizes": "1920x1072",
             "type": "image/png",
             "form_factor": "narrow",
-            "label": "Tampilan Aplikasi XoXo di Ponsel"
+            "label": "Tampilan Aplikasi XoXo di Ponsel & Dekstop"
         },
         {
             "src": "screenshots.png",
-            "sizes": "1920x1080",
+            "sizes": "1920x1072",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "Tampilan Aplikasi XoXo di Desktop"
+            "label": "Tampilan Aplikasi XoXo di Ponsel & Desktop"
         }
     ]
 }
