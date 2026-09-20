@@ -2,8 +2,11 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- VIEWPORT-FIT=COVER UNTUK MENGIZINKAN KALKULASI SAFE AREA NOTCH & HOME BAR -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#c7ff2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>XoXo - Inventaris Ruangan</title>
     
     <link rel="icon" type="image/png" href="src/icon/icon.png">
@@ -103,7 +106,7 @@
 
     <!-- 3. APLIKASI UTAMA -->
     <div id="main-app" class="hidden">
-        <!-- TOP NAVBAR (DENGAN INDIKATOR STATUS ONLINE/OFFLINE) -->
+        <!-- TOP NAVBAR (DENGAN SAFE AREA ATAS AGAR TIDAK NABRAK BATERAI/NOTCH) -->
         <header class="navbar no-print">
             <div class="nav-brand">
                 <img src="src/icon/icon.png" class="nav-logo" alt="Logo Aplikasi" onerror="this.style.display='none'">
@@ -113,7 +116,6 @@
                 </div>
             </div>
             <div class="nav-actions">
-                <!-- BADGE STATUS KONEKSI ONLINE/OFFLINE DI NAVBAR -->
                 <div id="nav-network-status" class="network-badge status-online">
                     <span class="status-indicator-dot"></span>
                     <span id="nav-network-label">Online</span>
@@ -131,8 +133,6 @@
 
             <!-- PAGE 1: DASBOR -->
             <section id="page-dashboard" class="page-view active">
-                
-                <!-- WIDGET HERO KONTEKSTUAL -->
                 <div class="dash-hero-widget">
                     <div class="hero-left">
                         <span class="hero-badge" id="dash-system-status" data-i18n="hero_badge_status">Sistem Aktif &bull; Mode Online</span>
@@ -144,10 +144,8 @@
                     </div>
                 </div>
 
-                <!-- KARTU PERINGATAN OPERASIONAL -->
                 <div id="dash-action-alerts" class="dashboard-alert-container mt-4 hidden"></div>
 
-                <!-- METRIK UTAMA -->
                 <div class="stat-grid mt-4">
                     <div class="stat-card">
                         <div class="stat-meta">
@@ -211,7 +209,6 @@
                     </div>
                 </div>
 
-                <!-- DUAL VISUALISASI -->
                 <div class="dashboard-analytics-grid mt-4">
                     <div class="panel">
                         <div class="panel-header space-between">
@@ -238,7 +235,6 @@
                     </div>
                 </div>
 
-                <!-- GRAFIK BATANG VALUASI PER RUANGAN -->
                 <div class="panel mt-4">
                     <div class="panel-header space-between">
                         <h4 data-i18n="room_valuation_title">Valuasi Aset per Ruangan</h4>
@@ -250,7 +246,6 @@
                     <div id="dash-room-distribution" class="room-distribution-container mt-4"></div>
                 </div>
 
-                <!-- DUAL METRIK FINANSIAL & KATEGORI -->
                 <div class="dashboard-analytics-grid mt-4">
                     <div class="panel">
                         <div class="panel-header">
@@ -291,7 +286,6 @@
                     </div>
                 </div>
 
-                <!-- ALIRAN AKTIVITAS TERBARU -->
                 <div class="panel mt-4">
                     <div class="panel-header space-between">
                         <h4 data-i18n="recent_act_title">Aktivitas & Mutasi Terakhir</h4>
@@ -526,7 +520,6 @@
                     </button>
                 </div>
 
-                <!-- PRATINJAU DOKUMEN DALAM BENTUK KERTAS RESMI -->
                 <div class="report-paper-preview mt-4">
                     <div class="doc-header">
                         <h2 id="print-instansi-name">INSTANSI INVENTARIS</h2>
@@ -571,7 +564,7 @@
                 </div>
             </section>
 
-            <!-- PAGE 6: PENGATURAN BERBASIS UX LAWS -->
+            <!-- PAGE 6: PENGATURAN -->
             <section id="page-setting" class="page-view hidden">
                 <div class="setting-page-header">
                     <h2 data-i18n="setting_title">Pengaturan</h2>
