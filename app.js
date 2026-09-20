@@ -526,6 +526,105 @@ function showToast(message, type = "info") {
     }, 2800);
 }
 
+// DETEKSI KONEKSI NETWORK ONLINE / OFFLINE REALTIME
+function perbaruiStatusKoneksi(showNotification = true) {
+    const isOnline = navigator.onLine;
+    const navBadge = document.getElementById("nav-network-status");
+    const navLabel = document.getElementById("nav-network-label");
+    const heroStatus = document.getElementById("dash-system-status");
+
+    if (navBadge && navLabel) {
+        if (isOnline) {
+            navBadge.className = "network-badge status-online";
+            navLabel.innerText = systemLang === "id" ? "Online" : "Online";
+        } else {
+            navBadge.className = "network-badge status-offline";
+            navLabel.innerText = systemLang === "id" ? "Offline" : "Offline";
+        }
+    }
+
+    if (heroStatus) {
+        if (isOnline) {
+            heroStatus.innerText = systemLang === "id" ? "Sistem Aktif • Mode Online" : "System Active • Online Mode";
+        } else {
+            heroStatus.innerText = systemLang === "id" ? "Sistem Aktif • Mode Offline" : "System Active • Offline Mode";
+        }
+    }
+
+    if (showNotification) {
+        if (isOnline) {
+            showToast(systemLang === "id" ? "Koneksi kembali normal. Anda sedang online." : "Back online. Network connected.", "success");
+        } else {
+            showToast(systemLang === "id" ? "Koneksi terputus. Mode offline aktif." : "Connection lost. Offline mode active.", "info");
+        }
+    }
+}
+
+// PASANG EVENT LISTENER KONEKSI OTOMATIS
+window.addEventListener("online", () => perbaruiStatusKoneksi(true));
+window.addEventListener("offline", () => perbaruiStatusKoneksi(true));
+
+// UPDATE PENUTUP INITIALISASI PADA APP.JS (PANGGIL STATUS KONEKSI AWAL)
+window.addEventListener("DOMContentLoaded", () => {
+    try {
+        initTheme();
+
+        systemLang = localStorage.getItem("xoxo_lang") || "id";
+        selectedLangCandidate = systemLang;
+        terapkanBahasa(systemLang);
+
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js").catch(() => {});
+        }
+
+        if (!localStorage.getItem("xoxo_password")) {
+            localStorage.setItem("xoxo_password", "admin");
+        }
+
+        const elPrefix = document.getElementById("custom-prefix-input");
+        if (elPrefix) elPrefix.value = masterPrefix;
+
+        const elPrevPrefix = document.getElementById("preview-prefix-format");
+        if (elPrevPrefix) elPrevPrefix.innerText = `${masterPrefix}-001`;
+
+        const elNama = document.getElementById("instansi-nama");
+        if (elNama) elNama.value = profilInstansi.nama || "";
+
+        const elAlamat = document.getElementById("instansi-alamat");
+        if (elAlamat) elAlamat.value = profilInstansi.alamat || "";
+
+        const elPj = document.getElementById("instansi-pj");
+        if (elPj) elPj.value = profilInstansi.pj || "";
+
+        const elPetugas = document.getElementById("instansi-petugas");
+        if (elPetugas) elPetugas.value = profilInstansi.petugas || "";
+
+        const elHaptic = document.getElementById("toggle-haptic");
+        if (elHaptic) elHaptic.checked = !!settingsFeedback.haptic;
+
+        const elBeep = document.getElementById("toggle-beep");
+        if (elBeep) elBeep.checked = !!settingsFeedback.beep;
+
+        jalankanJamRealtime();
+        perbaruiStatusKoneksi(false); // Deteksi koneksi awal tanpa spam toast
+    } catch (err) {
+        console.error("Inisialisasi:", err);
+    } finally {
+        setTimeout(() => {
+            const splash = document.getElementById("splash-screen");
+            if (splash) {
+                splash.classList.add("fade-out");
+                setTimeout(() => {
+                    splash.style.display = "none";
+                    cekStatusLogin();
+                }, 400);
+            } else {
+                cekStatusLogin();
+            }
+        }, 1200);
+    }
+});
+
 function showConfirm(title, message) {
     return new Promise((resolve) => {
         const modal = document.getElementById("custom-confirm-modal");
