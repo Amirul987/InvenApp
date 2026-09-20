@@ -254,7 +254,45 @@ body {
     color: var(--text-secondary);
     font-weight: 500;
 }
-.nav-actions { display: flex; gap: 6px; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+/* BADGE STATUS NETWORK ONLINE / OFFLINE */
+.network-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.status-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.network-badge.status-online {
+    background: rgba(16, 185, 129, 0.14);
+    color: var(--status-success);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+.network-badge.status-online .status-indicator-dot {
+    background: var(--status-success);
+    box-shadow: 0 0 6px var(--status-success);
+}
+.network-badge.status-offline {
+    background: rgba(245, 158, 11, 0.16);
+    color: var(--status-warning);
+    border-color: rgba(245, 158, 11, 0.4);
+}
+.network-badge.status-offline .status-indicator-dot {
+    background: var(--status-warning);
+    box-shadow: 0 0 6px var(--status-warning);
+    animation: blink 1.2s infinite;
+}
 
 .icon-btn {
     background: transparent;
@@ -565,9 +603,7 @@ input:focus, select:focus {
 
 .card-actions { display: flex; gap: 6px; justify-content: flex-end; border-top: 1px solid var(--border-color); padding-top: 10px; }
 
-/* =========================================================
-   REPORT CARD DOCUMENT PREVIEW STYLING (FIX BUG LAYAR)
-   ========================================================= */
+/* KARTU DOKUMEN LAPORAN PRATINJAU */
 .report-paper-preview {
     background: #ffffff;
     color: #111111;
@@ -582,31 +618,11 @@ input:focus, select:focus {
     border-color: #2e2e2e;
 }
 
-.doc-header {
-    text-align: center;
-}
-.doc-header h2 {
-    font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 2px;
-    letter-spacing: 0.5px;
-}
-.doc-header p {
-    font-size: 12px;
-    color: var(--text-secondary);
-}
-.doc-divider {
-    height: 2px;
-    background: currentColor;
-    opacity: 0.2;
-    margin: 14px 0 16px;
-}
-.doc-header h3 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    letter-spacing: 0.5px;
-}
+.doc-header { text-align: center; }
+.doc-header h2 { font-size: 20px; font-weight: 800; margin-bottom: 2px; letter-spacing: 0.5px; }
+.doc-header p { font-size: 12px; color: var(--text-secondary); }
+.doc-divider { height: 2px; background: currentColor; opacity: 0.2; margin: 14px 0 16px; }
+.doc-header h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
 .doc-summary-badge {
     display: inline-block;
     background: var(--primary-surface);
@@ -618,37 +634,12 @@ input:focus, select:focus {
     margin-top: 8px;
 }
 
-.doc-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    text-align: left;
-}
-.doc-table th {
-    background: var(--bg-hover);
-    color: var(--text-secondary);
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--border-color);
-    font-weight: 700;
-}
-.doc-table td {
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.doc-signatures {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 36px;
-    padding: 0 20px;
-}
-.doc-sign-box {
-    text-align: center;
-    font-size: 12px;
-}
-.doc-sign-space {
-    height: 55px;
-}
+.doc-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+.doc-table th { background: var(--bg-hover); color: var(--text-secondary); padding: 10px 8px; border-bottom: 1px solid var(--border-color); font-weight: 700; }
+.doc-table td { padding: 10px 8px; border-bottom: 1px solid var(--border-color); }
+.doc-signatures { display: flex; justify-content: space-between; margin-top: 36px; padding: 0 20px; }
+.doc-sign-box { text-align: center; font-size: 12px; }
+.doc-sign-space { height: 55px; }
 
 /* PENGATURAN BERBASIS UX LAWS */
 .setting-page-header { margin-bottom: 20px; }
