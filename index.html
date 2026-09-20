@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- VIEWPORT-FIT=COVER UNTUK MENGIZINKAN KALKULASI SAFE AREA NOTCH & HOME BAR -->
+    <!-- viewport-fit=cover WAJIB untuk membaca safe-area di HP modern -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#c7ff2e">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <!-- IFRAME TERSEMBUNYI UNTUK CETAK STIKER & LAPORAN RESMI (ANTI KOSONG) -->
+    <!-- IFRAME TERSEMBUNYI UNTUK CETAK STIKER & LAPORAN RESMI -->
     <iframe id="print-frame" style="display:none; visibility:hidden; width:0; height:0; position:absolute; border:none;"></iframe>
 
     <!-- NOTIFIKASI TOAST -->
@@ -106,7 +106,7 @@
 
     <!-- 3. APLIKASI UTAMA -->
     <div id="main-app" class="hidden">
-        <!-- TOP NAVBAR (DENGAN SAFE AREA ATAS AGAR TIDAK NABRAK BATERAI/NOTCH) -->
+        <!-- TOP NAVBAR AMAN STATUS BAR HP -->
         <header class="navbar no-print">
             <div class="nav-brand">
                 <img src="src/icon/icon.png" class="nav-logo" alt="Logo Aplikasi" onerror="this.style.display='none'">
