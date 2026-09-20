@@ -1,16 +1,42 @@
 {
+    "id": "com.xoxoteam.inventory",
     "name": "XoXo Inventory System",
     "short_name": "XoXo",
-    "description": "Aplikasi Inventaris Ruangan Offline & PWA",
+    "description": "Aplikasi Manajemen Inventaris Ruangan Mandiri Offline PWA",
     "start_url": "./index.html",
+    "scope": "./",
     "display": "standalone",
+    "orientation": "portrait",
     "background_color": "#0f0f0f",
     "theme_color": "#c7ff2e",
     "icons": [
         {
             "src": "icon.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "src/icon/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "src/icon/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Tampilan Aplikasi XoXo di Ponsel"
+        },
+        {
+            "src": "src/icon/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Tampilan Aplikasi XoXo di Desktop"
         }
     ]
 }
