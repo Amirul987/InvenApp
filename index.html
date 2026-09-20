@@ -103,7 +103,7 @@
 
     <!-- 3. APLIKASI UTAMA -->
     <div id="main-app" class="hidden">
-        <!-- TOP NAVBAR -->
+        <!-- TOP NAVBAR (DENGAN INDIKATOR STATUS ONLINE/OFFLINE) -->
         <header class="navbar no-print">
             <div class="nav-brand">
                 <img src="src/icon/icon.png" class="nav-logo" alt="Logo Aplikasi" onerror="this.style.display='none'">
@@ -113,6 +113,11 @@
                 </div>
             </div>
             <div class="nav-actions">
+                <!-- BADGE STATUS KONEKSI ONLINE/OFFLINE DI NAVBAR -->
+                <div id="nav-network-status" class="network-badge status-online">
+                    <span class="status-indicator-dot"></span>
+                    <span id="nav-network-label">Online</span>
+                </div>
                 <button class="icon-btn" onclick="navigasiKe('page-setting', null)" title="Pengaturan">
                     <svg class="ui-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
                 </button>
@@ -124,13 +129,13 @@
 
         <main class="container app-content-wrapper">
 
-            <!-- PAGE 1: DASBOR (TOMBOL ACTION TELAH DIHAPUS) -->
+            <!-- PAGE 1: DASBOR -->
             <section id="page-dashboard" class="page-view active">
                 
                 <!-- WIDGET HERO KONTEKSTUAL -->
                 <div class="dash-hero-widget">
                     <div class="hero-left">
-                        <span class="hero-badge" data-i18n="hero_badge_status">Sistem Aktif &bull; Mode Offline</span>
+                        <span class="hero-badge" id="dash-system-status" data-i18n="hero_badge_status">Sistem Aktif &bull; Mode Online</span>
                         <h2 id="dash-greeting">Selamat Datang, Petugas!</h2>
                         <p id="dash-date-string" class="text-caption">Memuat tanggal...</p>
                     </div>
@@ -206,7 +211,7 @@
                     </div>
                 </div>
 
-                <!-- DUAL VISUALISASI: GAUGE & DONUT -->
+                <!-- DUAL VISUALISASI -->
                 <div class="dashboard-analytics-grid mt-4">
                     <div class="panel">
                         <div class="panel-header space-between">
@@ -493,7 +498,7 @@
                 </div>
             </section>
 
-            <!-- PAGE 5: LAPORAN (DIPERBAIKI DENGAN CARD PREVIEW BERSIH & CETAK ISOLATED) -->
+            <!-- PAGE 5: LAPORAN -->
             <section id="page-laporan" class="page-view hidden">
                 <div class="panel no-print">
                     <div class="panel-header">
@@ -737,7 +742,7 @@
                 </div>
             </section>
 
-            <!-- SUB-HALAMAN 2: BAHASA (DENGAN TOMBOL SIMPAN) -->
+            <!-- SUB-HALAMAN 2: BAHASA -->
             <section id="page-setting-lang" class="page-view hidden">
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; <span data-i18n="btn_back_setting">Kembali ke Pengaturan</span></button>
                 <div class="panel">
@@ -791,7 +796,7 @@
                 </div>
             </section>
 
-            <!-- SUB-HALAMAN 4: AWALAN KODE (PREFIX) -->
+            <!-- SUB-HALAMAN 4: AWALAN KODE -->
             <section id="page-setting-prefix" class="page-view hidden">
                 <button type="button" class="btn btn-outline btn-sm mb-4" onclick="navigasiKe('page-setting')">&larr; <span data-i18n="btn_back_setting">Kembali ke Pengaturan</span></button>
                 <div class="panel">
