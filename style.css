@@ -53,7 +53,8 @@ body {
     background: var(--bg-main);
     color: var(--text-primary);
     transition: background-color 0.25s ease, color 0.25s ease;
-    padding-bottom: 120px;
+    /* Proteksi padding bawah di HP berlayar poni/gesture bar */
+    padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
 }
 
 .hidden { display: none !important; }
@@ -76,7 +77,7 @@ body {
 
 #toast-container {
     position: fixed;
-    top: 20px;
+    top: calc(20px + env(safe-area-inset-top, 0px));
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -137,6 +138,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px 16px;
+    padding-top: calc(20px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
 }
 .auth-container-grid {
     display: grid;
@@ -217,10 +220,13 @@ body {
 .auth-header svg { fill: var(--primary); margin-bottom: 10px; }
 .auth-header h2 { font-size: 20px; margin-bottom: 4px; }
 
+/* NAVBAR AMAN DARI STATUS BAR HP */
 .navbar {
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-color);
     padding: 14px 20px;
+    /* SAFE AREA TOP: Mencegah navbar bertabrakan dengan kamera/baterai */
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -256,7 +262,6 @@ body {
 }
 .nav-actions { display: flex; align-items: center; gap: 8px; }
 
-/* BADGE STATUS NETWORK ONLINE / OFFLINE */
 .network-badge {
     display: inline-flex;
     align-items: center;
@@ -603,7 +608,7 @@ input:focus, select:focus {
 
 .card-actions { display: flex; gap: 6px; justify-content: flex-end; border-top: 1px solid var(--border-color); padding-top: 10px; }
 
-/* KARTU DOKUMEN LAPORAN PRATINJAU */
+/* PRATINJAU DOKUMEN LAPORAN */
 .report-paper-preview {
     background: #ffffff;
     color: #111111;
@@ -737,10 +742,11 @@ input:focus, select:focus {
 .qr-canvas-wrapper { display: flex; justify-content: center; margin-bottom: 10px; }
 #qr-watermark-canvas { border: 1px solid var(--border-color); border-radius: 12px; background: #ffffff; }
 
-/* DOCK BAWAH MENGAMBANG */
+/* DOCK BAWAH MENGAMBANG DENGAN SAFE AREA BOTTOM */
 .bottom-dock-wrapper {
     position: fixed;
-    bottom: 24px;
+    /* SAFE AREA BOTTOM: Mencegah dock bertabrakan dengan garis gesture/tombol HP */
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     left: 0;
     width: 100vw;
     display: flex;
