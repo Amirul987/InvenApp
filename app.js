@@ -1,22 +1,372 @@
-// KAMUS BAHASA (I18N)
+// KAMUS BAHASA LENGKAP MENYELURUH (FULL I18N)
 const translations = {
     id: {
         splash_creator: "Dibuat oleh XoXo Team",
+        tutorial_badge: "Panduan Ringkas",
+        welcome_title: "Selamat Datang di XoXo",
+        welcome_desc: "Aplikasi manajemen inventaris ruangan mandiri berbasis Progressive Web App (PWA).",
+        step1_title: "Kelola Data & Foto",
+        step1_desc: "Kode dibuat otomatis, tersedia kategori, stok minimum, dan jadwal servis berkala.",
+        step2_title: "Kamera Pemindai QR",
+        step2_desc: "Gunakan tombol kamera di navigasi bawah untuk mencari barang secara instan.",
+        step3_title: "Bekerja Tanpa Internet",
+        step3_desc: "Data aman di memori perangkat. Lakukan backup berkala di menu Pengaturan.",
+        login_header: "Akses Petugas",
+        login_caption: "Masukkan kata sandi untuk masuk",
+        password_label: "Kata Sandi",
+        btn_login: "Buka Aplikasi",
         nav_dashboard: "Dasbor",
         nav_items: "Barang",
         nav_loans: "Pinjam",
         nav_history: "Riwayat",
         nav_report: "Laporan",
-        setting_title: "Pengaturan"
+        hero_badge_status: "Sistem Aktif • Mode Offline",
+        stat_val: "Total Valuasi Aset",
+        stat_unit: "Total Unit Barang",
+        stat_good: "Kondisi Baik",
+        stat_bad: "Total Rusak",
+        stat_damaged_val: "Estimasi Nilai Rusak",
+        stat_highest_item: "Aset Termahal",
+        health_score_title: "Skor Kesehatan Aset",
+        chart_title: "Proporsi Kondisi Barang",
+        room_valuation_title: "Valuasi Aset per Ruangan",
+        cat_composition_title: "Komposisi Kategori Barang",
+        insights_title: "Wawasan Finansial & Operasional",
+        depreciation_title: "Estimasi Penyusutan (Tahunan)",
+        depreciation_desc: "Depresiasi nilai buku aset (~10% per tahun)",
+        most_borrowed_title: "Barang Paling Sering Dipinjam",
+        most_borrowed_sub: "Berdasarkan riwayat transaksi",
+        densest_room_title: "Ruangan Terpadat",
+        densest_room_sub: "Konsentrasi barang terbanyak",
+        recent_act_title: "Aktivitas & Mutasi Terakhir",
+        btn_see_all: "Lihat Semua",
+        form_title_add: "Tambah Data Barang",
+        form_title_edit: "Edit Data Barang",
+        btn_add_room: "+ Ruangan",
+        btn_open_form: "Buka Form",
+        btn_close_form: "Tutup Form",
+        col_code: "Kode Inventaris (Otomatis)",
+        col_name: "Nama Barang",
+        col_category: "Kategori Barang",
+        col_room: "Pilih Ruangan",
+        col_qty: "Jumlah Unit",
+        col_min_stock: "Batas Stok Minimum",
+        col_price: "Harga Satuan (Rp)",
+        col_cond: "Kondisi Barang",
+        col_service_date: "Jadwal Servis Berikutnya",
+        col_photo: "Foto Dokumentasi Fisik",
+        btn_save_item: "Simpan Barang",
+        btn_cancel_edit: "Batal Edit",
+        btn_batch_move: "Mutasi Ruangan",
+        btn_batch_del: "Hapus Massal",
+        item_list_title: "Daftar Barang",
+        select_all: "Pilih Semua",
+        empty_state: "Tidak ada data inventaris ditemukan.",
+        all_categories: "Semua Kategori",
+        all_rooms: "Semua Ruangan",
+        all_conditions: "Semua Kondisi",
+        cond_good: "Baik",
+        cond_light_dmg: "Rusak Ringan",
+        cond_heavy_dmg: "Rusak Berat",
+        cond_only_good: "Hanya Kondisi Baik",
+        cond_all_dmg: "Semua Rusak",
+        loan_form_title: "Catat Peminjaman Barang",
+        loan_choose_item: "Pilih Barang",
+        loan_borrower: "Nama Peminjam",
+        loan_due: "Tenggat Pengembalian",
+        btn_save_loan: "Simpan Transaksi Pinjam",
+        loan_table_title: "Status Peminjaman Aktif",
+        col_status: "Status",
+        col_action: "Aksi",
+        log_title: "Log Riwayat Aktivitas",
+        btn_clear_log: "Bersihkan Log",
+        report_title: "Cetak Berita Acara & Rekap Aset",
+        report_filter_room: "Filter Berdasarkan Ruangan",
+        report_filter_cond: "Kondisi Barang",
+        btn_print_pdf: "Cetak Laporan / PDF",
+        doc_report_title: "BERITA ACARA REKAPITULASI INVENTARIS",
+        col_subtotal: "Subtotal",
+        sign_pj_label: "Penanggung Jawab Ruangan,",
+        sign_officer_label: "Petugas Inventaris,",
+        setting_title: "Pengaturan",
+        setting_caption: "Kelola sistem, tampilan, dan preferensi aplikasi",
+        group_display: "Tampilan & Antarmuka",
+        group_operational: "Operasional & Perangkat",
+        group_security: "Keamanan & Data",
+        tab_theme: "Tema Tampilan",
+        menu_theme_desc: "Mode Terang, Gelap, atau Otomatis HP",
+        tab_lang: "Bahasa",
+        menu_lang_desc: "Pilih Bahasa Indonesia atau English",
+        instansi_title: "Profil Instansi & Kop Surat",
+        instansi_desc: "Nama kantor, alamat, dan petugas laporan",
+        prefix_title: "Format Penomoran Kode",
+        prefix_desc: "Kustomisasi awalan kode (INV, LAB, SARPRAS)",
+        haptic_title: "Getar & Suara Scanner",
+        haptic_desc: "Bip pemindai QR dan haptik getaran",
+        tab_account: "Kata Sandi Masuk",
+        menu_acc_desc: "Ganti kata sandi akses aplikasi",
+        tab_data: "Data & Cadangan",
+        menu_data_desc: "Ekspor, impor, cadangkan data JSON",
+        storage_title: "Manajemen Penyimpanan",
+        storage_desc: "Cek kuota memori dan bersihkan media",
+        reset_title: "Reset Pabrik",
+        reset_desc: "Hapus seluruh data kembali ke kondisi awal",
+        tab_about: "Tentang Aplikasi & S&K",
+        menu_about_desc: "Versi aplikasi, installer APK, tim pengembang",
+        btn_back_setting: "Kembali ke Pengaturan",
+        theme_mode_title: "Mode Tampilan Visual",
+        theme_mode_desc: "Pilih skema tema warna yang paling nyaman.",
+        theme_auto: "Otomatis (Sistem HP)",
+        lang_setting_title: "Pengaturan Bahasa",
+        lang_setting_desc: "Pilih bahasa pengantar antarmuka aplikasi.",
+        btn_save_lang: "Simpan Bahasa / Save Language",
+        instansi_form_head: "Profil Instansi & Kop Surat Laporan",
+        instansi_form_sub: "Informasi ini otomatis tampil sebagai kop kepala berita acara saat dicetak.",
+        instansi_name_lbl: "Nama Instansi / Perusahaan",
+        instansi_addr_lbl: "Alamat & Kontak Kantor",
+        instansi_pj_lbl: "Nama Penanggung Jawab Ruangan",
+        instansi_off_lbl: "Nama Petugas Inventaris",
+        btn_save_instansi: "Simpan Profil Instansi",
+        prefix_head: "Format Awalan Kode Inventaris",
+        prefix_sub: "Sesuaikan format penomoran inventaris (contoh: LAB, SARPRAS, INV).",
+        prefix_lbl: "Awalan Kode (Prefix)",
+        prefix_preview: "Contoh hasil kode:",
+        btn_update_prefix: "Perbarui Format Kode",
+        haptic_head: "Pengaturan Suara & Haptik",
+        haptic_sub: "Atur efek umpan balik saat berinteraksi dengan aplikasi.",
+        haptic_row_title: "Getaran Sentuhan (Haptic)",
+        haptic_row_desc: "Sensasi getar mikro saat tombol ditekan di ponsel",
+        beep_row_title: "Suara Bip Scanner Kamera",
+        beep_row_desc: "Bunyi konfirmasi saat kamera berhasil memindai QR",
+        storage_head: "Penggunaan Memori Lokal",
+        storage_sub: "Kapasitas penyimpanan browser yang saat ini digunakan.",
+        btn_clear_media: "Bersihkan Seluruh Foto Media Saja",
+        acc_title: "Keamanan & Kata Sandi",
+        acc_desc: "Ubah kata sandi lokal untuk mengamankan akses aplikasi di perangkat ini.",
+        acc_curr_pw: "Kata Sandi Sekarang",
+        acc_new_pw: "Kata Sandi Baru",
+        acc_btn_update: "Perbarui Kata Sandi",
+        export_import_title: "Ekspor & Impor Inventaris",
+        export_import_sub: "Unduh atau pulihkan berkas CSV dan JSON data barang.",
+        btn_import_json: "Impor Berkas JSON",
+        backup_title: "Cadangan Penuh (Full Backup)",
+        backup_desc: "Unduh seluruh berkas konfigurasi, data ruangan, riwayat, dan transaksi untuk dipindahkan ke HP lain.",
+        btn_backup: "Unduh Cadangan",
+        btn_restore: "Pulihkan Cadangan",
+        reset_head: "Kembalikan ke Setelan Pabrik",
+        reset_sub: "Tindakan ini akan menghapus seluruh data barang, riwayat, pinjaman, foto, dan kata sandi kembali ke bawaan.",
+        btn_reset_confirm: "Reset Total Sekarang",
+        about_desc: "Aplikasi manajemen inventaris barang dan ruangan berbasis Progressive Web App (PWA). Berjalan mandiri tanpa database eksternal, dengan penyimpanan media foto di IndexedDB dan data di LocalStorage.",
+        btn_download_apk: "Unduh Aplikasi Android (.APK)",
+        download_apk_sub: "Versi installer offline untuk dipasang langsung di HP Android.",
+        snk_title: "Syarat & Ketentuan Penggunaan",
+        snk_1_title: "1. Penyimpanan Data Lokal:",
+        snk_1_desc: "Seluruh data disimpan sepenuhnya di browser perangkat. Aplikasi tidak mengirim data ke server mana pun.",
+        snk_2_title: "2. Risiko Penghapusan Cache:",
+        snk_2_desc: "Menghapus cache browser dapat menghilangkan data jika belum dicadangkan. Disarankan rutin mengunduh cadangan JSON.",
+        snk_3_title: "3. Akses Kamera:",
+        snk_3_desc: "Fitur pemindai QR Code memerlukan izin kamera secara lokal.",
+        snk_4_title: "4. Pemasangan Berkas APK:",
+        snk_4_desc: "Pengguna dapat memasang berkas XoXo.apk secara mandiri dengan mengizinkan instalasi dari sumber tidak dikenal di setelan Android.",
+        modal_room_title: "Tambah Ruangan Baru",
+        modal_room_name: "Nama Ruangan",
+        btn_save_room: "Simpan Ruangan",
+        modal_batch_title: "Mutasi Ruangan Massal",
+        modal_batch_desc: "Pindahkan semua barang terpilih ke ruangan berikut:",
+        modal_batch_dest: "Pilih Ruangan Tujuan",
+        btn_apply_move: "Pindahkan Sekarang",
+        modal_scan_title: "Pindai Kode QR",
+        modal_scan_desc: "Arahkan kamera HP Anda ke kode QR barang inventaris.",
+        modal_qr_title: "Detail & Label QR",
+        btn_print_label: "Cetak Label",
+        btn_close: "Tutup",
+        confirm_default_title: "Konfirmasi",
+        btn_cancel: "Batal",
+        btn_continue: "Lanjutkan"
     },
     en: {
         splash_creator: "Created by XoXo Team",
+        tutorial_badge: "Quick Guide",
+        welcome_title: "Welcome to XoXo",
+        welcome_desc: "Standalone room inventory management app built on Progressive Web App (PWA).",
+        step1_title: "Manage Items & Photos",
+        step1_desc: "Codes auto-generate and reuse freed slots. Add rooms via the dedicated button.",
+        step2_title: "QR Scanner Camera",
+        step2_desc: "Use the camera button in the bottom dock to scan items instantly in your warehouse.",
+        step3_title: "Works Completely Offline",
+        step3_desc: "Data is stored safely on this device. Back up regularly via Settings.",
+        login_header: "Staff Access",
+        login_caption: "Enter your password to proceed",
+        password_label: "Password",
+        btn_login: "Open Application",
         nav_dashboard: "Dashboard",
         nav_items: "Items",
         nav_loans: "Loans",
         nav_history: "History",
         nav_report: "Reports",
-        setting_title: "Settings"
+        hero_badge_status: "System Active • Offline Mode",
+        stat_val: "Total Asset Value",
+        stat_unit: "Total Item Units",
+        stat_good: "Good Condition",
+        stat_bad: "Total Damaged",
+        stat_damaged_val: "Estimated Damaged Value",
+        stat_highest_item: "Highest Value Asset",
+        health_score_title: "Asset Health Score",
+        chart_title: "Item Condition Proportion",
+        room_valuation_title: "Asset Valuation by Room",
+        cat_composition_title: "Category Composition",
+        insights_title: "Financial & Operational Insights",
+        depreciation_title: "Estimated Depreciation (Annual)",
+        depreciation_desc: "Book value depreciation (~10% per year)",
+        most_borrowed_title: "Most Circulated Item",
+        most_borrowed_sub: "Based on borrow records",
+        densest_room_title: "Densest Room",
+        densest_room_sub: "Highest item concentration",
+        recent_act_title: "Recent Activities & Mutations",
+        btn_see_all: "View All",
+        form_title_add: "Add Item Data",
+        form_title_edit: "Edit Item Data",
+        btn_add_room: "+ Room",
+        btn_open_form: "Open Form",
+        btn_close_form: "Close Form",
+        col_code: "Inventory Code (Auto)",
+        col_name: "Item Name",
+        col_category: "Item Category",
+        col_room: "Select Room",
+        col_qty: "Quantity",
+        col_min_stock: "Minimum Stock Threshold",
+        col_price: "Unit Price (Rp)",
+        col_cond: "Item Condition",
+        col_service_date: "Next Maintenance Schedule",
+        col_photo: "Photo Evidence",
+        btn_save_item: "Save Item",
+        btn_cancel_edit: "Cancel Edit",
+        btn_batch_move: "Batch Move Room",
+        btn_batch_del: "Batch Delete",
+        item_list_title: "Item List",
+        select_all: "Select All",
+        empty_state: "No inventory items found.",
+        all_categories: "All Categories",
+        all_rooms: "All Rooms",
+        all_conditions: "All Conditions",
+        cond_good: "Good",
+        cond_light_dmg: "Slightly Damaged",
+        cond_heavy_dmg: "Heavily Damaged",
+        cond_only_good: "Only Good Condition",
+        cond_all_dmg: "All Damaged",
+        loan_form_title: "Record Item Loan",
+        loan_choose_item: "Select Item",
+        loan_borrower: "Borrower Name",
+        loan_due: "Due Date",
+        btn_save_loan: "Save Loan Record",
+        loan_table_title: "Active Loan Records",
+        col_status: "Status",
+        col_action: "Action",
+        log_title: "Activity Audit Logs",
+        btn_clear_log: "Clear Logs",
+        report_title: "Print Minutes & Asset Summary",
+        report_filter_room: "Filter by Room",
+        report_filter_cond: "Condition",
+        btn_print_pdf: "Print Report / PDF",
+        doc_report_title: "MINUTES OF INVENTORY RECAPITULATION",
+        col_subtotal: "Subtotal",
+        sign_pj_label: "Room Person in Charge,",
+        sign_officer_label: "Inventory Officer,",
+        setting_title: "Settings",
+        setting_caption: "Manage system, appearance, and application preferences",
+        group_display: "Display & Interface",
+        group_operational: "Operational & Device",
+        group_security: "Security & Data",
+        tab_theme: "Theme & Display",
+        menu_theme_desc: "Light, Dark, or System Auto",
+        tab_lang: "Language",
+        menu_lang_desc: "Choose Indonesian or English",
+        instansi_title: "Organization Profile & Letterhead",
+        instansi_desc: "Office name, address, and report officials",
+        prefix_title: "Code Numbering Format",
+        prefix_desc: "Customize code prefix (INV, LAB, SARPRAS)",
+        haptic_title: "Vibration & Scanner Sound",
+        haptic_desc: "QR scanner beep and touch haptics",
+        tab_account: "Access Password",
+        menu_acc_desc: "Change application access password",
+        tab_data: "Data & Backup",
+        menu_data_desc: "Export, import, and backup JSON data",
+        storage_title: "Storage Management",
+        storage_desc: "Check memory quota and clean media",
+        reset_title: "Factory Reset",
+        reset_desc: "Clear all data back to original state",
+        tab_about: "About App & Terms",
+        menu_about_desc: "App version, APK installer, developer team",
+        btn_back_setting: "Back to Settings",
+        theme_mode_title: "Display Mode",
+        theme_mode_desc: "Choose an interface color scheme that fits your environment.",
+        theme_auto: "Automatic (Device OS)",
+        lang_setting_title: "Language Settings",
+        lang_setting_desc: "Choose your preferred interface language.",
+        btn_save_lang: "Save Language / Simpan Bahasa",
+        instansi_form_head: "Organization Profile & Letterhead",
+        instansi_form_sub: "This information automatically appears on report letterheads when printed.",
+        instansi_name_lbl: "Organization / Company Name",
+        instansi_addr_lbl: "Office Address & Contacts",
+        instansi_pj_lbl: "Room Person in Charge Name",
+        instansi_off_lbl: "Inventory Officer Name",
+        btn_save_instansi: "Save Profile",
+        prefix_head: "Inventory Code Prefix Format",
+        prefix_sub: "Customize inventory numbering prefix (e.g. LAB, SARPRAS, INV).",
+        prefix_lbl: "Code Prefix",
+        prefix_preview: "Code output example:",
+        btn_update_prefix: "Update Code Format",
+        haptic_head: "Sound & Haptics Settings",
+        haptic_sub: "Configure interaction feedbacks across the app.",
+        haptic_row_title: "Touch Haptics (Vibration)",
+        haptic_row_desc: "Micro-vibration feedback upon pressing buttons",
+        beep_row_title: "Camera Scanner Beep",
+        beep_row_desc: "Audio beep confirmation when QR code is scanned",
+        storage_head: "Local Storage Usage",
+        storage_sub: "Browser storage space currently consumed on this device.",
+        btn_clear_media: "Clean Media Photos Only",
+        acc_title: "Security & Password",
+        acc_desc: "Change local password to protect inventory data on this device.",
+        acc_curr_pw: "Current Password",
+        acc_new_pw: "New Password",
+        acc_btn_update: "Update Password",
+        export_import_title: "Export & Import Inventory",
+        export_import_sub: "Download or restore CSV and JSON item records.",
+        btn_import_json: "Import JSON File",
+        backup_title: "Full Backup & Restore",
+        backup_desc: "Download complete configuration, rooms, history, and transaction files to migrate devices.",
+        btn_backup: "Download Backup",
+        btn_restore: "Restore Backup",
+        reset_head: "Factory Reset",
+        reset_sub: "This action erases all items, rooms, loans, photos, and passwords back to initial defaults.",
+        btn_reset_confirm: "Reset Completely Now",
+        about_desc: "Room and item inventory manager built as a Progressive Web App (PWA). Functions without external databases using IndexedDB for media and LocalStorage for records.",
+        btn_download_apk: "Download Android App (.APK)",
+        download_apk_sub: "Offline installer version to install directly on Android phones.",
+        snk_title: "Terms & Conditions",
+        snk_1_title: "1. Local Data Storage:",
+        snk_1_desc: "All inventory data, logs, and photos are stored entirely in your device's browser storage. No data is sent to external servers.",
+        snk_2_title: "2. Cache Clearing Risk:",
+        snk_2_desc: "Clearing browser data may erase local records if not backed up. Users are advised to download JSON backups regularly via the Data & Backup tab.",
+        snk_3_title: "3. Camera Access:",
+        snk_3_desc: "QR scanner features require local camera access permission and are only active during scanning.",
+        snk_4_title: "4. APK Installation:",
+        snk_4_desc: "Users can install XoXo.apk independently by allowing installations from unknown sources in Android settings.",
+        modal_room_title: "Add New Room",
+        modal_room_name: "Room Name",
+        btn_save_room: "Save Room",
+        modal_batch_title: "Batch Room Migration",
+        modal_batch_desc: "Move all selected items to the following room:",
+        modal_batch_dest: "Select Destination Room",
+        btn_apply_move: "Move Now",
+        modal_scan_title: "Scan QR Code",
+        modal_scan_desc: "Point your phone camera at the item's QR code.",
+        modal_qr_title: "QR Label & Details",
+        btn_print_label: "Print Label",
+        btn_close: "Close",
+        confirm_default_title: "Confirmation",
+        btn_cancel: "Cancel",
+        btn_continue: "Continue"
     }
 };
 
@@ -137,7 +487,7 @@ function triggerHapticFeedback() {
     }
 }
 
-// SMART AUTO-INCREMENT KODE
+// FORMAT KODE SMART
 function generateSmartKodeInventaris() {
     const regex = new RegExp(`^${masterPrefix}-(\\d+)$`);
     const existingNums = inventoryData
@@ -253,6 +603,7 @@ function terapkanBahasa(lang) {
     }
 
     updateIndikatorPilihanBahasa(lang);
+    try { updateStatistik(); } catch {}
 }
 
 // JAM LIVE & TANGGAL
@@ -264,26 +615,30 @@ function jalankanJamRealtime() {
         const greetingEl = document.getElementById("dash-greeting");
 
         if (clockEl) {
-            clockEl.innerText = now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+            clockEl.innerText = now.toLocaleTimeString(systemLang === "id" ? "id-ID" : "en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
         }
         if (dateEl) {
-            dateEl.innerText = now.toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+            dateEl.innerText = now.toLocaleDateString(systemLang === "id" ? "id-ID" : "en-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
         }
         if (greetingEl) {
             const hr = now.getHours();
-            if (hr < 11) greetingEl.innerText = "Selamat Pagi, Petugas!";
-            else if (hr < 15) greetingEl.innerText = "Selamat Siang, Petugas!";
-            else if (hr < 18) greetingEl.innerText = "Selamat Sore, Petugas!";
-            else greetingEl.innerText = "Selamat Malam, Petugas!";
+            if (systemLang === "id") {
+                if (hr < 11) greetingEl.innerText = "Selamat Pagi, Petugas!";
+                else if (hr < 15) greetingEl.innerText = "Selamat Siang, Petugas!";
+                else if (hr < 18) greetingEl.innerText = "Selamat Sore, Petugas!";
+                else greetingEl.innerText = "Selamat Malam, Petugas!";
+            } else {
+                if (hr < 12) greetingEl.innerText = "Good Morning, Officer!";
+                else if (hr < 18) greetingEl.innerText = "Good Afternoon, Officer!";
+                else greetingEl.innerText = "Good Evening, Officer!";
+            }
         }
     };
     updateTime();
     setInterval(updateTime, 1000);
 }
 
-// =========================================================
-// INISIALISASI UTAMA & PENUTUP SPLASH SCREEN ANTI-STUCK
-// =========================================================
+// INISIALISASI
 window.addEventListener("DOMContentLoaded", () => {
     try {
         initTheme();
@@ -300,7 +655,6 @@ window.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("xoxo_password", "admin");
         }
 
-        // Sinkronkan input pengaturan
         const elPrefix = document.getElementById("custom-prefix-input");
         if (elPrefix) elPrefix.value = masterPrefix;
 
@@ -327,9 +681,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
         jalankanJamRealtime();
     } catch (err) {
-        console.error("Inisialisasi warning:", err);
+        console.error("Inisialisasi:", err);
     } finally {
-        // TEPAT DIJALANKAN: TUTUP SPLASH SCREEN (TIDAK AKAN PERNAH STUCK LAGI)
         setTimeout(() => {
             const splash = document.getElementById("splash-screen");
             if (splash) {
@@ -367,16 +720,16 @@ function navigasiKe(pageId, navButton) {
         "page-log": dict.nav_history,
         "page-laporan": dict.nav_report,
         "page-setting": dict.setting_title,
-        "page-setting-theme": "Tema Tampilan",
-        "page-setting-lang": "Bahasa",
-        "page-setting-instansi": "Profil Instansi",
-        "page-setting-prefix": "Format Kode",
-        "page-setting-haptic": "Getar & Suara",
-        "page-setting-storage": "Penyimpanan",
-        "page-setting-acc": "Kata Sandi",
-        "page-setting-data": "Data & Cadangan",
-        "page-setting-reset": "Reset Pabrik",
-        "page-setting-about": "Tentang Aplikasi"
+        "page-setting-theme": dict.tab_theme,
+        "page-setting-lang": dict.tab_lang,
+        "page-setting-instansi": dict.instansi_title,
+        "page-setting-prefix": dict.prefix_title,
+        "page-setting-haptic": dict.haptic_title,
+        "page-setting-storage": dict.storage_title,
+        "page-setting-acc": dict.tab_account,
+        "page-setting-data": dict.tab_data,
+        "page-setting-reset": dict.reset_title,
+        "page-setting-about": dict.tab_about
     };
     const titleEl = document.getElementById("page-current-title");
     if (titleEl) titleEl.innerText = titles[pageId] || "Inventaris";
@@ -392,16 +745,6 @@ function navigasiKe(pageId, navButton) {
 
 function bukaSubHalamanSetting(subPageId) {
     navigasiKe(subPageId, null);
-}
-
-function filterHanyaBarangRusak() {
-    navigasiKe("page-inventaris", document.querySelectorAll(".dock-btn")[1]);
-    const filterKondisi = document.getElementById("filter-kondisi");
-    if (filterKondisi) {
-        filterKondisi.value = "Rusak Ringan";
-        filterData();
-        showToast("Memfilter barang kondisi rusak", "info");
-    }
 }
 
 // AUTH
@@ -424,20 +767,23 @@ function prosesLogin() {
         document.getElementById("login-view").classList.add("hidden");
         tampilkanAplikasiUtama();
         document.getElementById("login-pass").value = "";
-        showToast("Berhasil masuk ke sistem", "success");
+        showToast(systemLang === "id" ? "Berhasil masuk ke sistem" : "Successfully logged in", "success");
     } else {
-        showToast("Kata sandi salah! Bawaan: admin", "error");
+        showToast(systemLang === "id" ? "Kata sandi salah! Bawaan: admin" : "Incorrect password! Default: admin", "error");
     }
 }
 
 async function logout() {
-    const yakin = await showConfirm("Keluar Akun", "Apakah Anda yakin ingin keluar?");
+    const yakin = await showConfirm(
+        systemLang === "id" ? "Keluar Akun" : "Log Out",
+        systemLang === "id" ? "Apakah Anda yakin ingin keluar?" : "Are you sure you want to log out?"
+    );
     if (yakin) {
         sessionStorage.removeItem("xoxo_auth_session");
         currentUser = false;
         document.getElementById("main-app").classList.add("hidden");
         document.getElementById("login-view").classList.remove("hidden");
-        showToast("Anda telah keluar", "info");
+        showToast(systemLang === "id" ? "Anda telah keluar" : "You have logged out", "info");
     }
 }
 
@@ -447,17 +793,17 @@ function gantiPassword() {
     const savedPass = localStorage.getItem("xoxo_password");
 
     if (lama !== savedPass) {
-        showToast("Kata sandi saat ini tidak cocok!", "error");
+        showToast(systemLang === "id" ? "Kata sandi saat ini tidak cocok!" : "Current password incorrect!", "error");
         return;
     }
     if (baru.length < 4) {
-        showToast("Sandi baru minimal 4 karakter!", "error");
+        showToast(systemLang === "id" ? "Sandi baru minimal 4 karakter!" : "New password minimum 4 chars!", "error");
         return;
     }
 
     localStorage.setItem("xoxo_password", baru);
     catatLog("Keamanan", "Mengubah kata sandi akses");
-    showToast("Kata sandi berhasil diperbarui!", "success");
+    showToast(systemLang === "id" ? "Kata sandi berhasil diperbarui!" : "Password successfully updated!", "success");
     document.getElementById("pw-lama").value = "";
     document.getElementById("pw-baru").value = "";
 }
@@ -504,20 +850,20 @@ function simpanProfilInstansi() {
         petugas: document.getElementById("instansi-petugas").value.trim()
     };
     localStorage.setItem("xoxo_instansi", JSON.stringify(profilInstansi));
-    showToast("Profil instansi berhasil disimpan!", "success");
+    showToast(systemLang === "id" ? "Profil instansi berhasil disimpan!" : "Organization profile saved!", "success");
 }
 
 function simpanPrefixKode() {
     const val = document.getElementById("custom-prefix-input").value.trim().toUpperCase();
     if (!val) {
-        showToast("Awalan prefix tidak boleh kosong!", "error");
+        showToast(systemLang === "id" ? "Awalan prefix tidak boleh kosong!" : "Prefix cannot be empty!", "error");
         return;
     }
     masterPrefix = val;
     localStorage.setItem("xoxo_prefix", masterPrefix);
     document.getElementById("preview-prefix-format").innerText = `${masterPrefix}-001`;
     siapkanKodeInventarisBaru();
-    showToast(`Format penomoran diubah ke ${masterPrefix}-XXX`, "success");
+    showToast(systemLang === "id" ? `Format penomoran diubah ke ${masterPrefix}-XXX` : `Code format updated to ${masterPrefix}-XXX`, "success");
 }
 
 function simpanPengaturanHaptik() {
@@ -526,7 +872,7 @@ function simpanPengaturanHaptik() {
         beep: document.getElementById("toggle-beep").checked
     };
     localStorage.setItem("xoxo_feedback", JSON.stringify(settingsFeedback));
-    showToast("Pengaturan suara & getar diperbarui", "info");
+    showToast(systemLang === "id" ? "Pengaturan suara & getar diperbarui" : "Feedback settings updated", "info");
 }
 
 async function hitungKapasitasMemori() {
@@ -545,13 +891,16 @@ async function hitungKapasitasMemori() {
         const countReq = tx.objectStore(STORE_NAME).count();
         countReq.onsuccess = () => {
             const elCount = document.getElementById("storage-media-count");
-            if (elCount) elCount.innerText = `${countReq.result} Berkas Foto`;
+            if (elCount) elCount.innerText = `${countReq.result} ${systemLang === "id" ? "Berkas Foto" : "Photos"}`;
         };
     } catch {}
 }
 
 async function bersihkanCacheFoto() {
-    const yakin = await showConfirm("Bersihkan Foto", "Hapus seluruh dokumentasi foto dari memori?");
+    const yakin = await showConfirm(
+        systemLang === "id" ? "Bersihkan Foto" : "Clear Photos",
+        systemLang === "id" ? "Hapus seluruh dokumentasi foto dari memori?" : "Delete all photo media from local storage?"
+    );
     if (yakin) {
         try {
             const db = await bukaDB();
@@ -560,14 +909,17 @@ async function bersihkanCacheFoto() {
             tx.oncomplete = () => {
                 hitungKapasitasMemori();
                 filterData();
-                showToast("Semua berkas foto telah dibersihkan!", "info");
+                showToast(systemLang === "id" ? "Semua berkas foto telah dibersihkan!" : "All photo files have been cleared!", "info");
             };
         } catch {}
     }
 }
 
 async function eksekusiResetPabrik() {
-    const yakin = await showConfirm("RESET TOTAL PABRIK", "PERINGATAN: Semua data barang, ruangan, foto, dan histori akan dihapus permanen. Lanjutkan?");
+    const yakin = await showConfirm(
+        systemLang === "id" ? "RESET TOTAL PABRIK" : "FACTORY RESET",
+        systemLang === "id" ? "PERINGATAN: Semua data barang, ruangan, foto, dan histori akan dihapus permanen. Lanjutkan?" : "WARNING: All item data, rooms, loans, and photos will be erased permanently. Proceed?"
+    );
     if (yakin) {
         localStorage.clear();
         try {
@@ -576,7 +928,7 @@ async function eksekusiResetPabrik() {
             tx.objectStore(STORE_NAME).clear();
         } catch {}
         sessionStorage.clear();
-        alert("Aplikasi berhasil direset total ke setelan pabrik.");
+        alert(systemLang === "id" ? "Aplikasi berhasil direset total ke setelan pabrik." : "Application has been completely reset.");
         location.reload();
     }
 }
@@ -594,11 +946,11 @@ function tutupModalTambahRuangan() {
 function prosesSimpanRuanganBaru() {
     const namaRuang = document.getElementById("nama-ruangan-baru").value.trim();
     if (!namaRuang) {
-        showToast("Nama ruangan tidak boleh kosong!", "error");
+        showToast(systemLang === "id" ? "Nama ruangan tidak boleh kosong!" : "Room name cannot be empty!", "error");
         return;
     }
     if (masterRuangan.includes(namaRuang)) {
-        showToast("Ruangan tersebut sudah ada!", "warning");
+        showToast(systemLang === "id" ? "Ruangan tersebut sudah ada!" : "Room already exists!", "warning");
         return;
     }
 
@@ -608,7 +960,7 @@ function prosesSimpanRuanganBaru() {
     document.getElementById("item-ruangan-select").value = namaRuang;
     tutupModalTambahRuangan();
     catatLog("Ruangan", `Menambahkan master ruangan baru: ${namaRuang}`);
-    showToast(`Ruangan "${namaRuang}" berhasil ditambahkan!`, "success");
+    showToast(systemLang === "id" ? `Ruangan "${namaRuang}" berhasil ditambahkan!` : `Room "${namaRuang}" added!`, "success");
 }
 
 function renderRuanganDropdown() {
@@ -620,10 +972,10 @@ function renderRuanganDropdown() {
 
     const listSemua = [...new Set([...masterRuangan, ...inventoryData.map(i => i.ruangan)])].filter(Boolean);
 
-    if (selectForm) selectForm.innerHTML = `<option value="">-- Pilih Ruangan --</option>`;
-    if (selectBatch) selectBatch.innerHTML = `<option value="">-- Pilih Ruangan Tujuan --</option>`;
-    if (selectFilter) selectFilter.innerHTML = `<option value="">Semua Ruangan</option>`;
-    if (selectLaporan) selectLaporan.innerHTML = `<option value="">Semua Ruangan</option>`;
+    if (selectForm) selectForm.innerHTML = `<option value="">-- ${systemLang === "id" ? "Pilih Ruangan" : "Select Room"} --</option>`;
+    if (selectBatch) selectBatch.innerHTML = `<option value="">-- ${systemLang === "id" ? "Pilih Ruangan Tujuan" : "Select Destination Room"} --</option>`;
+    if (selectFilter) selectFilter.innerHTML = `<option value="">${systemLang === "id" ? "Semua Ruangan" : "All Rooms"}</option>`;
+    if (selectLaporan) selectLaporan.innerHTML = `<option value="">${systemLang === "id" ? "Semua Ruangan" : "All Rooms"}</option>`;
 
     listSemua.forEach(r => {
         if (selectForm) selectForm.innerHTML += `<option value="${r}">${r}</option>`;
@@ -633,9 +985,9 @@ function renderRuanganDropdown() {
     });
 
     if (selectPinjam) {
-        selectPinjam.innerHTML = `<option value="">-- Pilih Barang --</option>`;
+        selectPinjam.innerHTML = `<option value="">-- ${systemLang === "id" ? "Pilih Barang" : "Select Item"} --</option>`;
         inventoryData.forEach(item => {
-            selectPinjam.innerHTML += `<option value="${item.id}">${item.nama} (${item.kode}) - Stok:${item.jumlah}</option>`;
+            selectPinjam.innerHTML += `<option value="${item.id}">${item.nama} (${item.kode}) - ${systemLang === "id" ? "Stok" : "Stock"}: ${item.jumlah}</option>`;
         });
     }
 }
@@ -662,13 +1014,14 @@ function toggleFormInventaris() {
     const btn = document.getElementById("btn-toggle-form");
     if (!form || !btn) return;
 
+    const dict = translations[systemLang] || translations.id;
     if (form.classList.contains("hidden")) {
         form.classList.remove("hidden");
-        btn.innerText = "Tutup Form";
+        btn.innerText = dict.btn_close_form;
         siapkanKodeInventarisBaru();
     } else {
         form.classList.add("hidden");
-        btn.innerText = "Buka Form";
+        btn.innerText = dict.btn_open_form;
     }
 }
 
@@ -719,7 +1072,7 @@ async function simpanData() {
     const servis = document.getElementById("item-servis").value;
 
     if (!kode || !nama || !ruangan || isNaN(jumlah)) {
-        showToast("Harap lengkapi semua kolom wajib!", "error");
+        showToast(systemLang === "id" ? "Harap lengkapi semua kolom wajib!" : "Please fill in all required fields!", "error");
         return;
     }
 
@@ -739,7 +1092,7 @@ async function simpanData() {
             await simpanFotoDB(numericId, currentCompressedFoto);
         }
         catatLog("Perubahan", `Memperbarui barang: ${nama} (${kode})`);
-        showToast("Data barang berhasil diubah", "success");
+        showToast(systemLang === "id" ? "Data barang berhasil diubah" : "Item updated successfully", "success");
     } else {
         const newId = Date.now();
         const itemBaru = {
@@ -751,7 +1104,7 @@ async function simpanData() {
             await simpanFotoDB(newId, currentCompressedFoto);
         }
         catatLog("Penambahan", `Menambah barang: ${nama} (${kode})`);
-        showToast("Barang baru berhasil ditambahkan", "success");
+        showToast(systemLang === "id" ? "Barang baru berhasil ditambahkan" : "Item added successfully", "success");
     }
 
     simpanKeLocalStorage();
@@ -784,10 +1137,11 @@ async function editItem(id) {
         hapusPreviewFoto();
     }
 
-    document.getElementById("form-heading").innerText = "Edit Data Barang";
+    const dict = translations[systemLang] || translations.id;
+    document.getElementById("form-heading").innerText = dict.form_title_edit;
     document.getElementById("btn-cancel").classList.remove("hidden");
     document.getElementById("form-inventaris").classList.remove("hidden");
-    document.getElementById("btn-toggle-form").innerText = "Tutup Form";
+    document.getElementById("btn-toggle-form").innerText = dict.btn_close_form;
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -796,7 +1150,10 @@ async function hapusItem(id) {
     const item = inventoryData.find(d => d.id === id);
     if (!item) return;
 
-    const yakin = await showConfirm("Hapus Barang", `Yakin ingin menghapus ${item.nama} (${item.kode})?`);
+    const yakin = await showConfirm(
+        systemLang === "id" ? "Hapus Barang" : "Delete Item",
+        systemLang === "id" ? `Yakin ingin menghapus ${item.nama} (${item.kode})?` : `Are you sure you want to delete ${item.nama}?`
+    );
     if (yakin) {
         inventoryData = inventoryData.filter(d => d.id !== id);
         await hapusFotoDB(id);
@@ -806,15 +1163,16 @@ async function hapusItem(id) {
         renderRuanganDropdown();
         filterData();
         siapkanKodeInventarisBaru();
-        showToast(`Barang ${item.kode} dihapus. Kodenya akan dipakai untuk penambahan selanjutnya.`, "info");
+        showToast(systemLang === "id" ? `Barang ${item.kode} dihapus. Kodenya akan dipakai ulang.` : `Item ${item.kode} removed.`, "info");
     }
 }
 
 function resetForm() {
+    const dict = translations[systemLang] || translations.id;
     document.getElementById("item-id").value = "";
     document.getElementById("form-inventaris").reset();
     hapusPreviewFoto();
-    document.getElementById("form-heading").innerText = "Tambah Data Barang";
+    document.getElementById("form-heading").innerText = dict.form_title_add;
     document.getElementById("btn-cancel").classList.add("hidden");
     siapkanKodeInventarisBaru();
 }
@@ -829,7 +1187,7 @@ function bukaRiwayatItem(id) {
     const item = inventoryData.find(d => d.id === id);
     if (!item) return;
 
-    document.getElementById("history-item-title").innerText = `Riwayat: ${item.nama} (${item.kode})`;
+    document.getElementById("history-item-title").innerText = `${systemLang === "id" ? "Riwayat" : "History"}: ${item.nama} (${item.kode})`;
     const container = document.getElementById("item-history-list");
     container.innerHTML = "";
 
@@ -838,7 +1196,7 @@ function bukaRiwayatItem(id) {
         const div = document.createElement("div");
         div.className = "timeline-item";
         div.innerHTML = `
-            <span class="timeline-time">Langkah #${idx + 1}</span>
+            <span class="timeline-time">${systemLang === "id" ? "Langkah" : "Step"} #${idx + 1}</span>
             <div>${h}</div>
         `;
         container.appendChild(div);
@@ -874,7 +1232,7 @@ function updateBatchUI() {
     const count = document.getElementById("selected-count");
     if (selectedItemIds.size > 0) {
         if (bar) bar.classList.remove("hidden");
-        if (count) count.innerText = `${selectedItemIds.size} dipilih`;
+        if (count) count.innerText = `${selectedItemIds.size} ${systemLang === "id" ? "dipilih" : "selected"}`;
     } else {
         if (bar) bar.classList.add("hidden");
         const masterCb = document.getElementById("select-all-checkbox");
@@ -898,7 +1256,7 @@ function tutupModalMutasiMassal() {
 async function prosesMutasiMassal() {
     const tujuan = document.getElementById("ruangan-tujuan-massal-select").value;
     if (!tujuan) {
-        showToast("Pilih ruangan tujuan!", "error");
+        showToast(systemLang === "id" ? "Pilih ruangan tujuan!" : "Select destination room!", "error");
         return;
     }
 
@@ -911,17 +1269,20 @@ async function prosesMutasiMassal() {
         return item;
     });
 
-    catatLog("Mutasi", `Memindahkan ${selectedItemIds.size} item ke${tujuan}`);
+    catatLog("Mutasi", `Memindahkan ${selectedItemIds.size} item ke ${tujuan}`);
     simpanKeLocalStorage();
     selectedItemIds.clear();
     tutupModalMutasiMassal();
     renderRuanganDropdown();
     filterData();
-    showToast("Mutasi barang berhasil dilakukan", "success");
+    showToast(systemLang === "id" ? "Mutasi barang berhasil dilakukan" : "Batch mutation completed", "success");
 }
 
 async function hapusMassal() {
-    const yakin = await showConfirm("Hapus Massal", `Hapus permanen ${selectedItemIds.size} barang terpilih?`);
+    const yakin = await showConfirm(
+        systemLang === "id" ? "Hapus Massal" : "Batch Delete",
+        systemLang === "id" ? `Hapus permanen ${selectedItemIds.size} barang terpilih?` : `Delete permanently ${selectedItemIds.size} selected items?`
+    );
     if (yakin) {
         for (let id of selectedItemIds) {
             await hapusFotoDB(id);
@@ -933,7 +1294,7 @@ async function hapusMassal() {
         renderRuanganDropdown();
         filterData();
         siapkanKodeInventarisBaru();
-        showToast("Barang terpilih berhasil dihapus", "info");
+        showToast(systemLang === "id" ? "Barang terpilih berhasil dihapus" : "Selected items deleted", "info");
     }
 }
 
@@ -945,7 +1306,7 @@ async function renderData(data) {
     if (!container) return;
     container.innerHTML = "";
 
-    if (countBadge) countBadge.innerText = `${data.length} Barang`;
+    if (countBadge) countBadge.innerText = `${data.length} ${systemLang === "id" ? "Barang" : "Items"}`;
 
     if (data.length === 0) {
         if (empty) empty.classList.remove("hidden");
@@ -956,12 +1317,13 @@ async function renderData(data) {
 
     for (const item of data) {
         let badgeClass = "badge-baik";
+        let condText = systemLang === "id" ? item.kondisi : (item.kondisi === "Baik" ? "Good" : (item.kondisi === "Rusak Ringan" ? "Slightly Damaged" : "Heavily Damaged"));
         if (item.kondisi === "Rusak Ringan") badgeClass = "badge-ringan";
         if (item.kondisi === "Rusak Berat") badgeClass = "badge-berat";
 
         const isLowStock = item.minStok && item.jumlah <= item.minStok;
-        const lowStockBadge = isLowStock ? `<span class="badge badge-warning">Stok Kritis</span>` : ``;
-        const servisBadge = item.servis ? `<span class="badge">Servis: ${item.servis}</span>` : ``;
+        const lowStockBadge = isLowStock ? `<span class="badge badge-warning">${systemLang === "id" ? "Stok Kritis" : "Low Stock"}</span>` : ``;
+        const servisBadge = item.servis ? `<span class="badge">${systemLang === "id" ? "Servis" : "Service"}: ${item.servis}</span>` : ``;
 
         const foto = await ambilFotoDB(item.id);
         const thumb = foto
@@ -983,8 +1345,8 @@ async function renderData(data) {
                 </div>
             </div>
             <div class="card-badges">
-                <span class="badge ${badgeClass}">${item.kondisi}</span>
-                <span class="badge">Stok: ${item.jumlah}</span>
+                <span class="badge ${badgeClass}">${condText}</span>
+                <span class="badge">${systemLang === "id" ? "Stok" : "Stock"}: ${item.jumlah}</span>
                 ${lowStockBadge}
                 ${servisBadge}
             </div>
@@ -1029,7 +1391,7 @@ function filterData() {
 function mulaiVoiceSearch() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-        showToast("Pencarian suara tidak didukung browser ini", "error");
+        showToast(systemLang === "id" ? "Pencarian suara tidak didukung browser ini" : "Speech recognition not supported", "error");
         return;
     }
 
@@ -1039,7 +1401,7 @@ function mulaiVoiceSearch() {
 
     recognition.onstart = () => {
         if (btn) btn.classList.add("listening");
-        showToast("Silakan berbicara...", "info");
+        showToast(systemLang === "id" ? "Silakan berbicara..." : "Listening...", "info");
     };
 
     recognition.onresult = (event) => {
@@ -1047,7 +1409,7 @@ function mulaiVoiceSearch() {
         const searchInput = document.getElementById("search-input");
         if (searchInput) searchInput.value = transcript;
         filterData();
-        showToast(`Mencari: "${transcript}"`, "success");
+        showToast(`${systemLang === "id" ? "Mencari" : "Searching"}: "${transcript}"`, "success");
     };
 
     recognition.onerror = () => btn && btn.classList.remove("listening");
@@ -1064,11 +1426,11 @@ function catatPeminjaman() {
 
     const item = inventoryData.find(d => d.id === barangId);
     if (!item) {
-        showToast("Pilih barang yang sah!", "error");
+        showToast(systemLang === "id" ? "Pilih barang yang sah!" : "Select valid item!", "error");
         return;
     }
     if (jumlah > item.jumlah) {
-        showToast("Jumlah pinjam melebihi sisa unit!", "error");
+        showToast(systemLang === "id" ? "Jumlah pinjam melebihi sisa unit!" : "Loan exceeds available units!", "error");
         return;
     }
 
@@ -1097,14 +1459,17 @@ function catatPeminjaman() {
     renderRuanganDropdown();
     renderPeminjamanView();
     filterData();
-    showToast("Transaksi peminjaman disimpan", "success");
+    showToast(systemLang === "id" ? "Transaksi peminjaman disimpan" : "Loan recorded successfully", "success");
 }
 
 async function kembalikanBarang(loanId) {
     const pinjam = loanData.find(l => l.id === loanId);
     if (!pinjam) return;
 
-    const yakin = await showConfirm("Kembalikan", `Proses pengembalian ${pinjam.namaBarang} oleh ${pinjam.peminjam}?`);
+    const yakin = await showConfirm(
+        systemLang === "id" ? "Kembalikan" : "Return Item",
+        systemLang === "id" ? `Proses pengembalian ${pinjam.namaBarang} oleh ${pinjam.peminjam}?` : `Process return of ${pinjam.namaBarang}?`
+    );
     if (yakin) {
         const item = inventoryData.find(d => d.id === pinjam.barangId);
         if (item) {
@@ -1119,7 +1484,7 @@ async function kembalikanBarang(loanId) {
         renderRuanganDropdown();
         renderPeminjamanView();
         filterData();
-        showToast("Barang telah dikembalikan ke stok", "success");
+        showToast(systemLang === "id" ? "Barang telah dikembalikan ke stok" : "Item returned to stock", "success");
     }
 }
 
@@ -1129,7 +1494,7 @@ function renderPeminjamanView() {
     tbody.innerHTML = "";
 
     if (loanData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="text-center">Tidak ada transaksi pinjaman aktif.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center">${systemLang === "id" ? "Tidak ada transaksi pinjaman aktif." : "No active loan records."}</td></tr>`;
         return;
     }
 
@@ -1138,8 +1503,8 @@ function renderPeminjamanView() {
     loanData.forEach(p => {
         const isOverdue = p.tglKembali < hariIni;
         const statusBadge = isOverdue
-            ? `<span class="badge badge-overdue">Terlambat</span>`
-            : `<span class="badge badge-baik">Aktif</span>`;
+            ? `<span class="badge badge-overdue">${systemLang === "id" ? "Terlambat" : "Overdue"}</span>`
+            : `<span class="badge badge-baik">${systemLang === "id" ? "Aktif" : "Active"}</span>`;
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -1149,7 +1514,7 @@ function renderPeminjamanView() {
             <td>${p.tglKembali}</td>
             <td>${statusBadge}</td>
             <td>
-                <button class="btn btn-secondary btn-sm" onclick="kembalikanBarang(${p.id})">Kembalikan</button>
+                <button class="btn btn-secondary btn-sm" onclick="kembalikanBarang(${p.id})">${systemLang === "id" ? "Kembalikan" : "Return"}</button>
             </td>
         `;
         tbody.appendChild(tr);
@@ -1171,7 +1536,7 @@ function renderLogAktivitas() {
     el.innerHTML = "";
 
     if (activityLogs.length === 0) {
-        el.innerHTML = `<p class="text-caption text-center">Belum ada catatan aktivitas.</p>`;
+        el.innerHTML = `<p class="text-caption text-center">${systemLang === "id" ? "Belum ada catatan aktivitas." : "No activity logs recorded."}</p>`;
         return;
     }
 
@@ -1187,18 +1552,19 @@ function renderLogAktivitas() {
 }
 
 async function konfirmasiHapusLog() {
-    const yakin = await showConfirm("Bersihkan Log", "Hapus semua histori riwayat?");
+    const yakin = await showConfirm(
+        systemLang === "id" ? "Bersihkan Log" : "Clear Logs",
+        systemLang === "id" ? "Hapus semua histori riwayat?" : "Erase all audit logs?"
+    );
     if (yakin) {
         activityLogs = [];
         localStorage.removeItem("xoxo_logs");
         renderLogAktivitas();
-        showToast("Log aktivitas telah dibersihkan", "info");
+        showToast(systemLang === "id" ? "Log aktivitas telah dibersihkan" : "Audit logs cleared", "info");
     }
 }
 
-// =========================================================
-// STATISTIK & ANALITIK DASBOR DETAIL (SAFE RENDER)
-// =========================================================
+// STATISTIK & ANALITIK DASBOR
 function updateStatistik() {
     let total = 0;
     let totalValuasi = 0;
@@ -1264,7 +1630,6 @@ function updateStatistik() {
         borrowFrequency[l.namaBarang] = (borrowFrequency[l.namaBarang] || 0) + 1;
     });
 
-    // Pasang Metrik Angka jika elemen ada
     const elVal = document.getElementById("stat-valuasi");
     if (elVal) elVal.innerText = formatRupiah(totalValuasi);
 
@@ -1276,12 +1641,6 @@ function updateStatistik() {
 
     const elRusak = document.getElementById("stat-rusak");
     if (elRusak) elRusak.innerText = rusak;
-
-    const elPinjam = document.getElementById("stat-pinjam");
-    if (elPinjam) elPinjam.innerText = totalDipinjam;
-
-    const elLowStock = document.getElementById("stat-low-stock");
-    if (elLowStock) elLowStock.innerText = lowStockItems.length;
 
     const elDamaged = document.getElementById("stat-damaged-val");
     if (elDamaged) elDamaged.innerText = formatRupiah(totalDamagedValue);
@@ -1319,8 +1678,8 @@ function renderActionableAlerts(lowStock, maintenance, overdue) {
         div.className = "dash-alert-card alert-danger-box";
         div.onclick = () => navigasiKe("page-peminjaman");
         div.innerHTML = `
-            <span><strong>${overdue.length} Peminjaman Terlambat (Overdue)</strong> &bull; Perlu tindak lanjut pengembalian.</span>
-            <span>Lihat &rsaquo;</span>
+            <span><strong>${overdue.length} ${systemLang === "id" ? "Peminjaman Terlambat (Overdue)" : "Overdue Loans"}</strong> &bull; ${systemLang === "id" ? "Perlu tindak lanjut pengembalian." : "Immediate return required."}</span>
+            <span>${systemLang === "id" ? "Lihat" : "View"} &rsaquo;</span>
         `;
         container.appendChild(div);
     }
@@ -1331,7 +1690,7 @@ function renderActionableAlerts(lowStock, maintenance, overdue) {
         div.className = "dash-alert-card alert-warning-box";
         div.onclick = () => navigasiKe("page-inventaris");
         div.innerHTML = `
-            <span><strong>${lowStock.length} Barang Mencapai Stok Kritis</strong> &bull; Sisa unit di bawah batas aman.</span>
+            <span><strong>${lowStock.length} ${systemLang === "id" ? "Barang Mencapai Stok Kritis" : "Items at Critical Low Stock"}</strong> &bull; ${systemLang === "id" ? "Sisa unit di bawah batas aman." : "Units below safe threshold."}</span>
             <span>Restock &rsaquo;</span>
         `;
         container.appendChild(div);
@@ -1343,8 +1702,8 @@ function renderActionableAlerts(lowStock, maintenance, overdue) {
         div.className = "dash-alert-card alert-warning-box";
         div.onclick = () => navigasiKe("page-inventaris");
         div.innerHTML = `
-            <span><strong>${maintenance.length} Barang Perlu Servis</strong> &bull; Jadwal jatuh tempo dalam 30 hari.</span>
-            <span>Jadwal &rsaquo;</span>
+            <span><strong>${maintenance.length} ${systemLang === "id" ? "Barang Perlu Servis" : "Items Need Maintenance"}</strong> &bull; ${systemLang === "id" ? "Jadwal jatuh tempo dalam 30 hari." : "Due within next 30 days."}</span>
+            <span>${systemLang === "id" ? "Jadwal" : "Schedule"} &rsaquo;</span>
         `;
         container.appendChild(div);
     }
@@ -1367,13 +1726,13 @@ function gambarHealthGauge(goodCount, totalCount) {
     if (statusBadge) {
         if (score >= 80) {
             statusBadge.className = "badge badge-baik";
-            statusBadge.innerText = "Prima / Sehat";
+            statusBadge.innerText = systemLang === "id" ? "Prima / Sehat" : "Healthy / Prime";
         } else if (score >= 50) {
             statusBadge.className = "badge badge-warning";
-            statusBadge.innerText = "Cukup Baik";
+            statusBadge.innerText = systemLang === "id" ? "Cukup Baik" : "Moderate";
         } else {
             statusBadge.className = "badge badge-overdue";
-            statusBadge.innerText = "Perlu Peremajaan";
+            statusBadge.innerText = systemLang === "id" ? "Perlu Peremajaan" : "Needs Renewal";
         }
     }
 
@@ -1462,7 +1821,7 @@ function renderCategoryBreakdown(catMap, totalQty) {
 
     const keys = Object.keys(catMap);
     if (keys.length === 0 || totalQty === 0) {
-        container.innerHTML = `<p class="text-caption">Belum ada kategori barang terdata.</p>`;
+        container.innerHTML = `<p class="text-caption">${systemLang === "id" ? "Belum ada kategori barang terdata." : "No category data available."}</p>`;
         return;
     }
 
@@ -1477,7 +1836,7 @@ function renderCategoryBreakdown(catMap, totalQty) {
         row.innerHTML = `
             <div class="progress-info-head">
                 <span>${kat}</span>
-                <span>${count} Unit (${percentage}%)</span>
+                <span>${count} ${systemLang === "id" ? "Unit" : "Units"} (${percentage}%)</span>
             </div>
             <div class="progress-track">
                 <div class="progress-fill-bar" style="width: ${percentage}%"></div>
@@ -1494,10 +1853,10 @@ function renderRoomDistribution(valMap, qtyMap, totalVal) {
     container.innerHTML = "";
 
     const rooms = Object.keys(valMap);
-    if (badge) badge.innerText = `${rooms.length} Ruangan`;
+    if (badge) badge.innerText = `${rooms.length} ${systemLang === "id" ? "Ruangan" : "Rooms"}`;
 
     if (rooms.length === 0) {
-        container.innerHTML = `<p class="text-caption">Belum ada sebaran ruangan.</p>`;
+        container.innerHTML = `<p class="text-caption">${systemLang === "id" ? "Belum ada sebaran ruangan." : "No room distribution."}</p>`;
         return;
     }
 
@@ -1513,9 +1872,9 @@ function renderRoomDistribution(valMap, qtyMap, totalVal) {
         card.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center;">
                 <strong>${room}</strong>
-                <span class="badge" style="font-size:10px;">${pct}% Aset</span>
+                <span class="badge" style="font-size:10px;">${pct}% ${systemLang === "id" ? "Aset" : "Asset"}</span>
             </div>
-            <span>${qty} Total Barang Fisik</span>
+            <span>${qty} ${systemLang === "id" ? "Total Barang Fisik" : "Physical Items"}</span>
             <h4>${formatRupiah(val)}</h4>
         `;
         container.appendChild(card);
@@ -1525,7 +1884,7 @@ function renderRoomDistribution(valMap, qtyMap, totalVal) {
 function renderSmartInsights(totalValuasi, borrowFreq, roomQtyMap) {
     const depreciation = Math.round(totalValuasi * 0.10);
     const elDep = document.getElementById("dash-depreciation-val");
-    if (elDep) elDep.innerText = formatRupiah(depreciation) + " / thn";
+    if (elDep) elDep.innerText = formatRupiah(depreciation) + (systemLang === "id" ? " / thn" : " / yr");
 
     let maxBorrow = 0;
     let topBorrowedItem = "-";
@@ -1536,7 +1895,7 @@ function renderSmartInsights(totalValuasi, borrowFreq, roomQtyMap) {
         }
     }
     const elMost = document.getElementById("dash-most-borrowed-item");
-    if (elMost) elMost.innerText = topBorrowedItem !== "-" ? `${topBorrowedItem} (${maxBorrow}x)` : "Belum Ada";
+    if (elMost) elMost.innerText = topBorrowedItem !== "-" ? `${topBorrowedItem} (${maxBorrow}x)` : (systemLang === "id" ? "Belum Ada" : "None");
 
     let maxDensity = 0;
     let densestRoom = "-";
@@ -1557,7 +1916,7 @@ function renderRecentDashboardActivities() {
 
     const recent = activityLogs.slice(0, 3);
     if (recent.length === 0) {
-        container.innerHTML = `<p class="text-caption">Belum ada aktivitas terbaru.</p>`;
+        container.innerHTML = `<p class="text-caption">${systemLang === "id" ? "Belum ada aktivitas terbaru." : "No recent activity."}</p>`;
         return;
     }
 
@@ -1584,9 +1943,9 @@ function gambarGrafik(baik = 0, ringan = 0, berat = 0, total = 0) {
     const ir = 38;
 
     const data = [
-        { label: "Baik", count: baik, color: "#10b981" },
-        { label: "Rusak Ringan", count: ringan, color: "#f59e0b" },
-        { label: "Rusak Berat", count: berat, color: "#ef4444" }
+        { label: systemLang === "id" ? "Baik" : "Good", count: baik, color: "#10b981" },
+        { label: systemLang === "id" ? "Rusak Ringan" : "Slightly Dmg", count: ringan, color: "#f59e0b" },
+        { label: systemLang === "id" ? "Rusak Berat" : "Heavily Dmg", count: berat, color: "#ef4444" }
     ];
 
     let start = -0.5 * Math.PI;
@@ -1680,7 +2039,7 @@ function tutupModalQR() {
     currentLabelData = null;
 }
 
-// CETAK STIKER LABEL FISIK RESMI DENGAN ISOLATED PRINT FRAME
+// CETAK STIKER LABEL FISIK DENGAN ISOLATED PRINT FRAME
 function cetakStikerLabel() {
     if (!currentLabelData) return;
 
@@ -1765,36 +2124,7 @@ function cetakStikerLabel() {
     }, 250);
 }
 
-function mulaiScanQR() {
-    const modal = document.getElementById("modal-scanner");
-    if (modal) modal.classList.remove("hidden");
-    if (typeof Html5QrcodeScanner !== "undefined") {
-        html5QrScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 220 });
-        html5QrScanner.render((decodedText) => {
-            triggerScannerBeep();
-            triggerHapticFeedback();
-            tutupScanQR();
-            const searchInput = document.getElementById("search-input");
-            if (searchInput) searchInput.value = decodedText;
-            navigasiKe("page-inventaris", document.querySelectorAll(".dock-btn")[1]);
-            filterData();
-            showToast(`Kode QR: ${decodedText}`, "success");
-        }, () => {});
-    } else {
-        showToast("Scanner offline belum siap.", "error");
-    }
-}
-
-function tutupScanQR() {
-    if (html5QrScanner) {
-        html5QrScanner.clear();
-        html5QrScanner = null;
-    }
-    const modal = document.getElementById("modal-scanner");
-    if (modal) modal.classList.add("hidden");
-}
-
-// LAPORAN BERITA ACARA
+// PRATINJAU DOKUMEN LAPORAN
 function renderLaporanPreview() {
     const ruang = document.getElementById("laporan-filter-ruang")?.value || "";
     const kondisi = document.getElementById("laporan-filter-kondisi")?.value || "";
@@ -1803,7 +2133,7 @@ function renderLaporanPreview() {
     tbody.innerHTML = "";
 
     const elNama = document.getElementById("print-instansi-name");
-    if (elNama) elNama.innerText = profilInstansi.nama || "INSTANSI INVENTARIS";
+    if (elNama) elNama.innerText = (profilInstansi.nama || "INSTANSI INVENTARIS").toUpperCase();
 
     const elAddr = document.getElementById("print-instansi-addr");
     if (elAddr) elAddr.innerText = profilInstansi.alamat || "Alamat Kantor / Gedung Operasional";
@@ -1815,7 +2145,7 @@ function renderLaporanPreview() {
     if (elPet) elPet.innerText = `( ${profilInstansi.petugas || '....................................'} )`;
 
     const elDate = document.getElementById("print-date");
-    if (elDate) elDate.innerText = `Tanggal Cetak: ${new Date().toLocaleDateString("id-ID", { dateStyle: "long" })}`;
+    if (elDate) elDate.innerText = `${systemLang === "id" ? "Tanggal Cetak" : "Print Date"}: ${new Date().toLocaleDateString(systemLang === "id" ? "id-ID" : "en-US", { dateStyle: "long" })}`;
 
     const filtered = inventoryData.filter(item => {
         const matchRuang = ruang === "" || item.ruangan === ruang;
@@ -1834,25 +2164,182 @@ function renderLaporanPreview() {
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${index + 1}</td>
-            <td>${item.kode}</td>
+            <td><strong>${item.kode}</strong></td>
             <td>${item.nama}</td>
             <td>${item.kategori || 'Elektronik'}</td>
             <td>${item.ruangan}</td>
             <td>${item.jumlah}</td>
             <td>${formatRupiah(item.harga)}</td>
-            <td>${formatRupiah(subtotal)}</td>
+            <td><strong>${formatRupiah(subtotal)}</strong></td>
             <td>${item.kondisi}</td>
         `;
         tbody.appendChild(tr);
     });
 
     const elSummary = document.getElementById("print-summary-val");
-    if (elSummary) elSummary.innerText = `Total Nilai Aset: ${formatRupiah(totalSubtotal)}`;
+    if (elSummary) elSummary.innerText = `${systemLang === "id" ? "Total Nilai Aset" : "Total Asset Value"}: ${formatRupiah(totalSubtotal)}`;
+}
+
+// CETAK LAPORAN BERITA ACARA DENGAN ISOLATED PRINT FRAME (ANTI KOSONG PUTIH)
+function cetakDokumenLaporan() {
+    renderLaporanPreview();
+
+    const printFrame = document.getElementById("print-frame");
+    if (!printFrame) return;
+    const doc = printFrame.contentWindow.document;
+
+    const instansiNama = (profilInstansi.nama || "INSTANSI INVENTARIS").toUpperCase();
+    const instansiAddr = profilInstansi.alamat || "Alamat Kantor / Gedung Operasional";
+    const signPj = profilInstansi.pj || "....................................";
+    const signPetugas = profilInstansi.petugas || "....................................";
+    const dateStr = new Date().toLocaleDateString(systemLang === "id" ? "id-ID" : "en-US", { dateStyle: "long" });
+
+    const ruang = document.getElementById("laporan-filter-ruang")?.value || "";
+    const kondisi = document.getElementById("laporan-filter-kondisi")?.value || "";
+
+    const filtered = inventoryData.filter(item => {
+        const matchRuang = ruang === "" || item.ruangan === ruang;
+        let matchKondisi = true;
+        if (kondisi === "Baik") matchKondisi = item.kondisi === "Baik";
+        if (kondisi === "Rusak") matchKondisi = item.kondisi !== "Baik";
+        return matchRuang && matchKondisi;
+    });
+
+    let totalSubtotal = 0;
+    let rowsHtml = "";
+    filtered.forEach((item, index) => {
+        const subtotal = (item.harga || 0) * (item.jumlah || 0);
+        totalSubtotal += subtotal;
+        rowsHtml += `
+            <tr>
+                <td style="text-align:center; padding:6px; border:1px solid #000;">${index + 1}</td>
+                <td style="padding:6px; border:1px solid #000;"><strong>${item.kode}</strong></td>
+                <td style="padding:6px; border:1px solid #000;">${item.nama}</td>
+                <td style="padding:6px; border:1px solid #000;">${item.kategori || 'Elektronik'}</td>
+                <td style="padding:6px; border:1px solid #000;">${item.ruangan}</td>
+                <td style="text-align:center; padding:6px; border:1px solid #000;">${item.jumlah}</td>
+                <td style="text-align:right; padding:6px; border:1px solid #000;">${formatRupiah(item.harga)}</td>
+                <td style="text-align:right; padding:6px; border:1px solid #000;"><strong>${formatRupiah(subtotal)}</strong></td>
+                <td style="text-align:center; padding:6px; border:1px solid #000;">${item.kondisi}</td>
+            </tr>
+        `;
+    });
+
+    doc.open();
+    doc.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Laporan Inventaris - ${dateStr}</title>
+            <style>
+                @page { size: A4 portrait; margin: 12mm; }
+                * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+                body { background: #fff; color: #000; padding: 10px; }
+                .report-header { text-align: center; margin-bottom: 20px; }
+                .report-header h2 { font-size: 18px; font-weight: bold; margin-bottom: 3px; letter-spacing: 0.5px; }
+                .report-header p { font-size: 11px; color: #444; }
+                .divider { border-bottom: 2px solid #000; margin: 10px 0 14px; }
+                .report-title { text-align: center; margin-bottom: 15px; }
+                .report-title h3 { font-size: 14px; font-weight: bold; text-decoration: underline; margin-bottom: 4px; }
+                .report-title p { font-size: 10px; color: #333; }
+                table { width: 100%; border-collapse: collapse; font-size: 10px; margin-top: 10px; }
+                th { background: #f0f0f0; padding: 8px; border: 1px solid #000; text-align: left; }
+                .summary-box { margin-top: 15px; text-align: right; font-size: 11px; font-weight: bold; }
+                .signatures { display: flex; justify-content: space-between; margin-top: 40px; padding: 0 30px; font-size: 11px; }
+                .sign-box { text-align: center; }
+                .sign-space { height: 60px; }
+            </style>
+        </head>
+        <body>
+            <div class="report-header">
+                <h2>${instansiNama}</h2>
+                <p>${instansiAddr}</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="report-title">
+                <h3>${systemLang === "id" ? "BERITA ACARA REKAPITULASI INVENTARIS" : "MINUTES OF INVENTORY RECAPITULATION"}</h3>
+                <p>${systemLang === "id" ? "Tanggal Cetak" : "Print Date"}: ${dateStr}</p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align:center; width:30px;">No</th>
+                        <th>Kode</th>
+                        <th>Nama Barang</th>
+                        <th>Kategori</th>
+                        <th>Ruangan</th>
+                        <th style="text-align:center;">Jumlah</th>
+                        <th style="text-align:right;">Harga Satuan</th>
+                        <th style="text-align:right;">Subtotal</th>
+                        <th style="text-align:center;">Kondisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rowsHtml}
+                </tbody>
+            </table>
+
+            <div class="summary-box">
+                ${systemLang === "id" ? "Total Nilai Aset" : "Total Asset Value"}: ${formatRupiah(totalSubtotal)}
+            </div>
+
+            <div class="signatures">
+                <div class="sign-box">
+                    <p>${systemLang === "id" ? "Penanggung Jawab Ruangan," : "Room Person in Charge,"}</p>
+                    <div class="sign-space"></div>
+                    <p>( ${signPj} )</p>
+                </div>
+                <div class="sign-box">
+                    <p>${systemLang === "id" ? "Petugas Inventaris," : "Inventory Officer,"}</p>
+                    <div class="sign-space"></div>
+                    <p>( ${signPetugas} )</p>
+                </div>
+            </div>
+        </body>
+        </html>
+    `);
+    doc.close();
+
+    setTimeout(() => {
+        printFrame.contentWindow.focus();
+        printFrame.contentWindow.print();
+    }, 250);
+}
+
+function mulaiScanQR() {
+    const modal = document.getElementById("modal-scanner");
+    if (modal) modal.classList.remove("hidden");
+    if (typeof Html5QrcodeScanner !== "undefined") {
+        html5QrScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 220 });
+        html5QrScanner.render((decodedText) => {
+            triggerScannerBeep();
+            triggerHapticFeedback();
+            tutupScanQR();
+            const searchInput = document.getElementById("search-input");
+            if (searchInput) searchInput.value = decodedText;
+            navigasiKe("page-inventaris", document.querySelectorAll(".dock-btn")[1]);
+            filterData();
+            showToast(`Kode QR: ${decodedText}`, "success");
+        }, () => {});
+    } else {
+        showToast(systemLang === "id" ? "Scanner offline belum siap." : "Scanner not ready.", "error");
+    }
+}
+
+function tutupScanQR() {
+    if (html5QrScanner) {
+        html5QrScanner.clear();
+        html5QrScanner = null;
+    }
+    const modal = document.getElementById("modal-scanner");
+    if (modal) modal.classList.add("hidden");
 }
 
 // EXPORT & BACKUP
 function exportData(format) {
-    if (inventoryData.length === 0) { showToast("Data masih kosong!", "error"); return; }
+    if (inventoryData.length === 0) { showToast(systemLang === "id" ? "Data masih kosong!" : "Data is empty!", "error"); return; }
     let dataStr = "";
     let name = `inventaris_${Date.now()}`;
 
@@ -1887,9 +2374,9 @@ function importData(event) {
                 renderRuanganDropdown();
                 filterData();
                 catatLog("Impor", "Mengimpor data JSON");
-                showToast("Data inventaris berhasil diimpor!", "success");
+                showToast(systemLang === "id" ? "Data inventaris berhasil diimpor!" : "Data imported successfully!", "success");
             }
-        } catch { showToast("Format file JSON rusak!", "error"); }
+        } catch { showToast(systemLang === "id" ? "Format file JSON rusak!" : "Corrupted JSON format!", "error"); }
     };
     reader.readAsText(file);
     event.target.value = "";
@@ -1946,8 +2433,8 @@ function restoreLocalStorage(event) {
             filterData();
             updateStatistik();
             siapkanKodeInventarisBaru();
-            showToast("Sistem berhasil dipulihkan!", "success");
-        } catch { showToast("File backup tidak valid!", "error"); }
+            showToast(systemLang === "id" ? "Sistem berhasil dipulihkan!" : "System restored successfully!", "success");
+        } catch { showToast(systemLang === "id" ? "File backup tidak valid!" : "Invalid backup file!", "error"); }
     };
     reader.readAsText(file);
     event.target.value = "";
