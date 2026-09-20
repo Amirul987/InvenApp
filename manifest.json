@@ -33,7 +33,7 @@
         },
         {
             "src": "screenshots.png",
-            "sizes": 1920x1080",
+            "sizes": "1920x1080",
             "type": "image/png",
             "form_factor": "wide",
             "label": "Tampilan Aplikasi XoXo di Desktop"
